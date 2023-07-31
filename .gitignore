@@ -1,0 +1,17 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore the Angular build output
+dist/
+
+# Ignore Angular caching files
+.angular-cache/
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore system files
+Thumbs.db
+.DS_Store
