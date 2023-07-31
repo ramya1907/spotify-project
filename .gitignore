@@ -1,9 +1,6 @@
 # Ignore node_modules
 node_modules/
 
-# Ignore the Angular build output
-dist/
-
 # Ignore Angular caching files
 .angular-cache/
 
