@@ -22,14 +22,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  signIn() {
-    // Implement the logic to redirect the user to the Last.fm sign-in page
-    // For example, open it in a new tab/window:
-    window.open('https://www.last.fm/signin', '_blank');
-
-    // After the user signs in and the callback is received, navigate to the callback page
-    this.router.navigate(['/view']); // Make sure 'callback' matches the path specified in AppRoutingModule
   
+  redirectToLastFmAuth() {
+    // Replace 'YOUR_API_KEY' with your actual Last.fm API key
+    const apiKey = '846e19279fa31e6d74cad5d88e4a1a1f';
+    const lastFmAuthUrl = `http://www.last.fm/api/auth/?api_key=${apiKey}&cb=https://melo-data-99991ac107b1.herokuapp.com/view`;
+
+    // Redirect the user to the Last.fm authentication page
+    window.location.href = lastFmAuthUrl;
   }
 
   callback() {
