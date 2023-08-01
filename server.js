@@ -4,6 +4,9 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const axios = require('axios');
+
+const LAST_FM_API_KEY = '846e19279fa31e6d74cad5d88e4a1a1f';
 
 // Use the cors middleware to allow cross-origin requests
 app.use(cors());
@@ -54,6 +57,32 @@ app.get('/api/message', (req, res) => {
         }
     });
 });
+
+// Validate Access Token
+app.get('/api/validate-token', async (req, res) => {
+    const accessToken = req.query.token;
+    try {
+      // Make a request to the Last.fm API to validate the access token
+      const response = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=${this.LAST_FM_API_KEY}&token=${accessToken}&format=json`);
+      const data = response.data;
+  
+      if (data.session && data.session.name) {
+        // The access token is valid
+        const username = data.session.name;
+        res.status(200).json({ authenticated: true, username: username });
+        
+        
+      } else {
+        // The access token is invalid or expired
+        
+        res.status(401).json({ authenticated: false });
+      }
+    } catch (error) {
+      // Handle any errors that occurred during the API request
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
 
 // Serve the static files from the dist directory
 app.use(express.static(path.join(__dirname, 'client', 'dist', 'client'))); 

@@ -27,43 +27,27 @@ export class ViewComponent implements OnInit {
       if ('token' in params) {
         this.token = params['token'];
 
-        const backendApiUrl = 'https://melo-data-99991ac107b1.herokuapp.com/';
+    const backendApiUrl = 'https://melo-data-99991ac107b1.herokuapp.com/';
 
-        // Make the API request to validate the access token
-        this.http
-          .get<any>(`${backendApiUrl}/api/validate-token?token=${this.token}`)
-          .subscribe((response) => {
-            if (response.authenticated) {
-              // Authentication is successful
-              const username = response.username;
-              console.log('User authenticated:', username);
+    // Make the API request to validate the access token
+    this.http.get<any>(`${backendApiUrl}/api/validate-token?token=${this.token}`).subscribe(
+      (response) => {
+        if (response.authenticated) {
+          // Authentication is successful
+          const username = response.username;
+          console.log('User authenticated:', username);
 
-              // Make the API request to validate the access token
-              this.http
-                .get<any>(
-                  `${backendApiUrl}/api/validate-token?token=${this.token}`
-                )
-                .subscribe(
-                  (response) => {
-                    if (response.authenticated) {
-                      // Authentication is successful
-                      const username = response.username;
-                      console.log('User authenticated:', username);
-
-                      // Store the username or take further actions in your Angular app as needed.
-                    } else {
-                      // Authentication failed
-                      console.log('Authentication failed');
-                    }
-                  },
-                  (error) => {
-                    console.log('Error occurred during authentication:', error);
-                    // Handle any errors that occurred during the API request.
-                  }
-                );
-            }
-          });
-
+          // Store the username or take further actions in your Angular app as needed.
+        } else {
+          // Authentication failed
+          console.log('Authentication failed');
+        }
+      },
+       (error) => {
+          console.log('Error occurred during authentication:', error);
+        }
+      );
+    
         const cookieName = 'access_token';
         const expirationDays = 7;
         this.cookieService.set(cookieName, this.token, expirationDays, '/');
