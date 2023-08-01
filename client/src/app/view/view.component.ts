@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MD5 } from 'crypto-js';
 import { CookieService } from 'ngx-cookie-service';
@@ -19,8 +19,13 @@ export class ViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) {}
+
+  openStats(){
+    this.router.navigate(['/stats']);
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
