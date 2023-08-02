@@ -27,12 +27,12 @@ export class ViewComponent implements OnInit {
     this.router.navigate(['/stats']);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.route.queryParams.subscribe((params) => {
       if ('token' in params) {
         this.token = params['token'];
 
-    const backendApiUrl = 'https://melo-data-99991ac107b1.herokuapp.com/';
+    const backendApiUrl = 'https://melo-data-99991ac107b1.herokuapp.com';
 
     // Make the API request to validate the access token
     this.http.get<any>(`${backendApiUrl}/api/validate-token?token=${this.token}`).subscribe(
@@ -88,11 +88,10 @@ export class ViewComponent implements OnInit {
 
         // Make the POST request to fetch the web service session
 
-        this.http
-          .post<any>(
-            `${lastFmApiUrl}?method=auth.getSession`,
-            this.urlEncode(requestBody),
-            httpOptions
+        this.http.post<any>(
+          `${lastFmApiUrl}?method=auth.getSession`,
+           this.urlEncode(requestBody),
+           httpOptions
           )
           .subscribe((response) => {
             // Handle the response from the Last.fm API
