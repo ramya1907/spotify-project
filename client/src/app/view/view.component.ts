@@ -12,6 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class ViewComponent implements OnInit {
 
+
+  isInitialized: boolean = false;
+
   loading: boolean = false;
   token: string = '';
   apiKey = '846e19279fa31e6d74cad5d88e4a1a1f';
@@ -32,6 +35,7 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    this.isInitialized = true;
     console.log("It is loadin");
     this.route.queryParams.subscribe((params) => {
       if ('token' in params) {
