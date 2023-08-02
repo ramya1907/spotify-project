@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MD5 } from 'crypto-js';
+// import { MD5 } from 'crypto-js';
+import {Md5} from 'ts-md5';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -12,10 +13,9 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class ViewComponent implements OnInit {
 
-
   isInitialized: boolean = false;
-
   loading: boolean = false;
+
   token: string = '';
   apiKey = '846e19279fa31e6d74cad5d88e4a1a1f';
   apiSignature: string = '';
@@ -24,25 +24,21 @@ export class ViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private cookieService: CookieService,
-    private router: Router
+    private cookieService: CookieService
   ) {}
 
-  openStats(){
-    this.router.navigate(['/stats']);
-  }
-
-
   ngOnInit(): void {
+
     this.loading = true;
     this.isInitialized = true;
     console.log("It is loadin");
+
     this.route.queryParams.subscribe((params) => {
       if ('token' in params) {
         this.token = params['token'];
         this.handleTokenValidation(this.token);
       } else {
-        
+         
         console.log('Token missing or not defined');
         this.loading = false;
       }
@@ -60,8 +56,8 @@ export class ViewComponent implements OnInit {
   private validateAccessToken(token: string, backendApiUrl: string): void {
     this.http
       .get<any>(`${backendApiUrl}/api/validate-token?token=${token}`)
-      .subscribe(
-        (response) => {
+      .subscribe({
+        next: (response) => {
           if (response.authenticated) {
             this.handleSuccessfulAuthentication(response.username);
             this.storeAccessToken(token);
@@ -73,13 +69,13 @@ export class ViewComponent implements OnInit {
           console.log("It is done loadin");
           this.loading = false;
         },
-        (error) => {
+        error: (error) => {
           console.log('Error occurred during authentication:', error);
+
           console.log("It is done loadin");
           this.loading = false;
-    
         }
-      );
+       });
   }
 
   private handleSuccessfulAuthentication(username: string): void {
@@ -93,26 +89,30 @@ export class ViewComponent implements OnInit {
   }
 
   private createApiSignature(token: string): void {
-    const parameters = {
-      api_key: this.apiKey,
-      method: 'auth.getSession',
-      token: token,
-    } as { [key: string]: string };
+    // const parameters = {
+    //   api_key: this.apiKey,
+    //   method: 'auth.getSession',
+    //   token: token,
+    // } as { [key: string]: string };
 
-    const sortedParamsString = Object.keys(parameters)
-      .sort()
-      .map((key) => `${key}${parameters[key]}`)
-      .join('');
+    // const sortedParamsString = Object.keys(parameters)
+    //   .sort()
+    //   .map((key) => `${key}${parameters[key]}`)
+    //   .join('');
 
-    const signatureString = sortedParamsString + this.secret;
+    const sortedParamsString = `api_key${this.apiKey}methodauth.getSessiontoken${token}`;
 
-    this.apiSignature = MD5(signatureString).toString();
+    // const signatureString = sortedParamsString + this.secret;
+    const signatureString = `${sortedParamsString}${this.secret}`;
+
+    //this.apiSignature = MD5(signatureString).toString();
+    this.apiSignature = Md5.hashStr(signatureString).toString();
   }
 
-  private createSessionKey(token: string): void {
+  private createSessionKey(token_i: string): void {
     const requestBody = {
-      api_key: this.apiKey,
-      token: token,
+      api_key: this.apiKey, 
+      token: token_i,
       api_sig: this.apiSignature,
     };
 

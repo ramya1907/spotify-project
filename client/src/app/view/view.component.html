@@ -1,11 +1,10 @@
 <div *ngIf="isInitialized">
-<p>user authentication under progress ...</p>
-<div *ngIf="loading">
+  <div *ngIf="loading">
+    <p>user authentication under progress ...</p>
     <p>Loading...</p>
   </div>
   <div *ngIf="!loading">
-    <!-- Display your content here -->
-    <button (click)="openStats()">Display Stats</button>
+    <p>user authentication done !</p>
+    <button routerLink="/stats">Display Stats</button>
   </div>
 </div>
-  

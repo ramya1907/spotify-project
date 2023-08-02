@@ -20,12 +20,6 @@ const pool = mysql.createPool({
     port: '3306'
 });
 
-
-app.get('/view', (req, res) => {
-  
-  res.sendFile(path.join(__dirname, 'client/src/app/view/view.component.html'));
-});
-
 app.get('/api/message', (req, res) => {
    
     const mathOperationQuery = 'SELECT 1 + 1 AS result';
