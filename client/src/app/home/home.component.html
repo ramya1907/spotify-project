@@ -5,14 +5,14 @@
     </p>
     <button (click)="redirectToLastFmAuth()">Sign In to Last.fm</button>
 
-    <!-- Callback button -->
-  <button (click)="callback()">Callback</button>
+    
+  <button routerLink="/stats">View Stats</button> 
 
-  <h5>
+  <!-- <h5>
 	The below message is fetched from the express backend
   </h5>
   <p *ngIf="message">
 	  {{ message.message }}
-  </p>
+  </p> -->
 </div>
   

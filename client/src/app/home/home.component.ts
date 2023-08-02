@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
     });
   } //might remove this method later
 
-  
   redirectToLastFmAuth() {
   
     const apiKey = '846e19279fa31e6d74cad5d88e4a1a1f';
@@ -31,9 +30,4 @@ export class HomeComponent implements OnInit {
     // Redirect the user to the Last.fm authentication page
     window.location.href = lastFmAuthUrl;
   }
-
-  callback() {
-    this.router.navigate(['/view']);
-  }
-
 }
