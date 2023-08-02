@@ -11,6 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class ViewComponent implements OnInit {
+
+  loading: boolean = false;
   token: string = '';
   apiKey = '846e19279fa31e6d74cad5d88e4a1a1f';
   apiSignature: string = '';
@@ -27,89 +29,118 @@ export class ViewComponent implements OnInit {
     this.router.navigate(['/stats']);
   }
 
-  ngOnInit(): void { 
+
+  ngOnInit(): void {
+    this.loading = true;
+    console.log("It is loadin");
     this.route.queryParams.subscribe((params) => {
       if ('token' in params) {
         this.token = params['token'];
-
-    const backendApiUrl = 'https://melo-data-99991ac107b1.herokuapp.com';
-
-    // Make the API request to validate the access token
-    this.http.get<any>(`${backendApiUrl}/api/validate-token?token=${this.token}`).subscribe(
-      (response) => {
-        if (response.authenticated) {
-          // Authentication is successful
-          const username = response.username;
-          console.log('User authenticated:', username);
-
-          // Store the username or take further actions in your Angular app as needed.
-        } else {
-          // Authentication failed
-          console.log('Authentication failed');
-        }
-      },
-       (error) => {
-          console.log('Error occurred during authentication:', error);
-        }
-      );
-    
-        const cookieName = 'access_token';
-        const expirationDays = 7;
-        this.cookieService.set(cookieName, this.token, expirationDays, '/');
-
-        const parameters = {
-          api_key: this.apiKey,
-          method: 'auth.getSession',
-          token: this.token,
-        } as { [key: string]: string };
-
-        const sortedParamsString = Object.keys(parameters)
-          .sort()
-          .map((key) => `${key}${parameters[key]}`)
-          .join('');
-
-        const signatureString = sortedParamsString + this.secret;
-
-        this.apiSignature = MD5(signatureString).toString();
-
-        const requestBody = {
-          api_key: this.apiKey,
-          token: this.token,
-          api_sig: this.apiSignature,
-        };
-
-        const httpOptions = {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }),
-        };
-
-        const lastFmApiUrl = 'http://ws.audioscrobbler.com/2.0/';
-
-        // Make the POST request to fetch the web service session
-
-        this.http.post<any>(
-          `${lastFmApiUrl}?method=auth.getSession`,
-           this.urlEncode(requestBody),
-           httpOptions
-          )
-          .subscribe((response) => {
-            // Handle the response from the Last.fm API
-            if (response.session && response.session.key) {
-              // The web service session key is available in response.session.key
-              console.log('Web service session key:', response.session.key);
-              this.cookieService.set('sessionKey', response.session.key, { expires: 7 }); 
-            } else {
-              console.log('Web service session key is unavailable');
-            }
-          });
+        this.handleTokenValidation(this.token);
       } else {
+        
         console.log('Token missing or not defined');
+        this.loading = false;
       }
     });
+    console.log("It is done loadin yay");
+    this.loading = false;
   }
 
-  // Helper function to URL encode an object's properties
+  private handleTokenValidation(token: string): void {
+    const backendApiUrl = 'https://melo-data-99991ac107b1.herokuapp.com';
+
+    this.validateAccessToken(token, backendApiUrl);
+  }
+
+  private validateAccessToken(token: string, backendApiUrl: string): void {
+    this.http
+      .get<any>(`${backendApiUrl}/api/validate-token?token=${token}`)
+      .subscribe(
+        (response) => {
+          if (response.authenticated) {
+            this.handleSuccessfulAuthentication(response.username);
+            this.storeAccessToken(token);
+            this.createApiSignature(token);
+            this.createSessionKey(token);
+          } else {
+            console.log('Authentication failed');
+          }
+          console.log("It is done loadin");
+          this.loading = false;
+        },
+        (error) => {
+          console.log('Error occurred during authentication:', error);
+          console.log("It is done loadin");
+          this.loading = false;
+    
+        }
+      );
+  }
+
+  private handleSuccessfulAuthentication(username: string): void {
+    console.log('User authenticated:', username);
+  }
+
+  private storeAccessToken(token: string): void {
+    const cookieName = 'access_token';
+    const expirationDays = 7;
+    this.cookieService.set(cookieName, token, expirationDays, '/');
+  }
+
+  private createApiSignature(token: string): void {
+    const parameters = {
+      api_key: this.apiKey,
+      method: 'auth.getSession',
+      token: token,
+    } as { [key: string]: string };
+
+    const sortedParamsString = Object.keys(parameters)
+      .sort()
+      .map((key) => `${key}${parameters[key]}`)
+      .join('');
+
+    const signatureString = sortedParamsString + this.secret;
+
+    this.apiSignature = MD5(signatureString).toString();
+  }
+
+  private createSessionKey(token: string): void {
+    const requestBody = {
+      api_key: this.apiKey,
+      token: token,
+      api_sig: this.apiSignature,
+    };
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
+
+    const lastFmApiUrl = 'http://ws.audioscrobbler.com/2.0/';
+
+    this.http
+      .post<any>(
+        `${lastFmApiUrl}?method=auth.getSession`,
+        this.urlEncode(requestBody),
+        httpOptions
+      )
+      .subscribe((response) => {
+        if (response.session && response.session.key) {
+          this.handleSessionKeyCreation(response.session.key);
+        }
+        else {
+          console.log('Web service session key is unavailable');
+        } 
+      });
+  }
+
+  private handleSessionKeyCreation(sessionKey: string): void {
+    console.log('Web service session key:', sessionKey);
+    this.cookieService.set('sessionKey', sessionKey, { expires: 7 });
+  }
+
   private urlEncode(obj: any): string {
     return Object.keys(obj)
       .map(

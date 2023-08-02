@@ -20,26 +20,26 @@ const pool = mysql.createPool({
     port: '3306'
 });
 
-// app.get('/api/message', (req, res) => {
+app.get('/api/message', (req, res) => {
    
-//     const mathOperationQuery = 'SELECT 1 + 1 AS result';
+    const mathOperationQuery = 'SELECT 1 + 1 AS result';
 
-//     pool.query(mathOperationQuery, (err, results) => {
-//         if (err) {
-//             console.error('Error executing query:', err);
-//             res.status(500).json({ error: 'Internal server error' });
-//         } else {
-//             res.json({ message: results });
-//         }
-//     });
-// });
+    pool.query(mathOperationQuery, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            res.status(500).json({ error: 'Internal server error' });
+        } else {
+            res.json({ message: results });
+        }
+    });
+});
 
 // Validate Access Token
 app.get('/api/validate-token', async (req, res) => {
     const accessToken = req.query.token;
     try {
       // Make a request to the Last.fm API to validate the access token
-      const response = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=${LAST_FM_API_KEY}&token=${accessToken}&format=json`);
+      const response = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=${LAST_FM_API_KEY}&token=${accessToken}&format=json`);
       const data = response.data;
   
       if (data.session && data.session.name) {
