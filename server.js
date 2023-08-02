@@ -34,28 +34,28 @@ app.get('/api/message', (req, res) => {
     });
 });
 
-// Validate Access Token
-app.get('/api/validate-token', async (req, res) => {
-    const accessToken = req.query.token;
-    try {
-      // Make a request to the Last.fm API to validate the access token
-      const response = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=${LAST_FM_API_KEY}&token=${accessToken}&format=json`);
-      const data = response.data;
+// // Validate Access Token
+// app.get('/api/validate-token', async (req, res) => {
+//     const accessToken = req.query.token;
+//     try {
+//       // Make a request to the Last.fm API to validate the access token
+//       const response = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=${LAST_FM_API_KEY}&token=${accessToken}&format=json`);
+//       const data = response.data;
   
-      if (data.session && data.session.name) {
-        // The access token is valid
-        const username = data.session.name;
-        res.status(200).json({ authenticated: true, username: username });    
+//       if (data.session && data.session.name) {
+//         // The access token is valid
+//         const username = data.session.name;
+//         res.status(200).json({ authenticated: true, username: username });    
         
-      } else {
-        // The access token is invalid or expired
-        res.status(401).json({ authenticated: false });
-      }
-    } catch (error) {
-      // Handle any errors that occurred during the API request
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+//       } else {
+//         // The access token is invalid or expired
+//         res.status(401).json({ authenticated: false });
+//       }
+//     } catch (error) {
+//       // Handle any errors that occurred during the API request
+//       res.status(500).json({ error: 'Internal server error' });
+//     }
+//   });
   
 
 // Serve the static files from the dist directory
