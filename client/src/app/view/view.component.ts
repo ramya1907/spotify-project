@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { MD5 } from 'crypto-js';
 import {Md5} from 'ts-md5';
@@ -36,7 +36,8 @@ export class ViewComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       if ('token' in params) {
         this.token = params['token'];
-        this.handleTokenValidation(this.token);
+        console.log(`${this.token} is the token! gotcha!`);
+        //this.handleTokenValidation(this.token);
       } else {
          
         console.log('Token missing or not defined');
