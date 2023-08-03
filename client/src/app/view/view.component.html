@@ -22,4 +22,16 @@
       <!-- Add more options as needed -->
     </select>
   </div>
+
+  <button (click)="clickButton()">View Madonna Hits</button>
+
+  <div *ngIf="fetchedTracks.length > 0" class="tracks-container">
+    <h3>Top Tracks</h3>
+    <ul>
+      <li *ngFor="let track of fetchedTracks">
+        {{ track.name }}
+      </li>
+    </ul>
+  </div>
+
 </div>
