@@ -1,18 +1,13 @@
 <div class="container">
-    <h1>Welcome to Melo-Data</h1>
-    <p>
-      This app allows you to access Last.fm data using their API. To get started, sign in to Last.fm.
-    </p>
-    <button (click)="redirectToLastFmAuth()">Sign In to Last.fm</button>
-
-    
-  <button routerLink="/stats">View Stats</button> 
-
-  <!-- <h5>
-	The below message is fetched from the express backend
-  </h5>
-  <p *ngIf="message">
-	  {{ message.message }}
-  </p> -->
-</div>
+  <h1>Welcome to Melo-Data</h1>
+  <p>
+    This app allows you to access Last.fm data using their API. To get started,
+    enter your username:
+  </p>
   
+  <div>
+    <h2>Enter Last.fm Username</h2>
+      <input type="text" [(ngModel)]="username" placeholder="Enter username" />
+      <button (click)="fetchUserData()">Fetch Data</button>
+  </div>
+</div>
