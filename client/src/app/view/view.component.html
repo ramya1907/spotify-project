@@ -22,14 +22,13 @@
       <!-- Add more options as needed -->
     </select>
   </div>
-
-  <button (click)="clickButton()">View Madonna Hits</button>
-
+  <button (click)="clickButton2()">Listening History</button>
+  <button (click)="clickButton()">All Tracks</button>
   <div *ngIf="fetchedTracks.length > 0" class="tracks-container">
     <h3>Top Tracks</h3>
     <ul>
       <li *ngFor="let track of fetchedTracks">
-        {{ track.name }}
+        {{ track }}
       </li>
     </ul>
   </div>
