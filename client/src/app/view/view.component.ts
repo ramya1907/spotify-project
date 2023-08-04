@@ -16,6 +16,7 @@ export class ViewComponent {
   userListeningHistory: any[] = [];
   username: string = 'ramyeow';
   filteredTracks: string[] = [];
+  songPlayCounts: any[] = [];
 
   async getTop100Tracks(artistName: string) {
     const tracksPerPage = 50;
@@ -117,6 +118,7 @@ export class ViewComponent {
     let page = 1;
     let allTracks: any[] = [];
     const limit = 200;
+    const playCounts: Map<string, number> = new Map();
 
     try {
       while (true) {
@@ -135,10 +137,11 @@ export class ViewComponent {
 
         if (response.recenttracks && response.recenttracks.track) {
           for (const track of response.recenttracks.track) {
-            if (
-              track.artist['#text'] === artistName)
+            if (track.artist['#text'] === artistName)
             {
               allTracks.push(track.name);
+              const songKey = track.name.toLowerCase();
+              playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
               console.log(`${track.name} is added to the array`);
             }
           }
@@ -151,10 +154,17 @@ export class ViewComponent {
         page++;
       }
       this.userListeningHistory = allTracks;
-      console.log('Complete Listening History:', this.userListeningHistory);
+      //console.log('Complete Listening History:', this.userListeningHistory);
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
     }
+
+    this.songPlayCounts = Array.from(playCounts.entries()).map(([name, playcount]) => ({
+      name,
+      playcount,
+    }));
+
+    console.log("These are the songs and their counts", this.songPlayCounts);
   }
 
   private isLiveOrRemix(trackName: string): boolean {
@@ -188,6 +198,6 @@ export class ViewComponent {
   }
 
   clickButton2() {
-    this.getUserListeningHistory('Taylor Swift');
+    this.getUserListeningHistory('Aurora');
   }
 }
