@@ -85,7 +85,6 @@ export class ViewComponent {
           for (const track of response.toptracks.track) {
             if (track.name.toLowerCase()) {
               allTracks.add(track.name);
-      
             }
           }
         }
@@ -115,15 +114,10 @@ export class ViewComponent {
   }
 
   async getUserListeningHistory(artistName: string) {
-    this.getTop100Tracks(artistName);
-
     let page = 1;
     let allTracks: any[] = [];
     const limit = 200;
-    // const now = Math.floor(Date.now() / 1000);
-    // let lastTimestamp = now - 630720000;
 
-    // console.log('TimeStamp is ', lastTimestamp);
     try {
       while (true) {
         const response = await firstValueFrom(
@@ -142,37 +136,22 @@ export class ViewComponent {
         if (response.recenttracks && response.recenttracks.track) {
           for (const track of response.recenttracks.track) {
             if (
-              track.artist['#text'] === artistName &&
-              this.fetchedTracks.some(
-                (topTrack) =>
-                  topTrack.toLowerCase() === track.name.toLowerCase()
-              )
-            ) {
-              allTracks.push(track);
-              //console.log(`${track.name} is added to the array`);
+              track.artist['#text'] === artistName)
+            {
+              allTracks.push(track.name);
+              console.log(`${track.name} is added to the array`);
             }
-          }
-
-          // if (
-          //   response.recenttracks.track.date &&
-          //   response.recenttracks.track.date.uts
-          // ) {
-          //   lastTimestamp = parseInt(response.recenttracks.track.date.uts);
-          //   console.log(
-          //     `TimeStamp for ${response.recenttracks.track.name} is ${lastTimestamp}.`
-          //   );
-          // }
-
-          if (response.recenttracks.length < limit) {
-            break;
           }
         }
 
+          if (response.recenttracks.track.length < limit) {
+            break;
+          }
+        
         page++;
-
-        this.userListeningHistory = allTracks;
-        //console.log('Complete Listening History:', this.userListeningHistory);
       }
+      this.userListeningHistory = allTracks;
+      console.log('Complete Listening History:', this.userListeningHistory);
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
     }
@@ -200,7 +179,7 @@ export class ViewComponent {
       '(instrumental)',
       'demo',
       '(album mix)',
-      'live at'
+      'live at',
     ];
 
     return excludedPatterns.some((pattern) =>
@@ -209,6 +188,6 @@ export class ViewComponent {
   }
 
   clickButton2() {
-    this.getUserListeningHistory('Peach Pit');
+    this.getUserListeningHistory('Taylor Swift');
   }
 }
