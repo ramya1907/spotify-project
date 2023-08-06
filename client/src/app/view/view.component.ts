@@ -115,7 +115,7 @@ export class ViewComponent implements OnInit {
 
         if (response.recenttracks && response.recenttracks.track) {
           for (const track of response.recenttracks.track) {
-            if (track.artist['#text'] === artistName) {
+            if (track.artist['#text'].toLowerCase() === artistName) {
               allTracks.push(track.name);
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
@@ -187,7 +187,7 @@ export class ViewComponent implements OnInit {
     if (!this.artistName) {
       console.log('Artist name is empty!');
     }
-    this.getArtistTracks(this.artistName);
-    this.getUserListeningHistory(this.artistName);
+    this.getArtistTracks(this.artistName.toLowerCase());
+    this.getUserListeningHistory(this.artistName.toLowerCase());
   }
 }
