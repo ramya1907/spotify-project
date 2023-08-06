@@ -21,7 +21,7 @@ export class ViewComponent implements OnInit {
   }
 
   apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';
-  lastFmApiUrl = 'http://ws.audioscrobbler.com/2.0/';
+  lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
   fetchedTracks: any[] = [];
   userListeningHistory: any[] = [];
