@@ -14,23 +14,12 @@
       <option value="option2">Option 2</option>
       <!-- Add more options as needed -->
     </select>
-
-    <select class="dropdown">
-      <!-- Add options for the second dropdown menu -->
-      <option value="optionA">Option A</option>
-      <option value="optionB">Option B</option>
-      <!-- Add more options as needed -->
-    </select>
   </div>
+
   <button (click)="clickButton2()">Listening History</button>
   <button (click)="clickButton()">All Tracks</button>
-  <div *ngIf="fetchedTracks.length > 0" class="tracks-container">
-    <h3>Top Tracks</h3>
-    <ul>
-      <li *ngFor="let track of fetchedTracks">
-        {{ track }}
-      </li>
-    </ul>
-  </div>
+   
+  <input type="text" [(ngModel)]="artistName" placeholder="Enter artistName" (keyup.enter)="clickButton3()" />
+  <button (click) = "clickButton3()">Show me my data</button>
 
 </div>

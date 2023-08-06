@@ -1,26 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './view/view.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
+import { PieChartComponent } from './pie-chart/pie-chart.component'; 
+import { UserService } from 'src/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ViewComponent
+    ViewComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule,
   ],
-  providers: [CookieService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

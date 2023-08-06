@@ -7,7 +7,7 @@
   
   <div>
     <h2>Enter Last.fm Username</h2>
-      <input type="text" [(ngModel)]="username" placeholder="Enter username" />
-      <button (click)="fetchUserData()">Fetch Data</button>
+      <input type="text" [(ngModel)]="username" (keyup.enter)="setUsername()" placeholder="Enter username" />
+      <button (click)="setUsername()">Fetch Data</button>
   </div>
 </div>

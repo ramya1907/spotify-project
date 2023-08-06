@@ -1,66 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { UserService } from 'src/user.service';
 
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
 })
-export class ViewComponent {
-  constructor(private http: HttpClient) {}
+export class ViewComponent implements OnInit {
+  username = '';
+  artistNames: string[] = [];
+
+  constructor(private http: HttpClient, private userService: UserService) {}
+
+  ngOnInit() {
+    this.userService.username$.subscribe((username) => {
+      this.username = username;
+    });
+  }
 
   apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';
   lastFmApiUrl = 'http://ws.audioscrobbler.com/2.0/';
+
   fetchedTracks: any[] = [];
   userListeningHistory: any[] = [];
-  username: string = 'ramyeow';
   filteredTracks: string[] = [];
+
+  totalSongsVal = this.filteredTracks.length;
+  listenedSongsVal = this.userListeningHistory.length;
+  unlistenedSongsVal = this.totalSongsVal - this.listenedSongsVal;
   songPlayCounts: any[] = [];
 
-  async getTop100Tracks(artistName: string) {
-    const tracksPerPage = 50;
-    const totalPages = 2;
-    const desiredTrackCount = 100;
-    let allTracks: any[] = [];
+  artistName: string = 'Stray Kids';
 
-    try {
-      let fetchedTrackCount = 0;
-
-      for (let page = 1; page <= totalPages; page++) {
-        const response = await firstValueFrom(
-          this.http.get<any>(`${this.lastFmApiUrl}`, {
-            params: {
-              method: 'artist.getTopTracks',
-              artist: artistName,
-              page: page.toString(),
-              api_key: this.apiKey,
-              limit: tracksPerPage.toString(),
-              format: 'json',
-            },
-          })
-        );
-
-        if (response.toptracks && response.toptracks.track) {
-          for (const track of response.toptracks.track) {
-            if (track.name && fetchedTrackCount < desiredTrackCount) {
-              allTracks.push(track.name.toLowerCase());
-              fetchedTrackCount++;
-
-              if (fetchedTrackCount === desiredTrackCount) {
-                break;
-              }
-            }
-          }
-        }
-      }
-
-      this.fetchedTracks = allTracks;
-      console.log(this.fetchedTracks);
-    } catch (error) {
-      console.error('Error fetching top tracks:', error);
-    }
-  }
+  //-----------------------------------------------------
 
   async getArtistTracks(artistName: string) {
     const tracksPerPage = 100;
@@ -111,7 +85,11 @@ export class ViewComponent {
   }
 
   clickButton() {
-    this.getArtistTracks('Lana Del Rey');
+    if (!this.artistName) {
+      console.log('Artist name is empty!');
+    }
+
+    this.getArtistTracks(this.artistName);
   }
 
   async getUserListeningHistory(artistName: string) {
@@ -137,8 +115,7 @@ export class ViewComponent {
 
         if (response.recenttracks && response.recenttracks.track) {
           for (const track of response.recenttracks.track) {
-            if (track.artist['#text'] === artistName)
-            {
+            if (track.artist['#text'] === artistName) {
               allTracks.push(track.name);
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
@@ -147,24 +124,25 @@ export class ViewComponent {
           }
         }
 
-          if (response.recenttracks.track.length < limit) {
-            break;
-          }
-        
+        if (response.recenttracks.track.length < limit) {
+          break;
+        }
+
         page++;
       }
       this.userListeningHistory = allTracks;
-      //console.log('Complete Listening History:', this.userListeningHistory);
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
     }
 
-    this.songPlayCounts = Array.from(playCounts.entries()).map(([name, playcount]) => ({
-      name,
-      playcount,
-    }));
+    this.songPlayCounts = Array.from(playCounts.entries()).map(
+      ([name, playcount]) => ({
+        name,
+        playcount,
+      })
+    );
 
-    console.log("These are the songs and their counts", this.songPlayCounts);
+    console.log('These are the songs and their counts', this.songPlayCounts);
   }
 
   private isLiveOrRemix(trackName: string): boolean {
@@ -190,6 +168,7 @@ export class ViewComponent {
       'demo',
       '(album mix)',
       'live at',
+      '(live',
     ];
 
     return excludedPatterns.some((pattern) =>
@@ -198,6 +177,17 @@ export class ViewComponent {
   }
 
   clickButton2() {
-    this.getUserListeningHistory('Aurora');
+    if (!this.artistName) {
+      console.log('Artist name is empty!');
+    }
+    this.getUserListeningHistory(this.artistName);
+  }
+
+  clickButton3() {
+    if (!this.artistName) {
+      console.log('Artist name is empty!');
+    }
+    this.getArtistTracks(this.artistName);
+    this.getUserListeningHistory(this.artistName);
   }
 }
