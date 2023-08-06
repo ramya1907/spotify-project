@@ -16,12 +16,6 @@ export class HomeComponent {
 
   constructor(private router: Router, private userService: UserService) {} 
 
-  // fetchUserData(): void {
-  //   console.log(`${this.username} is the username`);
-   
-  //   this.router.navigate(['/view']);  
-  // }
-
   setUsername() {
     const username = this.username; // Replace with your actual username
     this.userService.setUsername(username);

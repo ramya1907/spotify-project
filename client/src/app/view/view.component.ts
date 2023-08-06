@@ -32,7 +32,7 @@ export class ViewComponent implements OnInit {
   unlistenedSongsVal = this.totalSongsVal - this.listenedSongsVal;
   songPlayCounts: any[] = [];
 
-  artistName: string = 'Stray Kids';
+  artistName: string = '';
 
   //-----------------------------------------------------
 

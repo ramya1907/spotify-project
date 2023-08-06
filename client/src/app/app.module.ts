@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './view/view.component';
 import { FormsModule } from '@angular/forms';
-import { NgChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './pie-chart/pie-chart.component'; 
 import { UserService } from 'src/user.service';
 
@@ -21,8 +20,7 @@ import { UserService } from 'src/user.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    NgChartsModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
