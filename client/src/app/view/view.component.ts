@@ -147,6 +147,10 @@ export class ViewComponent implements OnInit {
         playcount,
       })
     );
+
+     // Sort the songPlayCounts array in decreasing order of play count
+    this.songPlayCounts.sort((a, b) => b.playcount - a.playcount);
+    
     this.uniqueSongs = Array.from(playCounts.keys());
     this.listenedSongsVal = this.uniqueSongs.length;
 
