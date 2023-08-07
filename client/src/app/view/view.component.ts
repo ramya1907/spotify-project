@@ -28,15 +28,15 @@ export class ViewComponent implements OnInit {
   userListeningHistory: any[] = [];
   filteredTracks: string[] = [];
 
-  totalSongsVal = this.filteredTracks.length;
-  listenedSongsVal = this.userListeningHistory.length;
-  unlistenedSongsVal = this.totalSongsVal - this.listenedSongsVal;
-  chartData: any[] = [
-    { name: 'Listened', value: this.listenedSongsVal },
-    { name: 'Unlistened', value: this.unlistenedSongsVal },
-  ];
+  uniqueSongs: string[] = [];
+
+  totalSongsVal : number = 0;
+  listenedSongsVal : number = 0;
+  unlistenedSongsVal : number = 0;
+  chartData: any[] = [];
   showPieChart = false;
   songPlayCounts: any[] = [];
+  
 
   artistName: string = '';
 
@@ -81,10 +81,10 @@ export class ViewComponent implements OnInit {
         (track: string) => !this.isLiveOrRemix(track.toLowerCase())
       );
 
+      this.totalSongsVal = this.filteredTracks.length;
+
       console.log('Filtered tracks:', this.filteredTracks);
-      console.log(
-        `Fetched total ${this.filteredTracks.length} unique tracks (after filtering)`
-      );
+    
     } catch (error) {
       console.error('Error fetching artist tracks:', error);
     }
@@ -147,6 +147,8 @@ export class ViewComponent implements OnInit {
         playcount,
       })
     );
+    this.uniqueSongs = Array.from(playCounts.keys());
+    this.listenedSongsVal = this.uniqueSongs.length;
 
     console.log('These are the songs and their counts', this.songPlayCounts);
   }
@@ -195,6 +197,14 @@ export class ViewComponent implements OnInit {
     }
     this.getArtistTracks(this.artistName.toLowerCase());
     this.getUserListeningHistory(this.artistName.toLowerCase());
-    this.showPieChart = true;
+  }
+
+  displayPieChart() {
+    this.unlistenedSongsVal = this.totalSongsVal - this.listenedSongsVal;
+    this.chartData = [      
+      { name: 'Listened', value: this.listenedSongsVal },
+      { name: 'Unlistened', value: this.unlistenedSongsVal },
+    ];
+    this.showPieChart = true; 
   }
 }

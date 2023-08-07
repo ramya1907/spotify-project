@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './view/view.component';
 import { FormsModule } from '@angular/forms';
-import { PieChartComponent } from './pie-chart/pie-chart.component'; 
 import { UserService } from 'src/user.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -14,8 +13,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   declarations: [
     AppComponent,
     HomeComponent,
-    ViewComponent,
-    PieChartComponent
+    ViewComponent
   ],
   imports: [
     BrowserModule,

@@ -21,8 +21,15 @@
    
   <input type="text" [(ngModel)]="artistName" placeholder="Enter artistName" (keyup.enter)="clickButton3()" />
   <button (click) = "clickButton3()">Show me my data</button>
-  <!-- <div *ngIf="showPieChart">
-    <app-pie-chart [chartData]="chartData"></app-pie-chart>
-  </div> -->
+  <button (click) = "displayPieChart()">Pie Chart</button>
+  <div *ngIf="showPieChart">
+    <ngx-charts-pie-chart 
+      [results]="chartData"
+      [legend]="true"
+      [legendTitle]="'User Activity'" 
+      [view]="[1000,300]"
+      [labels]="true" >
+    </ngx-charts-pie-chart> 
+  </div>
 
 </div>
