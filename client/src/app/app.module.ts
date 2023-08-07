@@ -8,6 +8,7 @@ import { ViewComponent } from './view/view.component';
 import { FormsModule } from '@angular/forms';
 import { PieChartComponent } from './pie-chart/pie-chart.component'; 
 import { UserService } from 'src/user.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserService } from 'src/user.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxChartsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

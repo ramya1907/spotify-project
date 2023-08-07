@@ -9,6 +9,7 @@ import { UserService } from 'src/user.service';
   styleUrls: ['./view.component.scss'],
 })
 export class ViewComponent implements OnInit {
+
   username = '';
   artistNames: string[] = [];
 
@@ -30,6 +31,11 @@ export class ViewComponent implements OnInit {
   totalSongsVal = this.filteredTracks.length;
   listenedSongsVal = this.userListeningHistory.length;
   unlistenedSongsVal = this.totalSongsVal - this.listenedSongsVal;
+  chartData: any[] = [
+    { name: 'Listened', value: this.listenedSongsVal },
+    { name: 'Unlistened', value: this.unlistenedSongsVal },
+  ];
+  showPieChart = false;
   songPlayCounts: any[] = [];
 
   artistName: string = '';
@@ -189,5 +195,6 @@ export class ViewComponent implements OnInit {
     }
     this.getArtistTracks(this.artistName.toLowerCase());
     this.getUserListeningHistory(this.artistName.toLowerCase());
+    this.showPieChart = true;
   }
 }

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-pie-chart',
@@ -9,5 +9,7 @@ export class PieChartComponent {
 
   constructor() {}
 
+  @Input() chartData: any[] = [];
+  
 
 }
