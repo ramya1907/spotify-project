@@ -9,7 +9,6 @@ import { UserService } from 'src/user.service';
   styleUrls: ['./view.component.scss'],
 })
 export class ViewComponent implements OnInit {
-
   username = '';
   artistNames: string[] = [];
 
@@ -30,13 +29,15 @@ export class ViewComponent implements OnInit {
 
   uniqueSongs: string[] = [];
 
-  totalSongsVal : number = 0;
-  listenedSongsVal : number = 0;
-  unlistenedSongsVal : number = 0;
+  totalSongsVal: number = 0;
+  listenedSongsVal: number = 0;
+  unlistenedSongsVal: number = 0;
+
   chartData: any[] = [];
   showPieChart = false;
+  showBarChart = false;
   songPlayCounts: any[] = [];
-  
+  barChartData: { name: string; value: number}[] = [];
 
   artistName: string = '';
 
@@ -77,25 +78,22 @@ export class ViewComponent implements OnInit {
         page++;
       }
 
-      this.filteredTracks = Array.from(allTracks).filter(
-        (track: string) => !this.isLiveOrRemix(track.toLowerCase())
-      );
+      this.filteredTracks = this.cleanText(allTracks);
+
+      // Array.from(allTracks).filter(
+      //   (track: string) => !this.isLiveOrRemix(track.toLowerCase())
+      // );
+
+      // this.filteredTracks = this.filteredTracks.map(
+      //   this.removeVariationKeywords
+      // );
 
       this.totalSongsVal = this.filteredTracks.length;
 
       console.log('Filtered tracks:', this.filteredTracks);
-    
     } catch (error) {
       console.error('Error fetching artist tracks:', error);
     }
-  }
-
-  clickButton() {
-    if (!this.artistName) {
-      console.log('Artist name is empty!');
-    }
-
-    this.getArtistTracks(this.artistName);
   }
 
   async getUserListeningHistory(artistName: string) {
@@ -148,11 +146,18 @@ export class ViewComponent implements OnInit {
       })
     );
 
-     // Sort the songPlayCounts array in decreasing order of play count
+    // Sort the songPlayCounts array in decreasing order of play count
     this.songPlayCounts.sort((a, b) => b.playcount - a.playcount);
     
+    //display bar chart
+    this.songPlayCounts.map(elem => this.barChartData.push({name: elem.name, value: elem.playcount}));
+    console.log("Length of barchart dataset:", this.barChartData.length);
+    this.showBarChart = true;
+
     this.uniqueSongs = Array.from(playCounts.keys());
     this.listenedSongsVal = this.uniqueSongs.length;
+
+    this.displayPieChart();
 
     console.log('These are the songs and their counts', this.songPlayCounts);
   }
@@ -172,15 +177,13 @@ export class ViewComponent implements OnInit {
       'lyrics',
       '(live)',
       '[live]',
-      '[explicit]',
-      'remastered',
       'sped up',
-      '(demo)',
       '(instrumental)',
       'demo',
       '(album mix)',
       'live at',
       '(live',
+      '(official',
     ];
 
     return excludedPatterns.some((pattern) =>
@@ -188,27 +191,88 @@ export class ViewComponent implements OnInit {
     );
   }
 
-  clickButton2() {
-    if (!this.artistName) {
-      console.log('Artist name is empty!');
-    }
-    this.getUserListeningHistory(this.artistName);
-  }
-
   clickButton3() {
     if (!this.artistName) {
       console.log('Artist name is empty!');
     }
+    this.showBarChart = false;
+    this.showPieChart = false;
     this.getArtistTracks(this.artistName.toLowerCase());
     this.getUserListeningHistory(this.artistName.toLowerCase());
   }
 
   displayPieChart() {
     this.unlistenedSongsVal = this.totalSongsVal - this.listenedSongsVal;
-    this.chartData = [      
+    this.chartData = [
       { name: 'Listened', value: this.listenedSongsVal },
       { name: 'Unlistened', value: this.unlistenedSongsVal },
     ];
-    this.showPieChart = true; 
+    this.showPieChart = true;
+  }
+
+  removeVariationKeywords(songName: string): string {
+    const variationKeywords = [
+      'lyrics',
+      'music video',
+      'lyrics video',
+      'mix',
+      'Live',
+      'Mix',
+      'mix',
+      'official video',
+      'visualizer',
+      'single cut',
+      'Audio',
+      'audio',
+      'official audio',
+      'cover',
+      'original mix',
+      'clean',
+      'remastered',
+      '[explicit]',
+      '(demo)',
+    ];
+
+    const variationPattern = new RegExp(
+      `\\s*\\((${variationKeywords.join('|')})\\)`,
+      'i'
+    );
+    return songName.replace(variationPattern, '').trim();
+  }
+
+  cleanText(songList: Set<string>) {
+    // this.filteredTracks = Array.from(songList)
+    //   .map((track: string) => this.removeVariationKeywords(track.toLowerCase()))
+    //   .filter((track: string) => !this.isLiveOrRemix(track.toLowerCase()));
+
+    // const songNamesSet = new Set<string>(this.filteredTracks);
+    // this.filteredTracks = Array.from(songNamesSet);
+    // return this.filteredTracks
+
+    const filteredSongs: string[] = [];
+
+    const songNamesSet = new Set<string>();
+    for (const track of songList) {
+      const cleanTrack = this.removeVariationKeywords(track.toLowerCase());
+      let shouldAdd = true;
+
+      for (const addedSong of filteredSongs) {
+        if (cleanTrack.includes(addedSong)) {
+          shouldAdd = false;
+          break;
+        }
+      }
+
+      if (shouldAdd) {
+        filteredSongs.push(cleanTrack);
+        songNamesSet.add(cleanTrack);
+      }
+    }
+
+    this.filteredTracks = Array.from(songNamesSet).filter(
+      (track: string) => !this.isLiveOrRemix(track)
+    );
+
+    return this.filteredTracks;
   }
 }
