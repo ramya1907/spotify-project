@@ -101,7 +101,7 @@ export class ViewComponent implements OnInit {
 
   async getUserListeningHistory(artistName: string) {
     let page = 1;
-    const limit = 200;
+    const limit = 1000;
     const playCounts: Map<string, number> = new Map();
 
     try {
