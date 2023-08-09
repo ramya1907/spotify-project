@@ -24,6 +24,10 @@
   />
   <button (click)="clickButton3()">Show me my data</button>
 
+  <div *ngIf="emptyArray">
+    <p>You haven't listened to any song by the artist.</p>
+  </div>
+
   <div *ngIf="showBarChart">
     <h3>Vertical Bar Chart</h3>
      <ngx-charts-bar-horizontal

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from 'src/user.service';
+import { TreeMapModule } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-view',
@@ -36,10 +37,12 @@ export class ViewComponent implements OnInit {
   chartData: any[] = [];
   showPieChart = false;
   showBarChart = false;
+  emptyArray = false;
   songPlayCounts: any[] = [];
   barChartData: { name: string; value: number}[] = [];
 
   artistName: string = '';
+
 
   //-----------------------------------------------------
 
@@ -98,7 +101,6 @@ export class ViewComponent implements OnInit {
 
   async getUserListeningHistory(artistName: string) {
     let page = 1;
-    let allTracks: any[] = [];
     const limit = 200;
     const playCounts: Map<string, number> = new Map();
 
@@ -120,7 +122,6 @@ export class ViewComponent implements OnInit {
         if (response.recenttracks && response.recenttracks.track) {
           for (const track of response.recenttracks.track) {
             if (track.artist['#text'].toLowerCase() === artistName) {
-              allTracks.push(track.name);
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
               console.log(`${track.name} is added to the array`);
@@ -134,9 +135,15 @@ export class ViewComponent implements OnInit {
 
         page++;
       }
-      this.userListeningHistory = allTracks;
+      
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
+    }
+
+    if(playCounts.size === 0){
+      this.emptyArray = true;
+      console.log("No songs listened to by this artist");
+      return;
     }
 
     this.songPlayCounts = Array.from(playCounts.entries()).map(
@@ -146,7 +153,7 @@ export class ViewComponent implements OnInit {
       })
     );
 
-    // Sort the songPlayCounts array in decreasing order of play count
+    //decreasing order of play count
     this.songPlayCounts.sort((a, b) => b.playcount - a.playcount);
     
     //display bar chart
