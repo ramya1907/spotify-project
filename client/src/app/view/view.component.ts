@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { UserService } from 'src/user.service';
 import { LastFmService } from 'src/last-fm.service';
 
 @Component({
@@ -15,14 +14,16 @@ export class ViewComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private userService: UserService,
     private lastFmService: LastFmService
   ) {}
 
   ngOnInit() {
-    this.userService.username$.subscribe((username) => {
-      this.username = username;
-    });
+
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      this.username = storedUsername;
+    }
+
   }
 
   apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';

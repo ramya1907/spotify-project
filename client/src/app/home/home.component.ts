@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/user.service';
 import { LastFmService } from 'src/last-fm.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class HomeComponent {
 
   constructor(
     private router: Router,
-    private userService: UserService,
     private lastFmService: LastFmService
   ) {}
 
@@ -36,6 +34,7 @@ export class HomeComponent {
         this.username
       );
       if (userExists) {
+        this.submitUsername();
         this.router.navigate(['/view']);
         console.log(`Username ${this.username} exists!`);
       } else {
@@ -51,8 +50,12 @@ export class HomeComponent {
     const username = this.username; // Replace with your actual username
     this.checkInput(username);
     if (this.userEntered) {
-      this.userService.setUsername(username);
       this.checkUsernameAndNavigate();
     }
+  }
+
+  submitUsername() {
+    // Store the username in localStorage
+    localStorage.setItem('username', this.username);
   }
 }
