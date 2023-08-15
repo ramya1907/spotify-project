@@ -38,8 +38,12 @@ export class ViewComponent implements OnInit {
   showPieChart = false;
   showBarChart = false;
   emptyArray = false;
+  showUnlistenedSongs = false;
+  viewUnlistened = false;
   songPlayCounts: any[] = [];
   barChartData: { name: string; value: number }[] = [];
+
+  unlistenedSongs: any[] = [];
 
   artistName: string = '';
 
@@ -101,15 +105,6 @@ export class ViewComponent implements OnInit {
       }
 
       this.filteredTracks = this.cleanText(allTracks);
-
-      // Array.from(allTracks).filter(
-      //   (track: string) => !this.isLiveOrRemix(track.toLowerCase())
-      // );
-
-      // this.filteredTracks = this.filteredTracks.map(
-      //   this.removeVariationKeywords
-      // );
-
       this.totalSongsVal = this.filteredTracks.length;
 
       console.log('Filtered tracks:', this.filteredTracks);
@@ -143,7 +138,6 @@ export class ViewComponent implements OnInit {
             if (track.artist['#text'].toLowerCase() === artistName) {
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
-              console.log(`${track.name} is added to the array`);
             }
           }
         }
@@ -178,10 +172,14 @@ export class ViewComponent implements OnInit {
     this.songPlayCounts.map((elem) =>
       this.barChartData.push({ name: elem.name, value: elem.playcount })
     );
-    console.log('Length of barchart dataset:', this.barChartData.length);
     this.showBarChart = true;
 
     this.uniqueSongs = Array.from(playCounts.keys());
+    this.unlistenedSongs = this.filteredTracks.filter(
+      (song) => !this.uniqueSongs.includes(song)
+    );
+    console.log("Unlistened songs are", this.unlistenedSongs);
+    this.viewUnlistened = true;
     this.listenedSongsVal = this.uniqueSongs.length;
 
     this.displayPieChart();
@@ -200,10 +198,6 @@ export class ViewComponent implements OnInit {
       'radio mix',
       'live from',
       'club mix',
-      '(clean)',
-      'lyrics',
-      '(live)',
-      '[live]',
       'sped up',
       '(instrumental)',
       'demo',
@@ -211,6 +205,9 @@ export class ViewComponent implements OnInit {
       'live at',
       '(live',
       '(official',
+      '(cover)',
+      '(cover',
+      'live at',
     ];
 
     return excludedPatterns.some((pattern) =>
@@ -222,6 +219,7 @@ export class ViewComponent implements OnInit {
     this.artistExists = true;
     this.artistEntered = true;
     this.emptyArray = false;
+    this.showUnlistenedSongs = false;
 
     if (!this.artistName) {
       this.artistEntered = false;
@@ -249,9 +247,6 @@ export class ViewComponent implements OnInit {
       'music video',
       'lyrics video',
       'mix',
-      'Live',
-      'Mix',
-      'mix',
       'official video',
       'visualizer',
       'single cut',
@@ -264,24 +259,23 @@ export class ViewComponent implements OnInit {
       'remastered',
       '[explicit]',
       '(demo)',
+      '( live )',
+      '(live)',
+      '(clean)',
+      '[live]',
+      'version',
+      '(cover)',
     ];
 
     const variationPattern = new RegExp(
       `\\s*\\((${variationKeywords.join('|')})\\)`,
       'i'
     );
+
     return songName.replace(variationPattern, '').trim();
   }
 
   cleanText(songList: Set<string>) {
-    // this.filteredTracks = Array.from(songList)
-    //   .map((track: string) => this.removeVariationKeywords(track.toLowerCase()))
-    //   .filter((track: string) => !this.isLiveOrRemix(track.toLowerCase()));
-
-    // const songNamesSet = new Set<string>(this.filteredTracks);
-    // this.filteredTracks = Array.from(songNamesSet);
-    // return this.filteredTracks
-
     const filteredSongs: string[] = [];
 
     const songNamesSet = new Set<string>();
@@ -307,5 +301,9 @@ export class ViewComponent implements OnInit {
     );
 
     return this.filteredTracks;
+  }
+
+  toggleUnlistenedSongs() {
+    this.showUnlistenedSongs = !this.showUnlistenedSongs;
   }
 }

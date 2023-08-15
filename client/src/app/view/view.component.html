@@ -55,4 +55,12 @@
     >
     </ngx-charts-pie-chart>
   </div>
+
+  <div *ngIf="viewUnlistened">
+  <h2>Unlistened Songs: ranked in order of popularity</h2>
+  <button (click)="toggleUnlistenedSongs()">Show Unlistened Songs</button>
+  <ul *ngIf="showUnlistenedSongs">
+    <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
+  </ul>
+</div>
 </div>
