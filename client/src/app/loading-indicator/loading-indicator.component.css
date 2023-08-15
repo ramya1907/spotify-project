@@ -1,0 +1,17 @@
+/* loading-indicator.css */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: spin 3s linear infinite; /* Apply the spin animation */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinning-icon {
+  width: 64px;
+  height: 64px;
+}

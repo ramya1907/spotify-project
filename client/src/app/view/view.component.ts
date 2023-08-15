@@ -12,18 +12,13 @@ export class ViewComponent implements OnInit {
   username = '';
   artistNames: string[] = [];
 
-  constructor(
-    private http: HttpClient,
-    private lastFmService: LastFmService
-  ) {}
+  constructor(private http: HttpClient, private lastFmService: LastFmService) {}
 
   ngOnInit() {
-
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
     }
-
   }
 
   apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';
@@ -236,7 +231,6 @@ export class ViewComponent implements OnInit {
       this.showBarChart = false;
       this.showPieChart = false;
       this.getArtistTracks(this.artistName.toLowerCase());
-      
     }
   }
 
