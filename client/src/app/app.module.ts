@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './view/view.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from 'src/user.service';
+import { LastFmService } from 'src/last-fm.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,7 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxChartsModule,
     BrowserAnimationsModule
   ],
-  providers: [UserService],
+  providers: [UserService, LastFmService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

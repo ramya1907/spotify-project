@@ -9,5 +9,11 @@
     <h2>Enter Last.fm Username</h2>
       <input type="text" [(ngModel)]="username" (keyup.enter)="setUsername()" placeholder="Enter username" />
       <button (click)="setUsername()">Fetch Data</button>
+      <div *ngIf="!userEntered">
+        <p>Username not entered oh no</p>
+      </div>
+      <div *ngIf="!userExists">
+        <p>Username doesn't exist, please check your spelling :3</p>
+      </div>
   </div>
 </div>
