@@ -20,9 +20,17 @@
     type="text"
     [(ngModel)]="artistName"
     placeholder="Enter artistName"
-    (keyup.enter)="clickButton3()"
+    (keyup.enter)="displayStats()"
   />
-  <button (click)="clickButton3()">Show me my data</button>
+  <button (click)="displayStats()">Show me my data</button>
+
+  <div *ngIf="!artistEntered">
+    <p>oh no, artist name not entered</p>
+  </div>
+
+  <div *ngIf="!artistExists">
+    <p>Artist name might be misspelled or doesn't exist in the database!</p>
+  </div>
 
   <div *ngIf="emptyArray">
     <p>You haven't listened to any song by the artist.</p>
@@ -30,18 +38,19 @@
 
   <div *ngIf="showBarChart">
     <h3>Vertical Bar Chart</h3>
-     <ngx-charts-bar-horizontal
-        [view]="[1000,400]" 
-        [results]="barChartData"
-        [xAxisLabel]="'Count'"
-        [legendTitle]="'Play Count'"
-        [yAxisLabel]="'Songs'"
-        [legend]="true"
-        [showXAxisLabel]="true"
-        [showYAxisLabel]="true"
-        [xAxis]="true"
-        [yAxis]="true"
-        [gradient]="true">
+    <ngx-charts-bar-horizontal
+      [view]="[1000, 400]"
+      [results]="barChartData"
+      [xAxisLabel]="'Count'"
+      [legendTitle]="'Play Count'"
+      [yAxisLabel]="'Songs'"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [gradient]="true"
+    >
     </ngx-charts-bar-horizontal>
   </div>
 
@@ -55,5 +64,4 @@
     >
     </ngx-charts-pie-chart>
   </div>
-
 </div>

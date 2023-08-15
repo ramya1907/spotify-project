@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from 'src/user.service';
-import { TreeMapModule } from '@swimlane/ngx-charts';
+import { LastFmService } from 'src/last-fm.service';
 
 @Component({
   selector: 'app-view',
@@ -13,7 +13,11 @@ export class ViewComponent implements OnInit {
   username = '';
   artistNames: string[] = [];
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private lastFmService: LastFmService
+  ) {}
 
   ngOnInit() {
     this.userService.username$.subscribe((username) => {
@@ -39,12 +43,31 @@ export class ViewComponent implements OnInit {
   showBarChart = false;
   emptyArray = false;
   songPlayCounts: any[] = [];
-  barChartData: { name: string; value: number}[] = [];
+  barChartData: { name: string; value: number }[] = [];
 
   artistName: string = '';
 
+  artistExists = true;
+  artistEntered = true;
 
   //-----------------------------------------------------
+
+  checkArtistandRetrieveData(artistName: string) {
+    this.lastFmService.checkArtistNameExists(artistName).subscribe({
+      next: (artistExists) => {
+        if (artistExists) {
+          this.artistExists = true;
+          this.getUserListeningHistory(this.artistName.toLowerCase());
+        } else {
+          this.artistExists = false;
+          console.log(`Artist name is misspelled or doesn't exist!`);
+        }
+      },
+      error: (error) => {
+        console.error('Error checking artist name:', error);
+      },
+    });
+  }
 
   async getArtistTracks(artistName: string) {
     const tracksPerPage = 100;
@@ -135,15 +158,8 @@ export class ViewComponent implements OnInit {
 
         page++;
       }
-      
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
-    }
-
-    if(playCounts.size === 0){
-      this.emptyArray = true;
-      console.log("No songs listened to by this artist");
-      return;
     }
 
     this.songPlayCounts = Array.from(playCounts.entries()).map(
@@ -155,10 +171,18 @@ export class ViewComponent implements OnInit {
 
     //decreasing order of play count
     this.songPlayCounts.sort((a, b) => b.playcount - a.playcount);
-    
+
+    //empty array
+    if (this.songPlayCounts.length === 0) {
+      this.emptyArray = true;
+      console.log('No songs listened to by this artist');
+      return;
+    }
     //display bar chart
-    this.songPlayCounts.map(elem => this.barChartData.push({name: elem.name, value: elem.playcount}));
-    console.log("Length of barchart dataset:", this.barChartData.length);
+    this.songPlayCounts.map((elem) =>
+      this.barChartData.push({ name: elem.name, value: elem.playcount })
+    );
+    console.log('Length of barchart dataset:', this.barChartData.length);
     this.showBarChart = true;
 
     this.uniqueSongs = Array.from(playCounts.keys());
@@ -198,14 +222,21 @@ export class ViewComponent implements OnInit {
     );
   }
 
-  clickButton3() {
+  displayStats() {
+    this.artistExists = true;
+    this.artistEntered = true;
+    this.emptyArray = false;
+
     if (!this.artistName) {
-      console.log('Artist name is empty!');
+      this.artistEntered = false;
+    } else {
+      this.artistEntered = true;
+      this.checkArtistandRetrieveData(this.artistName);
+      this.showBarChart = false;
+      this.showPieChart = false;
+      this.getArtistTracks(this.artistName.toLowerCase());
+      
     }
-    this.showBarChart = false;
-    this.showPieChart = false;
-    this.getArtistTracks(this.artistName.toLowerCase());
-    this.getUserListeningHistory(this.artistName.toLowerCase());
   }
 
   displayPieChart() {
