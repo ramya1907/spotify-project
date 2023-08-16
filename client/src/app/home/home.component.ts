@@ -35,7 +35,6 @@ export class HomeComponent {
       );
       if (userExists) {
         this.submitUsername();
-        this.router.navigate(['/view']);
         console.log(`Username ${this.username} exists!`);
       } else {
         this.userExists = false;
@@ -45,6 +44,9 @@ export class HomeComponent {
       console.error('Error checking username:', error);
     }
   }
+
+  //change view of home screen is user exists 
+  //give option to change user ot sign out
 
   setUsername() {
     const username = this.username; // Replace with your actual username
@@ -57,5 +59,17 @@ export class HomeComponent {
   submitUsername() {
     // Store the username in localStorage
     localStorage.setItem('username', this.username);
+  }
+
+  fetchArtistData(){
+    if(this.userExists)
+    {this.router.navigate(['/view']);}  
+    
+  }
+
+  viewHeatMap(){
+    if(this.userExists)
+    {this.router.navigate(['/heatmap']);}  
+
   }
 }

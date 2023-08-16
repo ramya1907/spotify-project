@@ -11,13 +11,15 @@ import { LoadingService } from './loading.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
+import { HeatmapComponent } from './heatmap/heatmap.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ViewComponent,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
+    HeatmapComponent
   ],
   imports: [
     BrowserModule,

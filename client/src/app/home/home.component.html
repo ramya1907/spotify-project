@@ -8,12 +8,14 @@
   <div>
     <h2>Enter Last.fm Username</h2>
       <input type="text" [(ngModel)]="username" (keyup.enter)="setUsername()" placeholder="Enter username" />
-      <button (click)="setUsername()">Fetch Data</button>
+      <button (click)="setUsername()">Check Username</button>
       <div *ngIf="!userEntered">
         <p>Username not entered oh no</p>
       </div>
       <div *ngIf="!userExists">
         <p>Username doesn't exist, please check your spelling :3</p>
       </div>
+      <button (click)="fetchArtistData()">Fetch Artist Data</button>
+      <button (click)="viewHeatMap()">Heat Map</button>
   </div>
 </div>
