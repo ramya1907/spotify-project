@@ -8,10 +8,10 @@ import { ViewComponent } from './view/view.component';
 import { FormsModule } from '@angular/forms';
 import { LastFmService } from 'src/last-fm.service';
 import { LoadingService } from './loading.service';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 import { HeatmapComponent } from './heatmap/heatmap.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -26,8 +26,8 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [LastFmService, LoadingService],
   bootstrap: [AppComponent]

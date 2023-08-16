@@ -19,14 +19,37 @@ export class HeatmapComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
+  calculateStartOfWeek(date: Date): Date {
+    const currentDate = new Date(date);
+    const dayOfWeek = currentDate.getDay();
+    const diff = currentDate.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust for Sunday
+
+    return new Date(currentDate.setDate(diff));
+  }
+  // Function to calculate the day name for a given date
+  calculateDayName(date: Date): string {
+    const dayNames = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    return dayNames[date.getDay()];
+  }
+
   ngOnInit(): void {
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
     }
+
+    this.getYearlyListeningHistory();
   }
 
-  async getYearlyListeningHistory(artistName: string) {
+  async getYearlyListeningHistory() {
     let page = 1;
     const limit = 1000;
     const playCountsPerDay: { [date: string]: number } = {};
@@ -67,19 +90,32 @@ export class HeatmapComponent implements OnInit {
 
         page++;
       }
-      console.log('Play counts per day:', playCountsPerDay);
-      const playCountsArray = Object.entries(playCountsPerDay).map(([date, count]) => ({
-        date: new Date(date),
-        value: count,
-      }));
-      this.heatmapData = playCountsArray; 
+      // const formattedData: any[] = [];
+      // for (const [dateStr, count] of Object.entries(playCountsPerDay)) {
+      //   const date = new Date(dateStr);
+      //   const startOfWeekDate = this.calculateStartOfWeek(date);
+      //   const dayName = this.calculateDayName(date);
 
+      //   // Create the formatted object and push it to the array
+      //   const formattedObject = {
+      //     name: startOfWeekDate,
+      //     series: {
+      //       date: date,
+      //       name: dayName,
+      //       value: count,
+      //     },
+      //   };
+      //   formattedData.push(formattedObject);
+      // }
+
+      // // Assign the formatted data array to heatmapData property
+      // this.heatmapData = formattedData;
+
+      console.log('Play counts per day:', playCountsPerDay);
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
     }
   }
 
-  generateHeatMap(){
-    
-  }
+  generateHeatMap() {}
 }
