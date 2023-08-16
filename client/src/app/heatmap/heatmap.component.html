@@ -1,5 +1,21 @@
 <p>heatmap works!</p>
-<!-- <ngx-charts-heat-map
+
+<h1>Welcome to Your Music Dashboard</h1>
+<div class="year-selector">
+  <label for="yearDropdown">Select a Year:</label>
+  <select
+    id="yearDropdown"
+    [(ngModel)]="selectedYear"
+    (change)="onYearChange()"
+  >
+    <option *ngFor="let year of availableYears" [value]="year">
+      {{ year }}
+    </option>
+  </select>
+</div>
+
+
+<ngx-charts-heat-map
   [results]="heatmapData"
   [legend]="true"
   [xAxis]="true"
@@ -8,6 +24,5 @@
   [showYAxisLabel]="true"
   [gradient]="true"
   [legendTitle]="'Play Count'"
-></ngx-charts-heat-map> -->
-
-
+  [animations]="true"
+></ngx-charts-heat-map>
