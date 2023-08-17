@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 footer {
-    background-color: #333;
-    color: #bfb9b9;
-    padding: 20px;
-    text-align: center;
-    /* position: fixed; */
-    bottom: 0;
-    width: 100%;
-    margin: 0;
-  }
+  background-color: rgb(38, 38, 38);
+  color: #bfb9b9;
+  padding: 20px;
+  text-align: center;
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+}
+

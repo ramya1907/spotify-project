@@ -41,17 +41,25 @@
     </section>
 
     <section class="username-content">
-      <p style="font-size: 2rem" class="Oswald">
+      <p style="font-size: 2.5rem; margin-bottom: 4%; margin-top: 5%;" class="Oswald">
         To begin, enter your username here:
       </p>
 
-      <div class="input-container">
-        <input type="text" placeholder="Enter your username" />
-      </div>
+      <div class="row">
+       
+          <div class="input-container">
+            <input type="text" placeholder="Enter your username" />
+          </div>
+        </div>
 
-      <a (click)="setUsername()" class="btn--action">
-        <span class="Oswald">Let's Go</span>
-      </a>
+        <div class="row">
+        
+          <a (click)="setUsername()" class="btn--action">
+            <span class="Oswald">Let's Go</span>
+          </a>
+        </div>
+       
     </section>
+    <div class="bottom-border"></div>
   </div>
 </body>

@@ -39,7 +39,7 @@ export class HomeComponent {
   onScroll(event: any) {
     const scrollTop = event.target.documentElement.scrollTop || event.target.body.scrollTop;
     console.log('Scroll Top:', scrollTop);
-    const parallaxTriggerPoint = 100; 
+    const parallaxTriggerPoint = 50; 
     const contentTriggerPoint = 200; 
 
     this.parallaxVisible = scrollTop > parallaxTriggerPoint;
