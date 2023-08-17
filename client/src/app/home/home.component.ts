@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LastFmService } from 'src/last-fm.service';
 import {
@@ -6,9 +6,7 @@ import {
   state,
   style,
   animate,
-  transition,
-  query,
-  stagger
+  transition
 } from '@angular/animations';
 
 @Component({
@@ -18,33 +16,41 @@ import {
   animations: [
     trigger('parallaxAnimation', [
       state('visible', style({ opacity: 1, transform: 'translateY(0)' })),
-      transition(':enter', [style({ opacity: 0, transform: 'translateY(50px)' }), animate('0.5s ease')]),
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(50px)' }),
+        animate('0.5s ease'),
+      ]),
     ]),
   ],
 })
 export class HomeComponent {
 
+  @ViewChild('viewStatsText', { static: true }) viewStatsText!: ElementRef;
   parallaxVisible = false;
-  
+
   title = 'Home';
 
   username: string = '';
   userExists = true;
   userEntered = true;
 
-  constructor(private router: Router, private lastFmService: LastFmService) {}
-
+  constructor(private router: Router, private lastFmService: LastFmService, private renderer: Renderer2) {}
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
-    const scrollTop = event.target.documentElement.scrollTop || event.target.body.scrollTop;
+    const scrollTop =
+      event.target.documentElement.scrollTop || event.target.body.scrollTop;
     console.log('Scroll Top:', scrollTop);
-    const parallaxTriggerPoint = 50; 
-    const contentTriggerPoint = 200; 
+    const parallaxTriggerPoint = 20;
+    const viewStatsTriggerPoint = 50; 
+    if (scrollTop > viewStatsTriggerPoint) {
+      this.renderer.addClass(this.viewStatsText.nativeElement, 'view-stats-visible');
+    } else {
+      this.renderer.removeClass(this.viewStatsText.nativeElement, 'view-stats-visible');
+    }
 
-    this.parallaxVisible = scrollTop > parallaxTriggerPoint;
+    // this.parallaxVisible = scrollTop > parallaxTriggerPoint;
   }
-
 
   checkInput(username: string) {
     if (!username) {

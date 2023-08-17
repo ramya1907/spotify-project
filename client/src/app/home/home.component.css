@@ -56,6 +56,10 @@
   background-color: rgb(38, 38, 38);
 }
 
+.Oswald {
+  font-family: Oswald, sans-serif;
+}
+
 .border-container {
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
@@ -70,7 +74,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 9999; 
+  z-index: 9999;
 }
 
 .title {
@@ -78,6 +82,13 @@
   font-size: 11rem;
   font-weight: 400;
   margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.title-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .parallax {
@@ -140,39 +151,48 @@ input::placeholder {
 .btn--action {
   display: block;
   width: auto;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   border-radius: 1.5rem;
   background-color: #c8a5b2;
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
   margin-top: 40%;
+  position: relative;
+  overflow: hidden;
+  font-size: 1.5rem; /*font-size of text*/
 }
 
 .btn--action span {
-  display: inline-block;
-  position: relative;
+  display: inline-flex;
   transition: all 0.5s ease;
-}
-
-.btn--action span:before {
-  content: "\f04c";
-  color: #000;
-  font-size: 1rem;
-  font-family: Oswald, sans-serif;
-  display: inline-block;
-  top: 10px;
-  opacity: 0;
-  transition: all 0.1s ease 0s;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .btn--action:hover span {
-  padding-left: 2rem;
+  padding-left: 1rem;
+}
+
+.btn--action span::before {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.4rem; /*font-size of icon*/
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .btn--action:hover span:before {
-  left: 0;
+  content: "\f04b";
   opacity: 1;
+  padding-right: 30px; /*spacing between icon and button*/
 }
 
 .btn--action:active {
@@ -180,6 +200,32 @@ input::placeholder {
   transform: translateY(5px);
 }
 
-.Oswald {
-  font-family: Oswald, sans-serif;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-slower {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  animation: fade-in 1.5s ease forwards;
+}
+
+.view-stats-text {
+  animation: fade-in-slower 3s ease forwards;
 }

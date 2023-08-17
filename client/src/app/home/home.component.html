@@ -32,33 +32,44 @@
 </div> -->
 <body style="background-color: rgb(210, 214, 209)">
   <div class="border-container">
-    <section class="parallax" [@parallaxAnimation]>
+    <!-- <section class="parallax" [@parallaxAnimation]>
       <h1 class="title" *ngIf="parallaxVisible">Melo-Stats</h1>
-      <p style="font-size: 2.5rem" *ngIf="parallaxVisible" class="Oswald">
+      <div class="intro-container">
+      <p style="font-size: 2.5rem" *ngIf="parallaxVisible" class="intro Oswald">
         View stats based on your listening activity using <br />
         your Last.fm account
       </p>
-    </section>
+    </div>
+    </section> -->
+
+    <section class="parallax">
+      <h1 class="title title-visible">Melo-Stats</h1>
+      <p class="view-stats-text Oswald"  style="font-size: 2.5rem;" #viewStatsText>
+        View stats based on your listening activity using <br />
+        your Last.fm account
+      </p>
+   </section>
+   
 
     <section class="username-content">
-      <p style="font-size: 2.5rem; margin-bottom: 4%; margin-top: 5%;" class="Oswald">
+      <p
+        style="font-size: 2.5rem; margin-bottom: 4%; margin-top: 5%"
+        class="Oswald"
+      >
         To begin, enter your username here:
       </p>
 
       <div class="row">
-       
-          <div class="input-container">
-            <input type="text" placeholder="Enter your username" />
-          </div>
+        <div class="input-container">
+          <input type="text" placeholder="Enter your username" />
         </div>
+      </div>
 
-        <div class="row">
-        
-          <a (click)="setUsername()" class="btn--action">
-            <span class="Oswald">Let's Go</span>
-          </a>
-        </div>
-       
+      <div class="row">
+        <a (click)="setUsername()" class="btn--action">
+          <span class="Oswald">Let's Go</span>
+        </a>
+      </div>
     </section>
     <div class="bottom-border"></div>
   </div>
