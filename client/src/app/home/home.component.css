@@ -1,4 +1,4 @@
-.container {
+/* .container {
   margin: 0;
   padding: 0;
   background-color: #d4d3bc;
@@ -33,11 +33,10 @@
   padding-top: 5rem;
 }
 
-/* Style the title font */
 .title {
   font-family: "Big Shoulders Inline Text", sans-serif;
-  font-size: 10rem;
-  font-weight: 300;
+  font-size: 11rem;
+  font-weight: 400;
   margin: 0;
 }
 
@@ -48,4 +47,132 @@
   flex-direction: column;
   height: 20%;
   padding: 1rem;
+} */
+
+.body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(38, 38, 38);
+}
+
+.border-container {
+  border: 20px solid rgb(38, 38, 38);
+  box-sizing: border-box;
+  margin: 0;
+  
+}
+
+
+.title {
+  font-family: "Big Shoulders Inline Text", sans-serif;
+  font-size: 11rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.parallax {
+  background-image: url("../../assets/images/wallpaper.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(27, 27, 27);
+  text-align: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  width: 100%;
+}
+
+.username-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 0;
+  opacity: 1;
+  height: 40%;
+  background-color: rgb(56, 56, 56);
+  color: #b3c1b7;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  margin: 20px auto;
+  background-color: #b3c1b7;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 5%;
+}
+
+.parallax.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+input[type="text"] {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  padding: 5px;
+  color: #333;
+  margin-right: 10px; 
+}
+
+input::placeholder {
+  color: #999;
+}
+
+.btn--action {
+  display: block;
+  width: 10%;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: #c8a5b2;
+  color: #000;
+  transition: all .5s ease 0s;
+  box-shadow: 0 10px #594f59;
+}
+
+.btn--action span {
+  display: inline-block;
+  position: relative;
+  transition: all .5s ease;
+}
+
+.btn--action span:before {
+  content: '\f04c';
+  color: #000;
+  font-size: 1rem;
+  font-family: Oswald, sans-serif;
+  display: inline-block;
+  top: 10px;
+  opacity: 0;
+  transition: all .1s ease 0s;
+}
+
+.btn--action:hover span {
+  padding-left: 2rem;
+}
+
+.btn--action:hover span:before {
+  left: 0;
+  opacity: 1;
+}
+
+.btn--action:active {
+  box-shadow: 0 5px #131313;
+  transform: translateY(5px);
+}
+
+.Oswald {
+  font-family: Oswald, sans-serif;
 }

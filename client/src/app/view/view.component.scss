@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin:"0";
+  padding:"0";
+
 
   .page-title {
     font-size: 24px;
@@ -21,15 +24,15 @@
     }
 
     .square1 {
-      background-color: #FFC0CB;
+      background-color: #ce4e63;
     }
 
     .square2 {
-      background-color: #87CEEB;
+      background-color: #df9689;
     }
 
     .square3 {
-      background-color: #90EE90;
+      background-color: #dbc5c0;
     }
   }
 
