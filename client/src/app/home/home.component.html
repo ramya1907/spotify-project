@@ -1,21 +1,30 @@
 <div class="container">
-  <h1>Melo-Stats</h1>
-  <p>
-    This app allows you to access Last.fm data using their API. To get started,
-    enter your username:
-  </p>
-  
+  <div class="title-container">
+    <h1 class="title">Melo-Stats</h1>
+  </div>
+  <div class="paragraph-container">
+    <p class="paragraph">
+      View stats based on your listening activity using <br />
+      your Last.fm account 
+    </p>
+  </div>
   <div>
-    <h2>Enter Last.fm Username</h2>
-      <input type="text" [(ngModel)]="username" (keyup.enter)="setUsername()" placeholder="Enter username" />
-      <button (click)="setUsername()">Check Username</button>
-      <div *ngIf="!userEntered">
-        <p>Username not entered oh no</p>
-      </div>
-      <div *ngIf="!userExists">
-        <p>Username doesn't exist, please check your spelling :3</p>
-      </div>
-      <button (click)="fetchArtistData()">Fetch Artist Data</button>
-      <button (click)="viewHeatMap()">Heat Map</button>
+    <p class="start-paragraph">
+      To start, enter your last.fm username here</p>
+    <input
+      type="text"
+      [(ngModel)]="username"
+      (keyup.enter)="setUsername()"
+      placeholder="Enter username"
+    />
+    <button (click)="setUsername()">Check Username</button>
+    <div *ngIf="!userEntered">
+      <p>Username not entered oh no</p>
+    </div>
+    <div *ngIf="!userExists">
+      <p>Username doesn't exist, please check your spelling :3</p>
+    </div>
+    <button (click)="fetchArtistData()">Fetch Artist Data</button>
+    <button (click)="viewHeatMap()">Heat Map</button>
   </div>
 </div>

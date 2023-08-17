@@ -1,0 +1,51 @@
+.container {
+  margin: 0;
+  padding: 0;
+  background-color: #d4d3bc;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  border: 20px solid rgb(56, 56, 56);
+}
+
+.paragraph {
+  font-family: "Oswald", sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  margin-top: 20px;
+}
+
+.start-paragraph {
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin-top: 15px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  padding-top: 5rem;
+}
+
+/* Style the title font */
+.title {
+  font-family: "Big Shoulders Inline Text", sans-serif;
+  font-size: 10rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.paragraph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 20%;
+  padding: 1rem;
+}

@@ -46,7 +46,7 @@ export class HomeComponent {
   }
 
   //change view of home screen is user exists 
-  //give option to change user ot sign out
+  //give option to change user or sign out
 
   setUsername() {
     const username = this.username; // Replace with your actual username
