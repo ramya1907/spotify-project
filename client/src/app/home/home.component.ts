@@ -5,7 +5,7 @@ import {
   ElementRef,
   ViewChild,
   OnInit,
-  asNativeElements,
+  AfterViewInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LastFmService } from 'src/last-fm.service';
@@ -15,13 +15,11 @@ import { LastFmService } from 'src/last-fm.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('viewStatsText', { static: true }) viewStatsText!: ElementRef;
   @ViewChild('inputContainer') inputContainer!: ElementRef;
   @ViewChild('userDisplay') userDisplay!: ElementRef;
   @ViewChild('usernameContent', { static: true }) usernameContent!: ElementRef;
-  
-
 
   title = 'Home';
 
@@ -37,8 +35,11 @@ export class HomeComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-  
     window.addEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  ngAfterViewInit(): void {
+    window.addEventListener('scroll', this.handleScroll1.bind(this));
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -64,13 +65,22 @@ export class HomeComponent implements OnInit{
   handleScroll() {
     const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
     const scrollPosition = window.scrollY;
-  
+
     if (scrollPosition >= usernameContentTop) {
       this.inputContainer.nativeElement.style.display = 'block';
-      this.userDisplay.nativeElement.style.display = 'block';
     } else {
       this.inputContainer.nativeElement.style.display = 'none';
+    }
+  }
+
+  handleScroll1() {
+    const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition < usernameContentTop) {
       this.userDisplay.nativeElement.style.display = 'none';
+    } else {
+      this.userDisplay.nativeElement.style.display = 'block';
     }
   }
 
@@ -82,7 +92,6 @@ export class HomeComponent implements OnInit{
     }
   }
   async checkUsernameAndNavigate() {
-
     try {
       const userExists = await this.lastFmService.checkUsernameExists(
         this.username
@@ -106,7 +115,7 @@ export class HomeComponent implements OnInit{
 
   setUsername() {
     this.userVerified = true;
-    const username = this.username; 
+    const username = this.username;
     this.checkInput(username);
     if (this.userEntered) {
       this.checkUsernameAndNavigate();

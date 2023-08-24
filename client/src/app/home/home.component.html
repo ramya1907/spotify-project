@@ -34,43 +34,46 @@
 <body style="background-color: rgb(33, 38, 44)">
   <div class="border-container">
     <section class="parallax">
-      <h1 class="title title-visible">Melo-Stats</h1>
-      <p
-        class="view-stats-text Oswald"
-        style="font-size: 2.5rem"
-        #viewStatsText
-      >
-        View stats based on your listening activity using <br />
-        your Last.fm account
+      <h1 class="title title-visible">melo-stats</h1>
+      <p class="view-stats-text Oswald" #viewStatsText>
+        view stats based on your<br />
+        listening activity using<br />
+        your last.fm account
       </p>
     </section>
 
     <section class="temp-section">
-      <p class="temp-text">To begin, enter your username here:</p>
+      <div *ngIf="!userExists">
+        <p class="temp-text">to begin, enter your username</p>
+      </div>
+
+      <div *ngIf="userExists">
+        <p class="temp-text">welcome back <3 </p>
+      </div>
     </section>
 
     <section
       class="username-content"
-      style="background-color: rgb(19, 27, 40)"
+      style="background-color: rgb(17, 23, 33)"
       #usernameContent
     >
       <div *ngIf="!userExists" #inputContainer>
         <div class="input-container">
           <input
             type="text"
-            placeholder="Enter your username"
+            placeholder="enter your username "
             [(ngModel)]="username"
             (keyup.enter)="setUsername()"
           />
         </div>
 
         <div *ngIf="!userEntered">
-          <p class="alert">Username not entered oh no</p>
+          <p class="alert">username not entered oh no</p>
         </div>
 
         <div *ngIf="!userVerified">
           <p class="alert">
-            Username doesn't exist, please check your spelling :3
+            username doesn't exist, please check your spelling :3
           </p>
         </div>
 
@@ -106,6 +109,7 @@
           <span class="Oswald"></span>
         </a>
       </div>
+      
     </section>
 
     <div class="bottom-border"></div>
