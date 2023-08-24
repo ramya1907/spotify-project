@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 import { HeatmapComponent } from './heatmap/heatmap.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BrowserAnimationsModule,
     NgxChartsModule
   ],
-  providers: [LastFmService, LoadingService],
+  providers: [LastFmService, LoadingService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,28 +1,38 @@
-<p>heatmap works!</p>
+<body style="background-color: rgb(21, 21, 31)">
+  <div class="border-container">
+    <h1 class="Oswald title">Welcome to Your Music Dashboard</h1>
 
-<h1>Welcome to Your Music Dashboard</h1>
-<div class="year-selector">
-  <label for="yearDropdown">Select a Year:</label>
-  <select
-    id="yearDropdown"
-    [(ngModel)]="selectedYear"
-    (change)="onYearChange()"
-  >
-    <option *ngFor="let year of availableYears" [value]="year">
-      {{ year }}
-    </option>
-  </select>
-</div>
+    <div class="header">
+      <h3 class="Oswald view">View scrobbles for the year</h3>
 
+      <div class="year-selector">
+        <select
+          id="yearDropdown"
+          [(ngModel)]="selectedYear"
+          (change)="onYearChange()"
+        >
+          <option *ngFor="let year of availableYears" [value]="year">
+            {{ year }}
+          </option>
+        </select>
+      </div>
+    </div>
 
-<ngx-charts-heat-map
-  [results]="heatmapData"
-  [legend]="true"
-  [xAxis]="true"
-  [yAxis]="true"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [gradient]="true"
-  [legendTitle]="'Play Count'"
-  [animations]="true"
-></ngx-charts-heat-map>
+    <div style="margin: 20px">
+      <ngx-charts-heat-map
+        [results]="heatmapData"
+        [legend]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [gradient]="true"
+        [legendTitle]="'Play Count'"
+        [animations]="true"
+        [xAxisTickFormatting]="xAxisTickFormatting"
+      ></ngx-charts-heat-map>
+
+      <div class="bottom-border"></div>
+    </div>
+  </div>
+</body>

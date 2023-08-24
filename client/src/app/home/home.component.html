@@ -30,47 +30,84 @@
     <button (click)="viewHeatMap()">Heat Map</button>
   </div>
 </div> -->
-<body style="background-color: rgb(210, 214, 209)">
-  <div class="border-container">
-    <!-- <section class="parallax" [@parallaxAnimation]>
-      <h1 class="title" *ngIf="parallaxVisible">Melo-Stats</h1>
-      <div class="intro-container">
-      <p style="font-size: 2.5rem" *ngIf="parallaxVisible" class="intro Oswald">
-        View stats based on your listening activity using <br />
-        your Last.fm account
-      </p>
-    </div>
-    </section> -->
 
+<body style="background-color: rgb(33, 38, 44)">
+  <div class="border-container">
     <section class="parallax">
       <h1 class="title title-visible">Melo-Stats</h1>
-      <p class="view-stats-text Oswald"  style="font-size: 2.5rem;" #viewStatsText>
+      <p
+        class="view-stats-text Oswald"
+        style="font-size: 2.5rem"
+        #viewStatsText
+      >
         View stats based on your listening activity using <br />
         your Last.fm account
       </p>
-   </section>
-   
+    </section>
 
-    <section class="username-content">
-      <p
-        style="font-size: 2.5rem; margin-bottom: 4%; margin-top: 5%"
-        class="Oswald"
-      >
-        To begin, enter your username here:
-      </p>
+    <section class="temp-section">
+      <p class="temp-text">To begin, enter your username here:</p>
+    </section>
 
-      <div class="row">
+    <section
+      class="username-content"
+      style="background-color: rgb(19, 27, 40)"
+      #usernameContent
+    >
+      <div *ngIf="!userExists" #inputContainer>
         <div class="input-container">
-          <input type="text" placeholder="Enter your username" />
+          <input
+            type="text"
+            placeholder="Enter your username"
+            [(ngModel)]="username"
+            (keyup.enter)="setUsername()"
+          />
         </div>
+
+        <div *ngIf="!userEntered">
+          <p class="alert">Username not entered oh no</p>
+        </div>
+
+        <div *ngIf="!userVerified">
+          <p class="alert">
+            Username doesn't exist, please check your spelling :3
+          </p>
+        </div>
+
+        <a (click)="setUsername()" class="btn--action">
+          <span class="Oswald"></span>
+        </a>
+
+        <a class="heatmap-btn-0">
+          HeatMap
+          <span class="Oswald"></span>
+        </a>
+
+        <a class="artist-btn-0">
+          View Artist Data
+          <span class="Oswald"></span>
+        </a>
       </div>
 
-      <div class="row">
-        <a (click)="setUsername()" class="btn--action">
-          <span class="Oswald">Let's Go</span>
+      <div *ngIf="userExists" #userDisplay>
+        <p class="p-username">Hi {{ username }}! Have fun bae xoxo</p>
+
+        <a class="btn--action">
+          <span class="Oswald"></span>
+        </a>
+
+        <a (click)="viewHeatMap()" class="heatmap-btn">
+          HeatMap
+          <span class="Oswald"></span>
+        </a>
+
+        <a (click)="fetchArtistData()" class="artist-btn">
+          View Artist Data
+          <span class="Oswald"></span>
         </a>
       </div>
     </section>
+
     <div class="bottom-border"></div>
   </div>
 </body>

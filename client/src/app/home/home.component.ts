@@ -1,55 +1,77 @@
-import { Component, HostListener, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Renderer2,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  asNativeElements,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { LastFmService } from 'src/last-fm.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  animations: [
-    trigger('parallaxAnimation', [
-      state('visible', style({ opacity: 1, transform: 'translateY(0)' })),
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(50px)' }),
-        animate('0.5s ease'),
-      ]),
-    ]),
-  ],
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnInit{
   @ViewChild('viewStatsText', { static: true }) viewStatsText!: ElementRef;
-  parallaxVisible = false;
+  @ViewChild('inputContainer') inputContainer!: ElementRef;
+  @ViewChild('userDisplay') userDisplay!: ElementRef;
+  @ViewChild('usernameContent', { static: true }) usernameContent!: ElementRef;
+  
+
 
   title = 'Home';
 
   username: string = '';
-  userExists = true;
+  userExists = false;
   userEntered = true;
+  userVerified = true;
 
-  constructor(private router: Router, private lastFmService: LastFmService, private renderer: Renderer2) {}
+  constructor(
+    private router: Router,
+    private lastFmService: LastFmService,
+    private renderer: Renderer2
+  ) {}
+
+  ngOnInit(): void {
+  
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
     const scrollTop =
       event.target.documentElement.scrollTop || event.target.body.scrollTop;
-    console.log('Scroll Top:', scrollTop);
-    const parallaxTriggerPoint = 20;
-    const viewStatsTriggerPoint = 50; 
-    if (scrollTop > viewStatsTriggerPoint) {
-      this.renderer.addClass(this.viewStatsText.nativeElement, 'view-stats-visible');
-    } else {
-      this.renderer.removeClass(this.viewStatsText.nativeElement, 'view-stats-visible');
-    }
 
-    // this.parallaxVisible = scrollTop > parallaxTriggerPoint;
+    const viewStatsTriggerPoint = 50;
+
+    if (scrollTop > viewStatsTriggerPoint) {
+      this.renderer.addClass(
+        this.viewStatsText.nativeElement,
+        'view-stats-visible'
+      );
+    } else {
+      this.renderer.removeClass(
+        this.viewStatsText.nativeElement,
+        'view-stats-visible'
+      );
+    }
+  }
+
+  handleScroll() {
+    const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
+    const scrollPosition = window.scrollY;
+  
+    if (scrollPosition >= usernameContentTop) {
+      this.inputContainer.nativeElement.style.display = 'block';
+      this.userDisplay.nativeElement.style.display = 'block';
+    } else {
+      this.inputContainer.nativeElement.style.display = 'none';
+      this.userDisplay.nativeElement.style.display = 'none';
+    }
   }
 
   checkInput(username: string) {
@@ -60,6 +82,7 @@ export class HomeComponent {
     }
   }
   async checkUsernameAndNavigate() {
+
     try {
       const userExists = await this.lastFmService.checkUsernameExists(
         this.username
@@ -67,8 +90,10 @@ export class HomeComponent {
       if (userExists) {
         this.submitUsername();
         console.log(`Username ${this.username} exists!`);
+        this.userExists = true;
       } else {
         this.userExists = false;
+        this.userVerified = false;
         console.log('Username does not exist.');
       }
     } catch (error) {
@@ -80,7 +105,8 @@ export class HomeComponent {
   //give option to change user or sign out
 
   setUsername() {
-    const username = this.username; // Replace with your actual username
+    this.userVerified = true;
+    const username = this.username; 
     this.checkInput(username);
     if (this.userEntered) {
       this.checkUsernameAndNavigate();
@@ -88,7 +114,6 @@ export class HomeComponent {
   }
 
   submitUsername() {
-    // Store the username in localStorage
     localStorage.setItem('username', this.username);
   }
 

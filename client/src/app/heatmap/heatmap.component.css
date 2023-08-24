@@ -1,0 +1,89 @@
+.body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.border-container {
+  border: 20px solid rgb(38, 38, 38);
+  box-sizing: border-box;
+}
+
+.bottom-border {
+  width: 100%;
+  height: 20px;
+  background-color: rgb(38, 38, 38);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.Oswald {
+  font-family: Oswald, sans-serif;
+}
+
+.title {
+  align-items: center;
+  justify-content: center;
+  margin: 5%;
+  color: rgb(161, 189, 180);
+}
+
+.view {
+    align-items: center;
+    justify-content: center;
+    margin: 5%;
+    color: rgb(161, 189, 180);
+  }
+  
+
+.year-selector {
+  display: flex;
+  align-items: center;
+}
+
+.year-selector select {
+  padding: 10px;
+  border: none;
+  border-radius: 1.5rem;
+  background-color: #e7a19b;
+  color: #000;
+  font-size: 1.2rem;
+  box-shadow: 0 5px #594f59;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.year-selector select:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px #594f59;
+}
+
+.year-selector select:active {
+  transform: translateY(0);
+  box-shadow: 0 2px #131313;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.custom-tooltip {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tooltip-label {
+    font-weight: bold;
+  }
+  
+  .tooltip-val {
+    margin-top: 5px;
+  }
+  
+  

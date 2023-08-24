@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-heatmap',
@@ -15,12 +17,12 @@ export class HeatmapComponent implements OnInit {
   fromDate = Math.floor(new Date('2023-01-01').getTime() / 1000);
   toDate = Math.floor(new Date('2023-12-31').getTime() / 1000);
 
-  selectedYear: number = 0;
+  selectedYear: number = 2023;
   availableYears: number[] = [2020, 2021, 2022, 2023];
 
   heatmapData: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
   onYearChange(): void {
     this.selectYear(this.selectedYear);
@@ -58,9 +60,6 @@ export class HeatmapComponent implements OnInit {
     if (storedUsername) {
       this.username = storedUsername;
     }
-
-    const currentYear = new Date().getFullYear();
-    this.selectedYear = currentYear;
 
     this.getYearlyListeningHistory();
   }
@@ -110,7 +109,7 @@ export class HeatmapComponent implements OnInit {
 
         page++;
       }
-
+      let formattedDateStr = null;
       const groupedDataMap: Map<string, { name: string; value: number }[]> =
         new Map();
 
@@ -119,6 +118,11 @@ export class HeatmapComponent implements OnInit {
         const startOfWeekDate = this.calculateStartOfWeek(date);
 
         const dayName = this.calculateDayName(date);
+
+        formattedDateStr = this.datePipe.transform(
+          startOfWeekDate,
+          'yyyy-MM-dd'
+        );
 
         if (!groupedDataMap.has(startOfWeekDate.toISOString())) {
           groupedDataMap.set(startOfWeekDate.toISOString(), []);
@@ -137,28 +141,30 @@ export class HeatmapComponent implements OnInit {
         series: { name: string; value: number }[];
       }[] = [];
 
-      for (const [startOfWeekDate, seriesArray] of groupedDataMap.entries()) {
+      for (const [formattedDateStr, seriesArray] of groupedDataMap.entries()) {
         const weekDayNames = [
-          'Sunday',
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
           'Saturday',
+          'Friday',
+          'Thursday',
+          'Wednesday',
+          'Tuesday',
+          'Monday',
+          'Sunday'
         ];
-        // Iterate over each day name and check if there's corresponding data in seriesArray
-        for (const dayName of weekDayNames) {
-          const dayData = seriesArray.find((data) => data.name === dayName);
-
-          // If no data is found for the day, add a value of 0
-          if (!dayData) {
-            seriesArray.push({ name: dayName, value: 0 });
-          }
-        }
+        
+        // Sort the days of the week in order (Sunday to Saturday)
+        const sortedSeries = weekDayNames.map(
+          (dayName) =>
+            seriesArray.find((data) => data.name === dayName) || {
+              name: dayName,
+              value: 0,
+            }
+        );
         const formattedObject = {
-          name: startOfWeekDate,
-          series: seriesArray,
+          // name: startOfWeekDate,
+          name: formattedDateStr,
+          // series: seriesArray,
+          series: sortedSeries
         };
 
         formattedData.push(formattedObject);
@@ -176,5 +182,10 @@ export class HeatmapComponent implements OnInit {
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
     }
+  }
+
+  xAxisTickFormatting(value: any): string {
+    const date = new Date(value);
+    return formatDate(date, 'MMM', 'en-US');
   }
 }
