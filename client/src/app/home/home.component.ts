@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   userEntered = true;
   userVerified = true;
 
+  isScrolled = false;
+
   constructor(
     private router: Router,
     private lastFmService: LastFmService,
@@ -36,6 +38,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.handleScroll.bind(this));
+    window.addEventListener('scroll', this.handleScroll1.bind(this));
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
@@ -46,6 +49,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     window.addEventListener('scroll', this.handleScroll1.bind(this));
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 50;
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -69,24 +77,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   handleScroll() {
-    const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
-    const scrollPosition = window.scrollY;
+    if (this.usernameContent && this.usernameContent.nativeElement) {
+      const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
+      const scrollPosition = window.scrollY;
 
-    if (scrollPosition >= usernameContentTop) {
-      this.inputContainer.nativeElement.style.display = 'block';
-    } else {
-      this.inputContainer.nativeElement.style.display = 'none';
+      if (scrollPosition >= usernameContentTop) {
+        this.inputContainer.nativeElement.style.display = 'block';
+      } else {
+        this.inputContainer.nativeElement.style.display = 'none';
+      }
     }
   }
 
   handleScroll1() {
-    const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
-    const scrollPosition = window.scrollY;
+    if (this.usernameContent && this.usernameContent.nativeElement) {
+      const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
+      const scrollPosition = window.scrollY;
 
-    if (scrollPosition < usernameContentTop) {
-      this.userDisplay.nativeElement.style.display = 'none';
-    } else {
-      this.userDisplay.nativeElement.style.display = 'block';
+      if (scrollPosition >= usernameContentTop) {
+        this.userDisplay.nativeElement.style.display = 'block';
+      } else {
+        this.userDisplay.nativeElement.style.display = 'none';
+      }
     }
   }
 
@@ -142,5 +154,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (this.userExists) {
       this.router.navigate(['/heatmap']);
     }
+  }
+
+  signOut() {
+    localStorage.removeItem('username'); // Remove the stored username from localStorage
+    this.username = ''; // Clear the username variable in your component
   }
 }

@@ -1,3 +1,27 @@
+/* Initial styles for the navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+  background-color: transparent;
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+}
+
+/* Styles for the navbar when scrolling down */
+.navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.header nav ul li {
+  color: #b3c1b7;
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+}
+
 .body {
   overflow-x: hidden;
   margin: 0;
@@ -35,7 +59,9 @@
   opacity: 0;
   /* transform: translateY(20px); */
   transform: translateY(20px);
-  color: #987f9b;
+  /* color: #987f9b; */
+  color: #b4a3b6;
+  animation: fade-in 1.6s ease forwards;
 }
 
 .title-visible {
@@ -48,12 +74,13 @@
   margin-top: 4%;
   margin-left: 60%;
   animation: fade-in-slower 3s ease forwards;
-  color: #949e97;
+  /* color: #949e97; */
+  color: #a6b2aa;
   font-family: "VT323", monospace;
 }
 
 .parallax {
-  background-image: url("../../assets/images/bg-1.png");
+  background-image: url("../../assets/comp_images/bg-1.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -71,8 +98,8 @@
 }
 
 .temp-section {
-  background-color: #0c121f;
-  color: rgb(163, 151, 151);
+  background-color: #6c5f75;
+  color: #0c121f;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -82,7 +109,7 @@
 }
 
 .username-content {
-  background-image: url("../../assets/images/bg-2.png");
+  background-image: url("../../assets/comp_images/bg-2.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -103,7 +130,7 @@
 .input-container {
   display: flex;
   width: 32%;
-  background-color: #c48f52;
+  background-color: #c0a168;
   border-radius: 20px;
   padding: 10px;
   padding-left: 25px;
@@ -115,6 +142,7 @@
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
+  animation: fade-in1 0.7s ease forwards;
 }
 
 input[type="text"] {
@@ -142,9 +170,9 @@ input::placeholder {
 
 .btn--action {
   display: block;
-  padding: 1.5rem 2rem;
+  padding: 1.3rem 2rem;
   border-radius: 1.5rem;
-  background-color: #e7a19b;
+  background-color: #bc8884;
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
@@ -152,10 +180,11 @@ input::placeholder {
   overflow: hidden;
   font-size: 1.5rem;
   top: 29%;
-  left: 64%;
-  width: 74px;
-  height: 74px;
+  left: 63%;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  animation: fade-in1 0.9s ease forwards;
 }
 
 .btn--action span {
@@ -205,7 +234,8 @@ input::placeholder {
   }
 }
 
-@keyframes fade-in-slower {
+
+@keyframes fade-in1 {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -216,25 +246,39 @@ input::placeholder {
   }
 }
 
-.title {
-  animation: fade-in 1.5s ease forwards;
+@keyframes fade-in-slower {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+/* 
+.title {
+   animation: fade-in 1.5s ease forwards; 
+
+} */
 
 .p-username {
   display: flex;
   width: 32%;
   border-radius: 20px;
-  padding: 20px;
-  background-color: #c48f52;
+  padding: 16px;
+  background-color: #c0a168;
   box-shadow: 0 7px #6b4f2e;
   position: fixed;
   top: 29%;
-  left: 44%;
+  /* left: 44%; */
+  left: 28%;
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: rgb(27, 27, 27);
+  animation: fade-in1 0.7s ease forwards;
 }
 
 .heatmap-btn {
@@ -243,7 +287,7 @@ input::placeholder {
   padding: 2rem;
   padding-top: 1.5rem;
   border-radius: 1.5rem;
-  background-color: #8d7c99;
+  background-color: #957697;
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
@@ -256,6 +300,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.5rem;
+  animation: fade-in1 1.0s ease forwards;
 }
 
 .heatmap-btn-0 {
@@ -264,7 +309,7 @@ input::placeholder {
   padding: 2rem;
   padding-top: 1.5rem;
   border-radius: 1.5rem;
-  background-color: #8d7c99;
+  background-color: #957697;
   color: #000;
   box-shadow: 0 10px #594f59;
   position: fixed;
@@ -276,6 +321,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.5rem;
+  animation: fade-in1 1.0s ease forwards;
 }
 
 .heatmap-btn:active {
@@ -289,7 +335,7 @@ input::placeholder {
   padding: 1rem;
   padding-top: 1.6rem;
   border-radius: 1.5rem;
-  background-color: #8d7c99;
+  background-color: #957697;
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
@@ -302,6 +348,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.3rem;
+  animation: fade-in1 1.2s ease forwards;
 }
 
 .artist-btn-0 {
@@ -310,7 +357,7 @@ input::placeholder {
   padding: 1rem;
   padding-top: 1.6rem;
   border-radius: 1.5rem;
-  background-color: #8d7c99;
+  background-color: #957697;
   color: #000;
   box-shadow: 0 10px #594f59;
   position: fixed;
@@ -322,6 +369,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.3rem;
+  animation: fade-in1 1.2s ease forwards;
 }
 
 .artist-btn:active {

@@ -1,3 +1,14 @@
+<header class="navbar">
+  <nav>
+    <ul>
+      <li><a routerLink="/home">home</a></li>
+      <li><a href="#">about me</a></li>
+      <li><a href="#">contact me</a></li>
+      <li><a (click)="signOut()">sign out</a></li>
+    </ul>
+  </nav>
+</header>
+
 <body style="background-color: rgb(33, 38, 44)">
   <div class="border-container">
     <section class="parallax">
@@ -59,7 +70,7 @@
       </div>
 
       <div *ngIf="userExists" #userDisplay>
-        <p class="p-username">Hi {{ username }}! Have fun bae xoxo</p>
+        <p class="p-username">hi {{ username }}! have fun xoxo</p>
 
         <a class="btn--action">
           <span></span>
