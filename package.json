@@ -19,6 +19,8 @@
         "@swimlane/ngx-charts": "^20.4.1",
         "cors": "^2.8.5",
         "express": "^4.18.2",
+        "imagemin": "^8.0.1",
+        "imagemin-pngquant": "^9.0.2",
         "mysql2": "^3.5.2",
         "rxjs": "^7.8.1"
     },

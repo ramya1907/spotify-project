@@ -29,10 +29,6 @@
   background-color: rgb(38, 38, 38);
 }
 
-.Oswald {
-  font-family: Oswald, sans-serif;
-}
-
 .border-container {
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
