@@ -36,6 +36,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.handleScroll.bind(this));
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      this.username = storedUsername;
+      this.userExists = true;
+      this.userVerified = true;
+    }
   }
 
   ngAfterViewInit(): void {

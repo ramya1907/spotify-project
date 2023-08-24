@@ -1,36 +1,3 @@
-<!-- <div class="container">
-  <div class="bg-img">
-    <div class="title-container">
-      <h1 class="title">Melo-Stats</h1>
-    </div>
-    <div class="paragraph-container">
-      <p class="paragraph">
-        View stats based on your listening activity using <br />
-        your Last.fm account
-      </p>
-    </div>
-  </div>
-
-  <div>
-    <p class="start-paragraph">To start, enter your last.fm username here</p>
-    <input
-      type="text"
-      [(ngModel)]="username"
-      (keyup.enter)="setUsername()"
-      placeholder="Enter username"
-    />
-    <button (click)="setUsername()">Check Username</button>
-    <div *ngIf="!userEntered">
-      <p>Username not entered oh no</p>
-    </div>
-    <div *ngIf="!userExists">
-      <p>Username doesn't exist, please check your spelling :3</p>
-    </div>
-    <button (click)="fetchArtistData()">Fetch Artist Data</button>
-    <button (click)="viewHeatMap()">Heat Map</button>
-  </div>
-</div> -->
-
 <body style="background-color: rgb(33, 38, 44)">
   <div class="border-container">
     <section class="parallax">
@@ -78,16 +45,16 @@
         </div>
 
         <a (click)="setUsername()" class="btn--action">
-          <span class="Oswald"></span>
+          <span></span>
         </a>
 
         <a class="heatmap-btn-0">
           heat map
-          <span class="Oswald"></span>
+          <span></span>
         </a>
 
         <a class="artist-btn-0">artist data
-          <span class="Oswald"></span>
+          <span></span>
         </a>
       </div>
 
@@ -95,17 +62,17 @@
         <p class="p-username">Hi {{ username }}! Have fun bae xoxo</p>
 
         <a class="btn--action">
-          <span class="Oswald"></span>
+          <span></span>
         </a>
 
         <a (click)="viewHeatMap()" class="heatmap-btn">
           heat map
-          <span class="Oswald"></span>
+          <span></span>
         </a>
 
         <a (click)="fetchArtistData()" class="artist-btn">
-          view artist data
-          <span class="Oswald"></span>
+        artist data
+          <span></span>
         </a>
       </div>
       
