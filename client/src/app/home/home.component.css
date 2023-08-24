@@ -27,7 +27,7 @@
 }
 
 .title {
-  font-family: Oswald, sans-serif;
+  font-family: "VT323", monospace;
   font-size: 6rem;
   font-weight: 400;
   margin-top: 11%;
@@ -49,6 +49,7 @@
   margin-left: 60%;
   animation: fade-in-slower 3s ease forwards;
   color: #949e97;
+  font-family: "VT323", monospace;
 }
 
 .parallax {
@@ -69,11 +70,23 @@
   width: 100%;
 }
 
+.temp-section {
+  background-color: #0c121f;
+  color: rgb(163, 151, 151);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-family: "VT323", monospace;
+}
+
 .username-content {
   background-image: url("../../assets/images/bg-2.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: "VT323", monospace;
 
   background-size: 80%;
 
@@ -84,7 +97,7 @@
   opacity: 1;
   background-color: rgb(31, 31, 31);
   color: #b3c1b7;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .input-container {
@@ -92,7 +105,8 @@
   width: 32%;
   background-color: #c48f52;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
+  padding-left: 25px;
   box-shadow: 0 7px #6b4f2e;
   margin-top: 8%;
   position: fixed;
@@ -108,27 +122,27 @@ input[type="text"] {
   border: none;
   outline: none;
   background: transparent;
-  font-size: 16px;
+  font-size: 2rem;
   padding: 5px;
   color: #371c08;
 }
 
 input::placeholder {
   color: #1a0f09;
+  font-size: 2rem;
 }
 
 .alert {
-  font-size: small;
+  font-size: 1.2rem;
   left: 28%;
-  top: 24%;
+  top: 22%;
   position: fixed;
-  color:rgb(197, 162, 137);
+  color: rgb(197, 162, 137);
 }
-
 
 .btn--action {
   display: block;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   border-radius: 1.5rem;
   background-color: #e7a19b;
   color: #000;
@@ -206,16 +220,6 @@ input::placeholder {
   animation: fade-in 1.5s ease forwards;
 }
 
-.temp-section {
-  background-color: #0c121f;
-  color: rgb(163, 151, 151);
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-}
-
 .p-username {
   display: flex;
   width: 32%;
@@ -231,11 +235,9 @@ input::placeholder {
   justify-content: center;
   font-size: 1.5rem;
   color: rgb(27, 27, 27);
-
 }
 
 .heatmap-btn {
-
   display: block;
   width: auto;
   padding: 2rem;
@@ -247,18 +249,19 @@ input::placeholder {
   position: fixed;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 58%;
+  top: 56%;
   left: 28%;
   width: 200px;
   height: 115px;
   border-radius: 30px;
+  font-size: 2.5rem;
 }
 
 .heatmap-btn-0 {
-
   display: block;
   width: auto;
   padding: 2rem;
+  padding-top: 1.5rem;
   border-radius: 1.5rem;
   background-color: #8d7c99;
   color: #000;
@@ -266,11 +269,12 @@ input::placeholder {
   position: fixed;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 58%;
+  top: 56%;
   left: 28%;
   width: 200px;
   height: 115px;
   border-radius: 30px;
+  font-size: 2.5rem;
 }
 
 .heatmap-btn:active {
@@ -281,7 +285,8 @@ input::placeholder {
 .artist-btn {
   display: block;
   width: auto;
-  padding: 1.5rem;
+  padding: 1rem;
+  padding-top: 1.6rem;
   border-radius: 1.5rem;
   background-color: #8d7c99;
   color: #000;
@@ -290,17 +295,19 @@ input::placeholder {
   position: fixed;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 59%;
-  left: 56%;
-  width: 206px;
-  height: 110px;
+  top: 56%;
+  left: 55%;
+  width: 200px;
+  height: 115px;
   border-radius: 30px;
+  font-size: 2.1rem;
 }
 
 .artist-btn-0 {
   display: block;
   width: auto;
-  padding: 1.5rem;
+  padding: 1rem;
+  padding-top: 1.6rem;
   border-radius: 1.5rem;
   background-color: #8d7c99;
   color: #000;
@@ -308,14 +315,19 @@ input::placeholder {
   position: fixed;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 59%;
-  left: 56%;
-  width: 206px;
-  height: 110px;
+  top: 56%;
+  left: 55%;
+  width: 200px;
+  height: 115px;
   border-radius: 30px;
+  font-size: 2.3rem;
 }
 
 .artist-btn:active {
   box-shadow: 0 5px #131313;
   transform: translateY(5px);
+}
+
+.vt-323 {
+  font-family: "VT323", monospace;
 }
