@@ -26,14 +26,14 @@
       <div *ngIf="!userExists">
         <p class="temp-text">to begin, enter your username</p>
         <div class="arrow bounce">
-          <a class="fa fa-arrow-down fa-2xs" style="color: #da9750"></a>
+          <a class="fa fa-arrow-down fa-2xs" style="color: #c49c72"></a>
         </div>
       </div>
 
       <div *ngIf="userExists">
         <p class="temp-text">. . .</p>
         <div class="arrow bounce">
-          <a class="fa fa-arrow-down fa-2xs" style="color: #da9750"></a>
+          <a class="fa fa-arrow-down fa-2xs" style="color: #c49c72"></a>
         </div>
       </div>
     </section>
@@ -68,6 +68,12 @@
             <span></span>
           </a>
 
+          <p class="p-left">
+            <span style="color: #c49c72">explore your annual scrobble: </span
+            ><br />
+            count and track your daily <br />listening activity for the year.
+          </p>
+
           <a class="heatmap-btn-0">
             heat map
             <span></span>
@@ -77,11 +83,14 @@
             >artist data
             <span></span>
           </a>
+          <p class="p-right">
+            <span style="color: #c49c72">explore artist insights:</span> <br />
+            delve into detailed statistics <br />
+            for your favorite artists
+          </p>
         </div>
 
         <div *ngIf="userExists">
-
-          
           <div class="p-username">
             <p class="p-username-in">hi {{ username }}! have fun xoxo</p>
           </div>
@@ -99,6 +108,18 @@
             artist data
             <span></span>
           </a>
+
+          <div class="p-common">
+            <p class="p-left">
+              explore your annual scrobble <br />
+              count and track your daily <br />listening activity for the year.
+            </p>
+            <p class="p-right">
+              explore artist insights: <br />
+              delve into detailed statistics <br />
+              for your favorite artists
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -40,16 +40,13 @@ export class HomeComponent implements OnInit{
       this.userExists = true;
       this.userVerified = true;
     }
-    else
-    {
-      window.addEventListener('scroll', this.handleScroll.bind(this));
-    }
+    window.addEventListener('scroll', this.handleScroll.bind(this));
 
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 60;
+    this.isScrolled = window.scrollY > 55;
   }
 
   scrollToSection(): void {
