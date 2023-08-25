@@ -1,16 +1,18 @@
-<header class="navbar">
-  <nav>
-    <ul>
-      <li><a routerLink="/home">home</a></li>
-      <li><a href="#">about me</a></li>
-      <li><a href="#">contact me</a></li>
-      <li><a (click)="signOut()">sign out</a></li>
-    </ul>
-  </nav>
-</header>
+<div class="border-container">
+  <div class="top-border"></div>
+  <header class="navbar" [class.scrolled]="isScrolled">
+    <nav>
+      <ul>
+        <li><a routerLink="/home">home</a></li>
+        <li><a href="#">about me</a></li>
+        <li><a href="#">contact me</a></li>
+        <li *ngIf="userExists"><a (click)="signOut()">sign out</a></li>
+        <li *ngIf="!userExists"><a (click)="scrollToSection()">sign in</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<body style="background-color: rgb(33, 38, 44)">
-  <div class="border-container">
+  <body style="background-color: rgb(33, 38, 44)">
     <section class="parallax">
       <h1 class="title title-visible">melo-stats</h1>
       <p class="view-stats-text" #viewStatsText>
@@ -20,13 +22,19 @@
       </p>
     </section>
 
-    <section class="temp-section">
+    <section class="temp-section" #tempSection>
       <div *ngIf="!userExists">
         <p class="temp-text">to begin, enter your username</p>
+        <div class="arrow bounce">
+          <a class="fa fa-arrow-down fa-2xs" style="color: #da9750"></a>
+        </div>
       </div>
 
       <div *ngIf="userExists">
-        <p class="temp-text">. . . </p>
+        <p class="temp-text">. . .</p>
+        <div class="arrow bounce">
+          <a class="fa fa-arrow-down fa-2xs" style="color: #da9750"></a>
+        </div>
       </div>
     </section>
 
@@ -35,60 +43,64 @@
       style="background-color: rgb(17, 23, 33)"
       #usernameContent
     >
-      <div *ngIf="!userExists" #inputContainer>
-        <div class="input-container">
-          <input
-            type="text"
-            placeholder="enter your username "
-            [(ngModel)]="username"
-            (keyup.enter)="setUsername()"
-          />
+      <div #mainContainer>
+        <div *ngIf="!userExists">
+          <div class="input-container">
+            <input
+              type="text"
+              placeholder="enter your username "
+              [(ngModel)]="username"
+              (keyup.enter)="setUsername()"
+            />
+          </div>
+
+          <div *ngIf="!userEntered">
+            <p class="alert">username not entered oh no</p>
+          </div>
+
+          <div *ngIf="!userVerified">
+            <p class="alert">
+              username doesn't exist, please check your spelling :3
+            </p>
+          </div>
+
+          <a (click)="setUsername()" class="btn--action">
+            <span></span>
+          </a>
+
+          <a class="heatmap-btn-0">
+            heat map
+            <span></span>
+          </a>
+
+          <a class="artist-btn-0"
+            >artist data
+            <span></span>
+          </a>
         </div>
 
-        <div *ngIf="!userEntered">
-          <p class="alert">username not entered oh no</p>
+        <div *ngIf="userExists">
+
+          
+          <div class="p-username">
+            <p class="p-username-in">hi {{ username }}! have fun xoxo</p>
+          </div>
+
+          <a class="btn--action">
+            <span></span>
+          </a>
+
+          <a (click)="viewHeatMap()" class="heatmap-btn">
+            heat map
+            <span></span>
+          </a>
+
+          <a (click)="fetchArtistData()" class="artist-btn">
+            artist data
+            <span></span>
+          </a>
         </div>
-
-        <div *ngIf="!userVerified">
-          <p class="alert">
-            username doesn't exist, please check your spelling :3
-          </p>
-        </div>
-
-        <a (click)="setUsername()" class="btn--action">
-          <span></span>
-        </a>
-
-        <a class="heatmap-btn-0">
-          heat map
-          <span></span>
-        </a>
-
-        <a class="artist-btn-0">artist data
-          <span></span>
-        </a>
       </div>
-
-      <div *ngIf="userExists" #userDisplay>
-        <p class="p-username">hi {{ username }}! have fun xoxo</p>
-
-        <a class="btn--action">
-          <span></span>
-        </a>
-
-        <a (click)="viewHeatMap()" class="heatmap-btn">
-          heat map
-          <span></span>
-        </a>
-
-        <a (click)="fetchArtistData()" class="artist-btn">
-        artist data
-          <span></span>
-        </a>
-      </div>
-      
     </section>
-
-    <div class="bottom-border"></div>
-  </div>
-</body>
+  </body>
+</div>

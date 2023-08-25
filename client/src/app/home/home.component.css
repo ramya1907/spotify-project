@@ -1,25 +1,54 @@
-/* Initial styles for the navbar */
+
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 5%;
+  left: 5%;
   width: 100%;
   padding: 15px;
   transition: background-color 0.3s ease;
   background-color: transparent;
-  font-family: "VT323", monospace;
-  font-size: 1rem;
+  z-index: 0;
 }
 
-/* Styles for the navbar when scrolling down */
 .navbar.scrolled {
-  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  right: 0;
+  position: fixed;
+  left: 2%;
+  padding: 15px;
+  padding-left: 60px;
+  padding-top: 40px;
+  background-color: rgba(109, 108, 104, 0.8);
+  height: 14%;
+  width: calc(100% - 3.9%); /* Adjust the width to account for the left margin */
+  z-index: 0;
 }
 
-.header nav ul li {
+/* Styles for navbar links */
+.navbar nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.navbar nav ul li:first-child {
+  margin-left: 30px ;
+}
+.navbar nav ul li:last-child {
+  margin-right: 0; /* Remove margin for the last item */
+}
+
+.navbar nav ul li a {
   color: #b3c1b7;
+  text-decoration: none;
   font-family: "VT323", monospace;
-  font-size: 1rem;
+  font-size: 2rem;
+  margin-right: 7rem;
+  margin-left: 5.5rem;
+}
+
+.navbar nav ul li a:hover {
+  color: #0e0f2c; /* Change the color on hover */
 }
 
 .body {
@@ -30,18 +59,24 @@
 }
 
 .border-container {
-  border: 20px solid rgb(38, 38, 38);
+  border: 20px solid rgb(6, 7, 26);
   box-sizing: border-box;
-  margin: 0;
   position: relative;
+  top: 0; /* Position the border at the top */
+  left: 0;
+  right: 0;
+  bottom: 0; /* Adjust bottom to make space for the navbar */
+  z-index: 1; /* Lower z-index to keep it below the navbar */
+  padding: 0;
+  
 }
 
-.bottom-border {
+.top-border {
   width: 100%;
   height: 20px;
   background-color: rgb(38, 38, 38);
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   z-index: 9999;
 }
@@ -102,6 +137,31 @@
   justify-content: center;
   font-size: 3rem;
   font-family: "VT323", monospace;
+  position: relative;
+}
+
+ .arrow {
+  text-align: center;
+  bottom: 20px;
+  position: absolute;
+  left: 50%;
+} 
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
 }
 
 .username-content {
@@ -127,28 +187,30 @@
   display: flex;
   width: 32%;
   background-color: #c0a168;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 10px;
-  padding-left: 25px;
   box-shadow: 0 7px #6b4f2e;
   margin-top: 8%;
   position: fixed;
   top: 15%;
-  left: 44%;
+  left: 29%;
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
   animation: fade-in1 0.7s ease forwards;
+
+ 
 }
 
 input[type="text"] {
-  flex: 1;
+
+  background-color: black;
+  color: orange;
   border: none;
-  outline: none;
-  background: transparent;
   font-size: 2rem;
+  width: 90%;
   padding: 5px;
-  color: #371c08;
+  padding-left: 20px;
 }
 
 input::placeholder {
@@ -230,7 +292,6 @@ input::placeholder {
   }
 }
 
-
 @keyframes fade-in1 {
   from {
     opacity: 0;
@@ -252,29 +313,57 @@ input::placeholder {
     transform: translateY(0);
   }
 }
-/* 
-.title {
-   animation: fade-in 1.5s ease forwards; 
-
-} */
 
 .p-username {
-  display: flex;
+  /* display: flex;
   width: 32%;
   border-radius: 20px;
   padding: 16px;
   background-color: #c0a168;
   box-shadow: 0 7px #6b4f2e;
   position: fixed;
-  top: 29%;
+  top: 29%; */
   /* left: 44%; */
-  left: 28%;
+  /* left: 28%;
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
   color: rgb(27, 27, 27);
+  animation: fade-in1 0.7s ease forwards; */
+
+  /* display: flex; */
+  width: 32%;
+  background-color: #c0a168;
+  border-radius: 10px;
+  padding: 0.5px;
+  /* padding-top:5px; */
+  box-shadow: 0 7px #6b4f2e;
+  margin-top: 7%;
+  position: fixed;
+  top: 15%;
+  left: 29%;
+  transform: translateX(-50%);
+  align-items: center;
+  justify-content: center;
   animation: fade-in1 0.7s ease forwards;
+
+}
+
+.p-username-in {
+
+  background-color: black;
+  color: orange;
+  /* border: none; */
+  border: 1px solid orange;
+  border-radius: 4px;
+  font-size: 2rem;
+  width: 90%;
+  padding: 5px;
+  padding-left: 20px;
+  margin-top: 2%;
+  margin-left: 3%;
+
 }
 
 .heatmap-btn {
@@ -296,7 +385,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.5rem;
-  animation: fade-in1 1.0s ease forwards;
+  animation: fade-in1 1s ease forwards;
 }
 
 .heatmap-btn-0 {
@@ -317,7 +406,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.5rem;
-  animation: fade-in1 1.0s ease forwards;
+  animation: fade-in1 1s ease forwards;
 }
 
 .heatmap-btn:active {

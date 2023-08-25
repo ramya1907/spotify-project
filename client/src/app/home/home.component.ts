@@ -1,11 +1,9 @@
 import {
   Component,
   HostListener,
-  Renderer2,
   ElementRef,
   ViewChild,
-  OnInit,
-  AfterViewInit,
+  OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LastFmService } from 'src/last-fm.service';
@@ -15,11 +13,11 @@ import { LastFmService } from 'src/last-fm.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit{
   @ViewChild('viewStatsText', { static: true }) viewStatsText!: ElementRef;
-  @ViewChild('inputContainer') inputContainer!: ElementRef;
-  @ViewChild('userDisplay') userDisplay!: ElementRef;
+  @ViewChild('mainContainer') mainContainer!: ElementRef;
   @ViewChild('usernameContent', { static: true }) usernameContent!: ElementRef;
+  @ViewChild('tempSection', { static: false}) tempSection!: ElementRef;
 
   title = 'Home';
 
@@ -32,48 +30,31 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private lastFmService: LastFmService,
-    private renderer: Renderer2
+    private lastFmService: LastFmService
   ) {}
 
   ngOnInit(): void {
-    window.addEventListener('scroll', this.handleScroll.bind(this));
-    window.addEventListener('scroll', this.handleScroll1.bind(this));
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
       this.userExists = true;
       this.userVerified = true;
     }
-  }
+    else
+    {
+      window.addEventListener('scroll', this.handleScroll.bind(this));
+    }
 
-  ngAfterViewInit(): void {
-    window.addEventListener('scroll', this.handleScroll1.bind(this));
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 50;
+    this.isScrolled = window.scrollY > 60;
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event: any) {
-    const scrollTop =
-      event.target.documentElement.scrollTop || event.target.body.scrollTop;
-
-    const viewStatsTriggerPoint = 50;
-
-    if (scrollTop > viewStatsTriggerPoint) {
-      this.renderer.addClass(
-        this.viewStatsText.nativeElement,
-        'view-stats-visible'
-      );
-    } else {
-      this.renderer.removeClass(
-        this.viewStatsText.nativeElement,
-        'view-stats-visible'
-      );
-    }
+  scrollToSection(): void {
+    const element = this.tempSection.nativeElement;
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 
   handleScroll() {
@@ -82,22 +63,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       const scrollPosition = window.scrollY;
 
       if (scrollPosition >= usernameContentTop) {
-        this.inputContainer.nativeElement.style.display = 'block';
+        this.mainContainer.nativeElement.style.display = 'block';
       } else {
-        this.inputContainer.nativeElement.style.display = 'none';
-      }
-    }
-  }
-
-  handleScroll1() {
-    if (this.usernameContent && this.usernameContent.nativeElement) {
-      const usernameContentTop = this.usernameContent.nativeElement.offsetTop;
-      const scrollPosition = window.scrollY;
-
-      if (scrollPosition >= usernameContentTop) {
-        this.userDisplay.nativeElement.style.display = 'block';
-      } else {
-        this.userDisplay.nativeElement.style.display = 'none';
+        this.mainContainer.nativeElement.style.display = 'none';
       }
     }
   }
@@ -128,9 +96,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //change view of home screen is user exists
-  //give option to change user or sign out
-
   setUsername() {
     this.userVerified = true;
     const username = this.username;
@@ -157,7 +122,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   signOut() {
-    localStorage.removeItem('username'); // Remove the stored username from localStorage
-    this.username = ''; // Clear the username variable in your component
+    localStorage.removeItem('username'); 
+    this.username = ''; 
+    this.userExists = false;
   }
 }
