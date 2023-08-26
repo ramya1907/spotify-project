@@ -11,6 +11,7 @@ import { LastFmService } from 'src/last-fm.service';
 export class ViewComponent implements OnInit {
   username = '';
   artistNames: string[] = [];
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient, private lastFmService: LastFmService) {}
 
@@ -50,6 +51,8 @@ export class ViewComponent implements OnInit {
   artistExists = true;
   artistEntered = true;
 
+  pie_percent: number = 0;
+
   //-----------------------------------------------------
 
   checkArtistandRetrieveData(artistName: string) {
@@ -61,10 +64,12 @@ export class ViewComponent implements OnInit {
         } else {
           this.artistExists = false;
           console.log(`Artist name is misspelled or doesn't exist!`);
+          this.isLoading = false;
         }
       },
       error: (error) => {
         console.error('Error checking artist name:', error);
+        this.isLoading = false;
       },
     });
   }
@@ -107,9 +112,13 @@ export class ViewComponent implements OnInit {
       this.filteredTracks = this.cleanText(allTracks);
       this.totalSongsVal = this.filteredTracks.length;
 
-      console.log('Filtered tracks:', this.filteredTracks);
+      // console.log('Filtered tracks:', this.filteredTracks);
+      this.isLoading = false;
+      console.log('Loading status:', this.isLoading);
     } catch (error) {
       console.error('Error fetching artist tracks:', error);
+      this.isLoading = false;
+      console.log('Loading status:', this.isLoading);
     }
   }
 
@@ -150,6 +159,7 @@ export class ViewComponent implements OnInit {
       }
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
+      this.isLoading = false;
     }
 
     this.songPlayCounts = Array.from(playCounts.entries()).map(
@@ -165,7 +175,7 @@ export class ViewComponent implements OnInit {
     //empty array
     if (this.songPlayCounts.length === 0) {
       this.emptyArray = true;
-      console.log('No songs listened to by this artist');
+      this.isLoading = false;
       return;
     }
     //display bar chart
@@ -216,6 +226,9 @@ export class ViewComponent implements OnInit {
   }
 
   displayStats() {
+
+    this.isLoading = true;
+    console.log('Loading status: ', this.isLoading);
     this.artistExists = true;
     this.artistEntered = true;
     this.emptyArray = false;
@@ -223,6 +236,8 @@ export class ViewComponent implements OnInit {
 
     if (!this.artistName) {
       this.artistEntered = false;
+      this.isLoading = false;
+      console.log('Loading status: ', this.isLoading);
     } else {
       this.artistEntered = true;
       this.checkArtistandRetrieveData(this.artistName);
@@ -238,6 +253,7 @@ export class ViewComponent implements OnInit {
       { name: 'Listened', value: this.listenedSongsVal },
       { name: 'Unlistened', value: this.unlistenedSongsVal },
     ];
+    this.pie_percent = Math.round ((this.listenedSongsVal / this.totalSongsVal ) * 100);
     this.showPieChart = true;
   }
 

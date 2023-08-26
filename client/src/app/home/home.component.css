@@ -1,68 +1,18 @@
-.navbar {
-  position: fixed;
-  top: 5%;
-  left: 5%;
-  width: 100%;
-  padding: 15px;
-  transition: background-color 0.3s ease;
-  background-color: transparent;
-}
-
-.navbar.scrolled {
-  top: 0;
-  right: 0;
-  position: fixed;
-  left: 1.5%;
-  padding: 15px;
-  padding-left: 60px;
-  padding-top: 40px;
-  background-color: rgba(86, 85, 79, 0.8);
-  height: 14%;
-  width: calc(100% - 3%); /* Adjust the width to account for the left margin */
-  z-index: 1;
-}
-
-.navbar nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-.navbar nav ul li:first-child {
-  margin-left: 30px;
-}
-.navbar nav ul li:last-child {
-  margin-right: 0;
-}
-
-.navbar nav ul li a {
-  color: #b3c1b7;
-  text-decoration: none;
-  font-family: "VT323", monospace;
-  font-size: 2rem;
-  margin-right: 7rem;
-  margin-left: 5.5rem;
-}
-
-.navbar nav ul li a:hover {
-  color: #0e0f2c;
-}
 
 .body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  background-color: rgb(38, 38, 38);
 }
 
 .border-container {
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
   position: relative;
-  top: 0; /* Position the border at the top */
+  top: 0; 
   left: 0;
   right: 0;
-  bottom: 0; /* Adjust bottom to make space for the navbar */
+  bottom: 0; 
   padding: 0;
 }
 
@@ -211,7 +161,7 @@ input[type="text"] {
 }
 
 input::placeholder {
-  color: #1a0f09;
+  color: #8e451e;
   font-size: 2rem;
 }
 

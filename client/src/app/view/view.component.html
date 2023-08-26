@@ -1,43 +1,60 @@
-<body style="background-color: rgb(21, 21, 31)">
-  <div class="border-container">
-    <div class="top-border"></div>
-    <app-navbar></app-navbar>
-    <div class="container">
-      <h2 class="page-title">Explore Artist's Insights</h2>
+<div class="border-container">
+  <div class="top-border"></div>
+  <app-navbar></app-navbar>
 
-      <!-- <div class="square-container">
-        <div class="square square1"></div>
-        <div class="square square2"></div>
-        <div class="square square3"></div>
-      </div> -->
+  <body class="body-div">
+    <h2 class="page-title">explore artist's insights</h2>
 
-      <div class="input-container">
-        <input
-          type="text"
-          [(ngModel)]="artistName"
-          placeholder="enter artist name"
-          (keyup.enter)="displayStats()"
-        />
-      
+    <div class="input-container">
+      <input
+        type="text"
+        [(ngModel)]="artistName"
+        placeholder="enter artist name"
+        (keyup.enter)="displayStats()"
+      />
+
       <a (click)="displayStats()" class="btn--action">
         <span class="fa fa-play"></span>
       </a>
-      </div>
+    </div>
 
-      <div *ngIf="!artistEntered">
-        <p class="alert">oh no, artist name not entered</p>
-      </div>
+    <div *ngIf="!artistEntered">
+      <p class="alert">oh no, artist name not entered</p>
+    </div>
 
-      <div *ngIf="!artistExists">
-        <p class="alert-l">Artist name might be misspelled or doesn't exist in the database :(</p>
-      </div>
+    <div *ngIf="!artistExists">
+      <p class="alert-l">
+        artist name may be misspelled or does not exist in the database :(
+      </p>
+    </div>
 
-      <div *ngIf="emptyArray">
-        <p class="alert">You haven't listened to any song by the artist.</p>
-      </div>
+    <div *ngIf="emptyArray">
+      <p class="alert">you haven't streamed any song by this artist yet</p>
+    </div>
 
-      <div *ngIf="showBarChart">
-        <h3>Vertical Bar Chart</h3>
+    <div *ngIf="isLoading" class="spinner-container">
+      <p
+        style="
+          color: rgb(120, 168, 159);
+          font-family: VT323, monospace;
+          margin-left: 5%;
+          margin-right: 2%;
+          font-size: 1.5rem;
+        "
+      >
+        collecting all the data rn, give me a sec
+      </p>
+      <i
+        class="fa-solid fa-compact-disc fa-spin fa-2xl"
+        style="color: #bc8884; margin-bottom: 1%"
+      ></i>
+    </div>
+
+    <!-- <p>You found this artist in {{ }} and it was the song {{ }}</p> -->
+
+    <div *ngIf="!isLoading">
+      <div *ngIf="showBarChart" class="bar-chart">
+        <h3 class="bc-title">so that's how many times you heard each of their songs</h3>
         <ngx-charts-bar-horizontal
           [view]="[1000, 400]"
           [results]="barChartData"
@@ -54,7 +71,7 @@
         </ngx-charts-bar-horizontal>
       </div>
 
-      <div *ngIf="showPieChart">
+      <div *ngIf="showPieChart" class="pie-chart">
         <ngx-charts-pie-chart
           [results]="chartData"
           [legend]="true"
@@ -63,15 +80,21 @@
           [labels]="true"
         >
         </ngx-charts-pie-chart>
+
+        <p class="pc-p">
+          you've listened to {{ pie_percent.toFixed(0) }}% of <br />
+          the discography of {{ artistName }}
+        </p>
       </div>
 
       <div *ngIf="viewUnlistened">
-        <h2>Unlistened Songs: ranked in order of popularity</h2>
-        <button (click)="toggleUnlistenedSongs()">Show Unlistened Songs</button>
+        <h3>incase you want to know the songs you missed, here u go</h3>
+        <button (click)="toggleUnlistenedSongs()">show unlistened songs</button>
         <ul *ngIf="showUnlistenedSongs">
           <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
         </ul>
       </div>
+
     </div>
-  </div>
-</body>
+  </body>
+</div>

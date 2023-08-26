@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectorRef, Renderer2} from '@angular/core';
 import { Router } from '@angular/router';
-import { ScrollService } from '../scroll.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +12,20 @@ export class NavbarComponent implements OnInit {
   username: string = '';
   userExists: boolean = false;
 
-  constructor(private router: Router, private scrollService: ScrollService) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
       this.userExists = true;
+      this.cdr.detectChanges
     }
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 55;
   }
 
  
@@ -27,6 +33,18 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('username');
     this.username = '';
     this.userExists = false;
+
+    this.cdr.detectChanges();
+
     this.router.navigate(['/home']);
+  }
+
+  signInAndScroll() {
+    this.router.navigate(['/home']).then(() => {
+      const element = this.renderer.selectRootElement('#temp_section');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   }
 }

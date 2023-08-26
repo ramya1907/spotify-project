@@ -1,18 +1,6 @@
 <div class="border-container">
   <div class="top-border"></div>
-      <app-navbar></app-navbar>
-
-  <!--<header class="navbar" [class.scrolled]="isScrolled">
-    <nav>
-      <ul>
-        <li><a routerLink="/home">home</a></li>
-        <li><a href="#">about me</a></li>
-        <li><a href="#">contact me</a></li>
-        <li *ngIf="userExists"><a (click)="signOut()">sign out</a></li>
-        <li *ngIf="!userExists"><a (click)="scrollToSection()">sign in</a></li>
-      </ul>
-    </nav>
-  </header> -->
+  <app-navbar></app-navbar>
 
   <body style="background-color: rgb(33, 38, 44)">
     <section class="parallax">
@@ -24,7 +12,7 @@
       </p>
     </section>
 
-    <section class="temp-section" #tempSection id="temp_section">
+    <section class="temp-section" id="temp_section">
       <div *ngIf="!userExists">
         <p class="temp-text">to begin, enter your username</p>
         <div class="arrow bounce">

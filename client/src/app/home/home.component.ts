@@ -3,12 +3,11 @@ import {
   HostListener,
   ElementRef,
   ViewChild,
-  OnInit
+  OnInit,
+  ChangeDetectorRef 
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LastFmService } from 'src/last-fm.service';
-import { ScrollService } from '../scroll.service';
-
 
 @Component({
   selector: 'app-home',
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit{
   constructor(
     private router: Router,
     private lastFmService: LastFmService,
-    private scrollService: ScrollService
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -83,13 +82,15 @@ export class HomeComponent implements OnInit{
       );
       if (userExists) {
         this.submitUsername();
-        console.log(`Username ${this.username} exists!`);
         this.userExists = true;
+        this.cdr.detectChanges;
+        
       } else {
         this.userExists = false;
         this.userVerified = false;
-        console.log('Username does not exist.');
-      }
+        this.cdr.detectChanges();
+       }
+
     } catch (error) {
       console.error('Error checking username:', error);
     }
@@ -97,11 +98,14 @@ export class HomeComponent implements OnInit{
 
   setUsername() {
     this.userVerified = true;
+    
     const username = this.username;
     this.checkInput(username);
     if (this.userEntered) {
       this.checkUsernameAndNavigate();
     }
+
+    this.cdr.detectChanges;
   }
 
   submitUsername() {
@@ -118,12 +122,5 @@ export class HomeComponent implements OnInit{
     if (this.userExists) {
       this.router.navigate(['/heatmap']);
     }
-  }
-
-  signOut() {
-    localStorage.removeItem('username'); 
-    this.username = ''; 
-    this.userExists = false;
-    this.router.navigate(['/home']);
   }
 }
