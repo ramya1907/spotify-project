@@ -9,12 +9,12 @@
   box-sizing: border-box;
 }
 
-.bottom-border {
+.top-border {
   width: 100%;
   height: 20px;
   background-color: rgb(38, 38, 38);
-  position: fixed;
-  bottom: 0;
+  /* position: fixed; */
+  top: 0;
   left: 0;
   z-index: 9999;
 }
@@ -22,33 +22,34 @@
 .title {
   align-items: center;
   justify-content: center;
-  margin: 5%;
+  margin-top: 5%;
+  margin-left: 5%;
   color: rgb(161, 189, 180);
+  font-family: "VT323", monospace;
+  font-size: 3rem;
 }
 
 .view {
     align-items: center;
     justify-content: center;
-    margin: 5%;
-    color: rgb(161, 189, 180);
+    margin: 5% 2% 5% 5%;
+    color: rgb(161, 189, 180); 
+    font-family: "VT323", monospace;
+    font-size: 2rem;
+
   }
   
-
-.year-selector {
-  display: flex;
-  align-items: center;
-}
-
 .year-selector select {
   padding: 10px;
   border: none;
   border-radius: 1.5rem;
   background-color: #e7a19b;
   color: #000;
-  font-size: 1.2rem;
+  font-size: 2rem;
   box-shadow: 0 5px #594f59;
   transition: all 0.5s ease;
   cursor: pointer;
+  font-family: "VT323", monospace;
 }
 
 .year-selector select:hover {

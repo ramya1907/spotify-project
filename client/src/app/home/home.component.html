@@ -1,6 +1,8 @@
 <div class="border-container">
   <div class="top-border"></div>
-  <header class="navbar" [class.scrolled]="isScrolled">
+      <app-navbar></app-navbar>
+
+  <!--<header class="navbar" [class.scrolled]="isScrolled">
     <nav>
       <ul>
         <li><a routerLink="/home">home</a></li>
@@ -10,7 +12,7 @@
         <li *ngIf="!userExists"><a (click)="scrollToSection()">sign in</a></li>
       </ul>
     </nav>
-  </header>
+  </header> -->
 
   <body style="background-color: rgb(33, 38, 44)">
     <section class="parallax">
@@ -22,7 +24,7 @@
       </p>
     </section>
 
-    <section class="temp-section" #tempSection>
+    <section class="temp-section" #tempSection id="temp_section">
       <div *ngIf="!userExists">
         <p class="temp-text">to begin, enter your username</p>
         <div class="arrow bounce">
@@ -99,6 +101,12 @@
             <span></span>
           </a>
 
+          <p class="p-left">
+            <span style="color: #c49c72">explore your annual scrobble: </span
+            ><br />
+            count and track your daily <br />listening activity for the year.
+          </p>
+
           <a (click)="viewHeatMap()" class="heatmap-btn">
             heat map
             <span></span>
@@ -108,18 +116,11 @@
             artist data
             <span></span>
           </a>
-
-          <div class="p-common">
-            <p class="p-left">
-              explore your annual scrobble <br />
-              count and track your daily <br />listening activity for the year.
-            </p>
-            <p class="p-right">
-              explore artist insights: <br />
-              delve into detailed statistics <br />
-              for your favorite artists
-            </p>
-          </div>
+          <p class="p-right">
+            <span style="color: #c49c72">explore artist insights:</span> <br />
+            delve into detailed statistics <br />
+            for your favorite artists
+          </p>
         </div>
       </div>
     </section>

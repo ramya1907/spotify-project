@@ -1,66 +1,77 @@
-<div class="container">
-  <h2 class="page-title">Callback Page</h2>
+<body style="background-color: rgb(21, 21, 31)">
+  <div class="border-container">
+    <div class="top-border"></div>
+    <app-navbar></app-navbar>
+    <div class="container">
+      <h2 class="page-title">Explore Artist's Insights</h2>
 
-  <div class="square-container">
-    <div class="square square1"></div>
-    <div class="square square2"></div>
-    <div class="square square3"></div>
+      <!-- <div class="square-container">
+        <div class="square square1"></div>
+        <div class="square square2"></div>
+        <div class="square square3"></div>
+      </div> -->
+
+      <div class="input-container">
+        <input
+          type="text"
+          [(ngModel)]="artistName"
+          placeholder="enter artist name"
+          (keyup.enter)="displayStats()"
+        />
+      
+      <a (click)="displayStats()" class="btn--action">
+        <span class="fa fa-play"></span>
+      </a>
+      </div>
+
+      <div *ngIf="!artistEntered">
+        <p class="alert">oh no, artist name not entered</p>
+      </div>
+
+      <div *ngIf="!artistExists">
+        <p class="alert-l">Artist name might be misspelled or doesn't exist in the database :(</p>
+      </div>
+
+      <div *ngIf="emptyArray">
+        <p class="alert">You haven't listened to any song by the artist.</p>
+      </div>
+
+      <div *ngIf="showBarChart">
+        <h3>Vertical Bar Chart</h3>
+        <ngx-charts-bar-horizontal
+          [view]="[1000, 400]"
+          [results]="barChartData"
+          [xAxisLabel]="'Count'"
+          [legendTitle]="'Play Count'"
+          [yAxisLabel]="'Songs'"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [gradient]="true"
+        >
+        </ngx-charts-bar-horizontal>
+      </div>
+
+      <div *ngIf="showPieChart">
+        <ngx-charts-pie-chart
+          [results]="chartData"
+          [legend]="true"
+          [legendTitle]="'User Activity'"
+          [view]="[1000, 300]"
+          [labels]="true"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+
+      <div *ngIf="viewUnlistened">
+        <h2>Unlistened Songs: ranked in order of popularity</h2>
+        <button (click)="toggleUnlistenedSongs()">Show Unlistened Songs</button>
+        <ul *ngIf="showUnlistenedSongs">
+          <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
-
-  <input
-    type="text"
-    [(ngModel)]="artistName"
-    placeholder="Enter artistName"
-    (keyup.enter)="displayStats()"
-  />
-  <button (click)="displayStats()">Show me my data</button>
-
-  <div *ngIf="!artistEntered">
-    <p>oh no, artist name not entered</p>
-  </div>
-
-  <div *ngIf="!artistExists">
-    <p>Artist name might be misspelled or doesn't exist in the database!</p>
-  </div>
-
-  <div *ngIf="emptyArray">
-    <p>You haven't listened to any song by the artist.</p>
-  </div>
-
-  <div *ngIf="showBarChart">
-    <h3>Vertical Bar Chart</h3>
-    <ngx-charts-bar-horizontal
-      [view]="[1000, 400]"
-      [results]="barChartData"
-      [xAxisLabel]="'Count'"
-      [legendTitle]="'Play Count'"
-      [yAxisLabel]="'Songs'"
-      [legend]="true"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      [xAxis]="true"
-      [yAxis]="true"
-      [gradient]="true"
-    >
-    </ngx-charts-bar-horizontal>
-  </div>
-
-  <div *ngIf="showPieChart">
-    <ngx-charts-pie-chart
-      [results]="chartData"
-      [legend]="true"
-      [legendTitle]="'User Activity'"
-      [view]="[1000, 300]"
-      [labels]="true"
-    >
-    </ngx-charts-pie-chart>
-  </div>
-
-  <div *ngIf="viewUnlistened">
-  <h2>Unlistened Songs: ranked in order of popularity</h2>
-  <button (click)="toggleUnlistenedSongs()">Show Unlistened Songs</button>
-  <ul *ngIf="showUnlistenedSongs">
-    <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
-  </ul>
-</div>
-</div>
+</body>

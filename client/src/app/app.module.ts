@@ -13,6 +13,8 @@ import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator
 import { HeatmapComponent } from './heatmap/heatmap.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DatePipe } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ScrollService } from './scroll.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { DatePipe } from '@angular/common';
     HomeComponent,
     ViewComponent,
     LoadingIndicatorComponent,
-    HeatmapComponent
+    HeatmapComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule,
     NgxChartsModule
   ],
-  providers: [LastFmService, LoadingService, DatePipe],
+  providers: [LastFmService, LoadingService, DatePipe, ScrollService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

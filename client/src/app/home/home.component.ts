@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LastFmService } from 'src/last-fm.service';
+import { ScrollService } from '../scroll.service';
+
 
 @Component({
   selector: 'app-home',
@@ -30,28 +32,28 @@ export class HomeComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private lastFmService: LastFmService
+    private lastFmService: LastFmService,
+    private scrollService: ScrollService
   ) {}
 
   ngOnInit(): void {
+
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+    
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
       this.userExists = true;
-      this.userVerified = true;
     }
-    window.addEventListener('scroll', this.handleScroll.bind(this));
-
+    else{
+      this.userExists=false;
+    }
+    
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 55;
-  }
-
-  scrollToSection(): void {
-    const element = this.tempSection.nativeElement;
-    element.scrollIntoView({ behavior: 'smooth' });
   }
 
   handleScroll() {
@@ -122,5 +124,6 @@ export class HomeComponent implements OnInit{
     localStorage.removeItem('username'); 
     this.username = ''; 
     this.userExists = false;
+    this.router.navigate(['/home']);
   }
 }
