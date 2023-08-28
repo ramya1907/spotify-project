@@ -5,11 +5,14 @@ footer {
   color: #bfb9b9;
   padding: 20px;
   text-align: center;
-  /* position: fixed; */
   bottom: 0;
   width: 100%;
 }
 
 g text {
   fill: whitesmoke;
+}
+
+ngx-charts-scale-legend span {
+  fill: white;
 }

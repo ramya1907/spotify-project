@@ -140,8 +140,6 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: 300px;
-  /* Adjust this value based on your layout */
 }
 
 .bar-chart {
@@ -173,3 +171,7 @@ input::placeholder {
     color: rgb(193, 151, 177);
     margin-left: 5%;
   }
+
+.chart-legend .legend-title-text {
+  color: whitesmoke;
+}

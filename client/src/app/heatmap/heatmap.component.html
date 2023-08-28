@@ -1,12 +1,13 @@
-
-<body style="background-color: rgb(21, 21, 31)">
+<body>
   <div class="border-container">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
     <app-navbar></app-navbar>
-    
-    <h1 class="title">Welcome to Your Music Dashboard</h1>
+
+    <h1 class="title">365 days of sound</h1>
 
     <div class="header">
-      <h3 class="view">View scrobbles for the year</h3>
+      <h3 class="view">view scrobbles for the year</h3>
 
       <div class="year-selector">
         <select
@@ -19,22 +20,77 @@
           </option>
         </select>
       </div>
-    </div>
-
-    <div style="margin: 20px">
-      <ngx-charts-heat-map
-        [results]="heatmapData"
-        [legend]="true"
-        [xAxis]="true"
-        [yAxis]="true"
-        [showXAxisLabel]="true"
-        [showYAxisLabel]="true"
-        [gradient]="true"
-        [legendTitle]="'Play Count'"
-        [animations]="true"
-        [xAxisTickFormatting]="xAxisTickFormatting"
-      ></ngx-charts-heat-map>
 
     </div>
+
+    <div *ngIf="isLoading" class="spinner-container">
+      <p
+        style="
+          color: rgb(120, 168, 159);
+          font-family: VT323, monospace;
+          margin-left: 5%;
+          margin-right: 2%;
+          font-size: 1.5rem;
+        "
+      >
+        loading..
+      </p>
+      <i
+        class="fa-solid fa-compact-disc fa-spin fa-2xl"
+        style="color: #bc8884; margin-bottom: 1%"
+      ></i>
+    </div>
+
+    <div *ngIf="!isLoading && alertUser">
+      <p
+        style="
+          color: rgb(120, 168, 159);
+          font-family: VT323, monospace;
+          margin-left: 5%;
+          margin-right: 2%;
+          font-size: 1.5rem;
+        "
+      >
+        sorry, there's no recorded data for that year 
+      </p>
+      
+    </div>
+
+
+    <div *ngIf="!isLoading && !alertUser">
+      <div>
+        <ngx-charts-heat-map
+          [results]="heatmapData"
+          [view]="[1100, 200]"
+          [scheme]="'nightLights'"
+          [legend]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [gradient]="true"
+          [legendTitle]="'Play Count'"
+          [animations]="true"
+          [xAxisTickFormatting]="calendarAxisTickFormatting"
+          [tooltipText]="calendarTooltipText"
+          [innerPadding]="4"
+          [trimYAxisTicks]="true"
+          [maxYAxisTickLength]="3"
+        ></ngx-charts-heat-map>
+      </div>
+    </div>
+
+    <!-- <div class="heatmap-info">
+      <p>
+        Your highest scrobbles were achieved on
+        <strong>{{ highestScrobbleDay }}</strong>with
+        <strong>{{ highestScrobbleCount }}</strong> scrobbles.
+      </p>
+      <p>
+        Your average scrobbles for the year: <strong>{{ averageScrobbles }}</strong>.
+      </p>
+    </div> -->
+
+  </div>
   </div>
 </body>

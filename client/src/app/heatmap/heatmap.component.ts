@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { formatDate } from '@angular/common';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-heatmap',
@@ -14,31 +12,66 @@ export class HeatmapComponent implements OnInit {
   apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';
   lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
-  fromDate = Math.floor(new Date('2023-01-01').getTime() / 1000);
-  toDate = Math.floor(new Date('2023-12-31').getTime() / 1000);
+  selectedYear: number = 2022;
+  availableYears: number[] = [];
 
-  selectedYear: number = 2023;
-  availableYears: number[] = [2020, 2021, 2022, 2023];
+  firstDayOfYear = new Date('2023-01-01');
+  yearStartDayOfWeek = this.firstDayOfYear.getDay();
 
   heatmapData: any[] = [];
+  isLoading: boolean = false;
 
-  constructor(private http: HttpClient, private datePipe: DatePipe) {}
+  alertUser: boolean = false;
+
+  playCountsPerDay: { [date: string]: number } = {};
+
+  legendPosition = 'right';
+  roundEdges: boolean = true;
+  animations: boolean = true;
+  previousMonth: string = 'Dec';
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      this.username = storedUsername;
+    }
+
+    for (let year = 2002; year <= 2024; year++) {
+      this.availableYears.push(year);
+    }
+
+    this.playCountsPerDay = {};
+    this.selectYear(this.selectedYear);
+  }
 
   onYearChange(): void {
     this.selectYear(this.selectedYear);
   }
 
-  selectYear(year: number) {
-    this.fromDate = Math.floor(new Date(`${year}-01-01`).getTime() / 1000);
-    this.toDate = Math.floor(new Date(`${year}-12-31`).getTime() / 1000);
+  async selectYear(year: number) {
+    this.isLoading = true;
+    this.firstDayOfYear = new Date(`${year}-01-01`);
+    this.yearStartDayOfWeek = this.firstDayOfYear.getDay();
+    this.heatmapData = [];
+    this.previousMonth = 'Dec';
+    this.alertUser = false;
+    await this.getRecentTracks(this.selectedYear);
+    this.populateMissingDays(this.playCountsPerDay, this.firstDayOfYear);
+    this.reformatData(this.playCountsPerDay);
   }
 
-  calculateStartOfWeek(date: Date): Date {
+  calculateStartOfWeek(date: Date, yearStartDayOfWeek: number): Date {
     const currentDate = new Date(date);
     const dayOfWeek = currentDate.getDay();
-    const diff = currentDate.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust for Sunday
 
-    return new Date(currentDate.setDate(diff));
+    const daysToAdd =
+      dayOfWeek === yearStartDayOfWeek ? 0 : yearStartDayOfWeek - dayOfWeek;
+
+    currentDate.setDate(currentDate.getDate() + daysToAdd);
+
+    return currentDate;
   }
 
   // Function to calculate the day name for a given date
@@ -55,21 +88,106 @@ export class HeatmapComponent implements OnInit {
     return dayNames[date.getDay()];
   }
 
-  ngOnInit(): void {
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      this.username = storedUsername;
-    }
+  generateWeekDayNames(firstDayOfWeek: string): string[] {
+    const weekDayNames = [
+      'Saturday',
+      'Friday',
+      'Thursday',
+      'Wednesday',
+      'Tuesday',
+      'Monday',
+      'Sunday',
+    ];
 
-    this.getYearlyListeningHistory();
+    const firstDayIndex = weekDayNames.indexOf(firstDayOfWeek);
+    const rearrangedNames = weekDayNames
+      .slice(firstDayIndex)
+      .concat(weekDayNames.slice(0, firstDayIndex));
+
+    return rearrangedNames;
   }
 
-  async getYearlyListeningHistory() {
-    let page = 1;
-    const limit = 1000;
-    const playCountsPerDay: { [date: string]: number } = {};
+  reformatData(playCountsPerDay: { [date: string]: number }) {
+    const groupedDataMap: Map<
+      string,
+      { date: Date; name: string; value: number }[]
+    > = new Map();
+
+    for (const [dateStr, count] of Object.entries(playCountsPerDay)) {
+      const date = new Date(dateStr);
+      const startOfWeekDate = this.calculateStartOfWeek(
+        date,
+        this.yearStartDayOfWeek
+      );
+
+      const dayName = this.calculateDayName(date);
+
+      if (!groupedDataMap.has(startOfWeekDate.toISOString())) {
+        groupedDataMap.set(startOfWeekDate.toISOString(), []);
+      }
+
+      const seriesData = {
+        date: date,
+        name: dayName,
+        value: count,
+      };
+
+      groupedDataMap.get(startOfWeekDate.toISOString())?.push(seriesData);
+    }
+
+    const formattedData: {
+      name: string;
+      series: { date: Date; name: string; value: number }[];
+    }[] = [];
+
+    for (const [formattedDateStr, seriesArray] of groupedDataMap.entries()) {
+      const weekDayNames = this.generateWeekDayNames(
+        this.calculateDayName(this.firstDayOfYear)
+      );
+      const reorderedSeriesArray: {
+        date: Date;
+        name: string;
+        value: number;
+      }[] = [];
+
+      // Iterate through weekDayNames to reorder the seriesArray
+      for (const dayName of weekDayNames) {
+        const dataForDay = seriesArray.find((data) => data.name === dayName);
+
+        if (dataForDay) {
+          reorderedSeriesArray.push(dataForDay);
+        } else {
+          // If data for the day is missing, add an entry with value 0
+          reorderedSeriesArray.push({
+            date: new Date(formattedDateStr),
+            name: dayName,
+            value: 0,
+          });
+        }
+      }
+
+      const formattedObject = {
+        name: formattedDateStr,
+        series: reorderedSeriesArray,
+      };
+
+      formattedData.push(formattedObject);
+    }
+
+    this.heatmapData = formattedData;
+
+    console.log('Play counts per day:', this.heatmapData);
+    this.isLoading = false;
+  }
+
+  async getRecentTracks(year: number) {
+    this.isLoading = true;
+    this.playCountsPerDay = {};
 
     try {
+      let page = 1;
+      const limit = 1000;
+
       while (true) {
         const response = await firstValueFrom(
           this.http.get<any>(`${this.lastFmApiUrl}`, {
@@ -79,8 +197,8 @@ export class HeatmapComponent implements OnInit {
               api_key: this.apiKey,
               limit: limit.toString(),
               page: page.toString(),
-              from: this.fromDate,
-              to: this.toDate,
+              from: Math.floor(new Date(`${year}-01-01`).getTime() / 1000),
+              to: Math.floor(new Date(`${year + 1}-01-01`).getTime() / 1000),
               format: 'json',
             },
           })
@@ -94,11 +212,11 @@ export class HeatmapComponent implements OnInit {
                 .toISOString()
                 .split('T')[0];
 
-              if (!playCountsPerDay[date]) {
-                playCountsPerDay[date] = 0;
+              if (!this.playCountsPerDay[date]) {
+                this.playCountsPerDay[date] = 0;
               }
 
-              playCountsPerDay[date]++;
+              this.playCountsPerDay[date]++;
             }
           }
         }
@@ -109,83 +227,89 @@ export class HeatmapComponent implements OnInit {
 
         page++;
       }
-      let formattedDateStr = null;
-      const groupedDataMap: Map<string, { name: string; value: number }[]> =
-        new Map();
 
-      for (const [dateStr, count] of Object.entries(playCountsPerDay)) {
-        const date = new Date(dateStr);
-        const startOfWeekDate = this.calculateStartOfWeek(date);
-
-        const dayName = this.calculateDayName(date);
-
-        formattedDateStr = this.datePipe.transform(
-          startOfWeekDate,
-          'yyyy-MM-dd'
-        );
-
-        if (!groupedDataMap.has(startOfWeekDate.toISOString())) {
-          groupedDataMap.set(startOfWeekDate.toISOString(), []);
-        }
-
-        const seriesData = {
-          name: dayName,
-          value: count,
-        };
-
-        groupedDataMap.get(startOfWeekDate.toISOString())?.push(seriesData);
-      }
-
-      const formattedData: {
-        name: string;
-        series: { name: string; value: number }[];
-      }[] = [];
-
-      for (const [formattedDateStr, seriesArray] of groupedDataMap.entries()) {
-        const weekDayNames = [
-          'Saturday',
-          'Friday',
-          'Thursday',
-          'Wednesday',
-          'Tuesday',
-          'Monday',
-          'Sunday'
-        ];
-        
-        // Sort the days of the week in order (Sunday to Saturday)
-        const sortedSeries = weekDayNames.map(
-          (dayName) =>
-            seriesArray.find((data) => data.name === dayName) || {
-              name: dayName,
-              value: 0,
-            }
-        );
-        const formattedObject = {
-          // name: startOfWeekDate,
-          name: formattedDateStr,
-          // series: seriesArray,
-          series: sortedSeries
-        };
-
-        formattedData.push(formattedObject);
-      }
-
-      // Sort the formatted data in ascending order based on the start of the week date
-      formattedData.sort(
-        (a, b) => new Date(a.name).getTime() - new Date(b.name).getTime()
-      );
-
-      // Assign the formatted data array to heatmapData property
-      this.heatmapData = formattedData;
-
-      console.log('Play counts per day:', this.heatmapData);
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
+      this.alertUser = true;
+      this.isLoading = false;
     }
   }
 
-  xAxisTickFormatting(value: any): string {
+  populateMissingDays(
+    playCountsPerDay: { [date: string]: number },
+    firstDayofYear: Date
+  ) {
+    const year = firstDayofYear.getFullYear();
+
+    // Loop through all days of the year
+    for (let month = 0; month < 12; month++) {
+      for (let day = 1; day <= 31; day++) {
+        const currentDate = new Date(year, month, day);
+        const currentDateStr = currentDate.toISOString().split('T')[0];
+
+        // If the date is not present in playCountsPerDay, set play count to 0
+        if (!playCountsPerDay[currentDateStr]) {
+          playCountsPerDay[currentDateStr] = 0;
+        }
+      }
+    }
+
+    let playCountsArray = [];
+    playCountsArray = Object.entries(playCountsPerDay);
+
+    // Sort the array based on the dates (keys)
+    playCountsArray.sort((a, b) => {
+      const dateA = new Date(a[0]);
+      const dateB = new Date(b[0]);
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    // Convert the sorted array back to an object
+    const sortedPlayCountsPerDay: { [date: string]: number } = {};
+    playCountsArray.forEach(([date, count]) => {
+      sortedPlayCountsPerDay[date] = count;
+    });
+
+    this.playCountsPerDay = sortedPlayCountsPerDay;
+  }
+
+  calendarAxisTickFormatting(value: any) {
     const date = new Date(value);
-    return formatDate(date, 'MMM', 'en-US');
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    const month = monthNames[date.getMonth()];
+
+    if (month !== this.previousMonth) {
+      this.previousMonth = month;
+      return month.toString();
+    }
+
+    return '';
+  }
+
+  calendarTooltipText(c: any): string {
+    const seriesData = c.series[c.index];
+
+    if (c && c.label && c.cell && c.data) {
+      return `
+      <span class="tooltip-label">${
+        c.label
+      } • ${c.cell.date.toLocaleDateString()}</span>
+      <span class="tooltip-val">${c.data.toLocaleString()}</span>
+    `;
+    }
+    return '';
   }
 }

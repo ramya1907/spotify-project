@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { LastFmService } from 'src/last-fm.service';
 
+//i think get recent tracks, gets the first date at the end- useful for knowing when u first found an artist
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -65,11 +67,13 @@ export class ViewComponent implements OnInit {
           this.artistExists = false;
           console.log(`Artist name is misspelled or doesn't exist!`);
           this.isLoading = false;
+          console.log("loading error at check artist");
         }
       },
       error: (error) => {
         console.error('Error checking artist name:', error);
         this.isLoading = false;
+        console.log("loading error");
       },
     });
   }
@@ -111,14 +115,14 @@ export class ViewComponent implements OnInit {
 
       this.filteredTracks = this.cleanText(allTracks);
       this.totalSongsVal = this.filteredTracks.length;
-
-      // console.log('Filtered tracks:', this.filteredTracks);
       this.isLoading = false;
-      console.log('Loading status:', this.isLoading);
+      console.log("It's all done");
+      
     } catch (error) {
       console.error('Error fetching artist tracks:', error);
       this.isLoading = false;
       console.log('Loading status:', this.isLoading);
+      console.log("loading error");
     }
   }
 
@@ -226,7 +230,6 @@ export class ViewComponent implements OnInit {
   }
 
   displayStats() {
-
     this.isLoading = true;
     console.log('Loading status: ', this.isLoading);
     this.artistExists = true;
@@ -238,6 +241,7 @@ export class ViewComponent implements OnInit {
       this.artistEntered = false;
       this.isLoading = false;
       console.log('Loading status: ', this.isLoading);
+      console.log("loading error");
     } else {
       this.artistEntered = true;
       this.checkArtistandRetrieveData(this.artistName);
@@ -253,8 +257,11 @@ export class ViewComponent implements OnInit {
       { name: 'Listened', value: this.listenedSongsVal },
       { name: 'Unlistened', value: this.unlistenedSongsVal },
     ];
-    this.pie_percent = Math.round ((this.listenedSongsVal / this.totalSongsVal ) * 100);
+    this.pie_percent = Math.round(
+      (this.listenedSongsVal / this.totalSongsVal) * 100
+    );
     this.showPieChart = true;
+
   }
 
   removeVariationKeywords(songName: string): string {
