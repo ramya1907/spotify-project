@@ -7,6 +7,7 @@
     padding: 15px;
     transition: background-color 0.3s ease;
     background-color: transparent;
+   
   }
   
   .navbar.scrolled {
@@ -17,10 +18,16 @@
     padding: 15px;
     padding-left: 60px;
     padding-top: 40px;
-    background-color: rgba(86, 85, 79, 0.8);
+    /* background-color: rgba(86, 85, 79, 0.8); */
+    /* background-color: rgba(179, 170, 131, 0.8); */
+    background-color: #93805c;
     height: 14%;
     width: calc(100% - 3%); /* Adjust the width to account for the left margin */
     z-index: 1;
+  }
+
+  .navbar.scrolled nav ul li a {
+    color: rgb(53, 50, 43);
   }
   
   .navbar nav ul {
@@ -37,6 +44,8 @@
   }
   
   .navbar nav ul li a {
+    /* color: #b3c1b7; */
+    /* color: rgb(53, 50, 43); */
     color: #b3c1b7;
     text-decoration: none;
     font-family: "VT323", monospace;
@@ -46,7 +55,8 @@
   }
   
   .navbar nav ul li a:hover {
-    color: #0e0f2c;
+    /* color: #0e0f2c; */
+    color: #474760;
   }
   
   

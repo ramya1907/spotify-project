@@ -1,96 +1,108 @@
+- nSliceX = 8
+- nSliceY = 8
+- nSlice = nSliceX * nSliceY;
 <body>
   <div class="border-container">
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 
-    <app-navbar></app-navbar>
-
-    <h1 class="title">365 days of sound</h1>
-
-    <div class="header">
-      <h3 class="view">view scrobbles for the year</h3>
-
-      <div class="year-selector">
-        <select
-          id="yearDropdown"
-          [(ngModel)]="selectedYear"
-          (change)="onYearChange()"
-        >
-          <option *ngFor="let year of availableYears" [value]="year">
-            {{ year }}
-          </option>
-        </select>
-      </div>
-
-    </div>
-
-    <div *ngIf="isLoading" class="spinner-container">
-      <p
+      <div
         style="
-          color: rgb(120, 168, 159);
-          font-family: VT323, monospace;
-          margin-left: 5%;
-          margin-right: 2%;
-          font-size: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         "
       >
-        loading..
-      </p>
-      <i
-        class="fa-solid fa-compact-disc fa-spin fa-2xl"
-        style="color: #bc8884; margin-bottom: 1%"
-      ></i>
-    </div>
+        <app-navbar></app-navbar>
 
-    <div *ngIf="!isLoading && alertUser">
-      <p
-        style="
-          color: rgb(120, 168, 159);
-          font-family: VT323, monospace;
-          margin-left: 5%;
-          margin-right: 2%;
-          font-size: 1.5rem;
-        "
-      >
-        sorry, there's no recorded data for that year 
-      </p>
-      
-    </div>
+        <h1 class="title"><strong>365 days of sound</strong></h1>
 
+        <div class="header">
+          <h3 class="view">view scrobbles for the year</h3>
+          >
 
-    <div *ngIf="!isLoading && !alertUser">
-      <div>
-        <ngx-charts-heat-map
-          [results]="heatmapData"
-          [view]="[1100, 200]"
-          [scheme]="'nightLights'"
-          [legend]="true"
-          [xAxis]="true"
-          [yAxis]="true"
-          [showXAxisLabel]="true"
-          [showYAxisLabel]="true"
-          [gradient]="true"
-          [legendTitle]="'Play Count'"
-          [animations]="true"
-          [xAxisTickFormatting]="calendarAxisTickFormatting"
-          [tooltipText]="calendarTooltipText"
-          [innerPadding]="4"
-          [trimYAxisTicks]="true"
-          [maxYAxisTickLength]="3"
-        ></ngx-charts-heat-map>
+          <div class="year-selector">
+            <select
+              id="yearDropdown"
+              [(ngModel)]="selectedYear"
+              (change)="onYearChange()"
+            >
+              <option *ngFor="let year of availableYears" [value]="year">
+                {{ year }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="isLoading" class="spinner-container">
+          <p
+            style="
+              color: rgb(120, 168, 159);
+              font-family: VT323, monospace;
+              margin-left: 5%;
+              margin-right: 2%;
+              font-size: 1.5rem;
+            "
+          >
+            loading..
+          </p>
+          <i
+            class="fa-solid fa-compact-disc fa-spin fa-2xl"
+            style="color: #bc8884; margin-bottom: 1%"
+          ></i>
+        </div>
+
+        <div *ngIf="!isLoading && alertUser">
+          <p
+            style="
+              color: rgb(120, 168, 159);
+              font-family: VT323, monospace;
+              margin-left: 5%;
+              margin-right: 2%;
+              font-size: 1.5rem;
+            "
+          >
+            sorry, there's no recorded data for that year
+          </p>
+        </div>
+
+        <!-- [view]="[1100, 200]" -->
+
+        <div *ngIf="!isLoading && !alertUser">
+          <div class="heatmap-container">
+            <ngx-charts-heat-map
+              [results]="heatmapData"
+              [view]="[1300, 300]"
+              [scheme]="'nightLights'"
+              [legend]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [gradient]="true"
+              [legendTitle]="'Play Count'"
+              [animations]="true"
+              [xAxisTickFormatting]="calendarAxisTickFormatting"
+              [tooltipText]="calendarTooltipText"
+              [innerPadding]="4"
+              [trimYAxisTicks]="true"
+              [maxYAxisTickLength]="3"
+            ></ngx-charts-heat-map>
+          </div>
+
+          <div class="heatmap-info">
+            <p>
+              Your highest scrobbles were achieved on
+              <strong>{{ highestScrobbleDay }}</strong> with
+              <strong>{{ highestScrobbleCount }}</strong> scrobbles.
+              <br />
+            </p>
+            <p>
+              Your average scrobbles for the year:
+              <strong>{{ averageScrobbles }}</strong
+              >.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- <div class="heatmap-info">
-      <p>
-        Your highest scrobbles were achieved on
-        <strong>{{ highestScrobbleDay }}</strong>with
-        <strong>{{ highestScrobbleCount }}</strong> scrobbles.
-      </p>
-      <p>
-        Your average scrobbles for the year: <strong>{{ averageScrobbles }}</strong>.
-      </p>
-    </div> -->
-
-  </div>
-  </div>
 </body>

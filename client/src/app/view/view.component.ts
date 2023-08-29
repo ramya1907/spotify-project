@@ -40,11 +40,13 @@ export class ViewComponent implements OnInit {
   chartData: any[] = [];
   showPieChart = false;
   showBarChart = false;
+  showFoundArtist = false;
   emptyArray = false;
   showUnlistenedSongs = false;
   viewUnlistened = false;
   songPlayCounts: any[] = [];
   barChartData: { name: string; value: number }[] = [];
+
 
   unlistenedSongs: any[] = [];
 
@@ -54,6 +56,10 @@ export class ViewComponent implements OnInit {
   artistEntered = true;
 
   pie_percent: number = 0;
+
+  // earliestListenTimestamp: number = Number.MAX_SAFE_INTEGER;
+  earliestListenDate: string| undefined;
+  earliestListenSongName: string = '';
 
   //-----------------------------------------------------
 
@@ -67,13 +73,13 @@ export class ViewComponent implements OnInit {
           this.artistExists = false;
           console.log(`Artist name is misspelled or doesn't exist!`);
           this.isLoading = false;
-          console.log("loading error at check artist");
+          console.log('loading error at check artist');
         }
       },
       error: (error) => {
         console.error('Error checking artist name:', error);
         this.isLoading = false;
-        console.log("loading error");
+        console.log('loading error');
       },
     });
   }
@@ -117,12 +123,11 @@ export class ViewComponent implements OnInit {
       this.totalSongsVal = this.filteredTracks.length;
       this.isLoading = false;
       console.log("It's all done");
-      
     } catch (error) {
       console.error('Error fetching artist tracks:', error);
       this.isLoading = false;
       console.log('Loading status:', this.isLoading);
-      console.log("loading error");
+      console.log('loading error');
     }
   }
 
@@ -130,6 +135,7 @@ export class ViewComponent implements OnInit {
     let page = 1;
     const limit = 1000;
     const playCounts: Map<string, number> = new Map();
+    let earliestListenTimestamp: number = Number.MAX_SAFE_INTEGER;
 
     try {
       while (true) {
@@ -151,6 +157,12 @@ export class ViewComponent implements OnInit {
             if (track.artist['#text'].toLowerCase() === artistName) {
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
+
+              const timestamp = Number(track.date.uts);
+              if (timestamp < earliestListenTimestamp) {
+                earliestListenTimestamp = timestamp;
+                this.earliestListenSongName = track.name;
+              }
             }
           }
         }
@@ -165,6 +177,8 @@ export class ViewComponent implements OnInit {
       console.error('Error retrieving recent tracks:', error);
       this.isLoading = false;
     }
+
+    this.convertToDate(earliestListenTimestamp);
 
     this.songPlayCounts = Array.from(playCounts.entries()).map(
       ([name, playcount]) => ({
@@ -192,7 +206,7 @@ export class ViewComponent implements OnInit {
     this.unlistenedSongs = this.filteredTracks.filter(
       (song) => !this.uniqueSongs.includes(song)
     );
-    console.log("Unlistened songs are", this.unlistenedSongs);
+    console.log('Unlistened songs are', this.unlistenedSongs);
     this.viewUnlistened = true;
     this.listenedSongsVal = this.uniqueSongs.length;
 
@@ -236,12 +250,13 @@ export class ViewComponent implements OnInit {
     this.artistEntered = true;
     this.emptyArray = false;
     this.showUnlistenedSongs = false;
+    this.showFoundArtist = false;
 
     if (!this.artistName) {
       this.artistEntered = false;
       this.isLoading = false;
       console.log('Loading status: ', this.isLoading);
-      console.log("loading error");
+      console.log('loading error');
     } else {
       this.artistEntered = true;
       this.checkArtistandRetrieveData(this.artistName);
@@ -261,7 +276,6 @@ export class ViewComponent implements OnInit {
       (this.listenedSongsVal / this.totalSongsVal) * 100
     );
     this.showPieChart = true;
-
   }
 
   removeVariationKeywords(songName: string): string {
@@ -328,5 +342,16 @@ export class ViewComponent implements OnInit {
 
   toggleUnlistenedSongs() {
     this.showUnlistenedSongs = !this.showUnlistenedSongs;
+  }
+
+  convertToDate(earliestListenTimestamp: number) {
+    const earliestListenDate = new Date(earliestListenTimestamp * 1000); 
+    this.earliestListenDate = earliestListenDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    this.showFoundArtist = true;
   }
 }

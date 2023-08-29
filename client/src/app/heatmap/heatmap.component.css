@@ -11,7 +11,7 @@ body {
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: rgb(21, 21, 31); 
+  background-color: rgb(21, 21, 31);
 }
 
 .border-container {
@@ -24,6 +24,7 @@ body {
   bottom: 0;
   padding: 0;
   height: 100%;
+  overflow: auto;
 }
 
 .header {
@@ -37,20 +38,25 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 10%;
-  /* margin-left: 30%; */
   color: #c7ad7c;
   font-family: "VT323", monospace;
-  font-size: 5rem;
-  display: flex; /* Added */
+  font-size: 8rem;
+  display: flex;
+  animation: fade-in 0.7s ease forwards;
+}
+
+.title strong {
+  font-weight: 650;
 }
 
 .view {
   align-items: center;
   justify-content: center;
-  margin: 10% 0 5% 0;
+  margin: 7% 0 5% 0;
   color: rgb(161, 189, 180);
   font-family: "VT323", monospace;
-  font-size: 3rem;
+  font-size: 4rem;
+  animation: fade-in 1.2s ease forwards;
 }
 
 .year-selector select {
@@ -78,29 +84,74 @@ body {
   box-shadow: 0 2px #131313;
 }
 
-
-
-.custom-tooltip {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: "VT323", monospace;
-}
-
-.tooltip-label {
-  font-weight: bold;
-}
-
-.tooltip-val {
-  margin-top: 5px;
-}
-
 .spinner-container {
   margin-top: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.heatmap-container {
+  margin: 4% 0;
+  animation: heatmapAnimation 4s ease-in-out;
+  opacity: 1;
+}
+
+.heatmap-info strong {
+  color: #c7ad7c;
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .border-container {
+    padding: 10px; /* Add some padding for smaller screens */
+  }
+
+  .year-selector select {
+    margin-left: 10%; /* Adjust the margin for the select element */
+    margin-top: 5%;
+  }
+
+  .heatmap-info {
+    font-size: 1.5rem;
+  }
+}
+
+.heatmap-info {
+  font-size: 2 rem;
+  margin-top: 7%;
+  background-color: #6c5f75;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: "VT323", monospace;
+  font-size: 2rem;
+  color: rgb(28, 25, 59);
+  height: 350px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ 
+ @keyframes heatmapAnimation {
+  0% {
+   
+    transform: translateX(-100%);
+  }
+  100% {
+    
+    transform: translateX(2%);
+  }
+}  
 

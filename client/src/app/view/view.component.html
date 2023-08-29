@@ -3,7 +3,7 @@
   <app-navbar></app-navbar>
 
   <body class="body-div">
-    <h2 class="page-title">explore artist's insights</h2>
+    <h2 class="page-title">explore artist insights</h2>
 
     <div class="input-container">
       <input
@@ -38,11 +38,11 @@
           color: rgb(120, 168, 159);
           font-family: VT323, monospace;
           margin-left: 5%;
-          margin-right: 2%;
+          margin-right: 1%;
           font-size: 1.5rem;
         "
       >
-        collecting all the data rn, give me a sec
+        loading ...
       </p>
       <i
         class="fa-solid fa-compact-disc fa-spin fa-2xl"
@@ -50,11 +50,19 @@
       ></i>
     </div>
 
-    <!-- <p>You found this artist in {{ }} and it was the song {{ }}</p> -->
-
     <div *ngIf="!isLoading">
+      <div *ngIf="showFoundArtist">
+        <p class="found-song">
+          You found this artist on <strong>{{ earliestListenDate }}</strong> and
+          <br />
+          it was through the song <strong>{{ earliestListenSongName }}</strong>
+        </p>
+      </div>
+
       <div *ngIf="showBarChart" class="bar-chart">
-        <h3 class="bc-title">so that's how many times you heard each of their songs</h3>
+        <h3 class="bc-title">
+          so that's how many times you heard each of their songs
+        </h3>
         <ngx-charts-bar-horizontal
           [view]="[1000, 400]"
           [results]="barChartData"
@@ -94,7 +102,6 @@
           <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
         </ul>
       </div>
-
     </div>
   </body>
 </div>

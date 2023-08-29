@@ -30,6 +30,10 @@ export class HeatmapComponent implements OnInit {
   animations: boolean = true;
   previousMonth: string = 'Dec';
 
+  highestScrobbleDay: string = '';
+  highestScrobbleCount: number = 0;
+  averageScrobbles: number = 0;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -113,7 +117,20 @@ export class HeatmapComponent implements OnInit {
       { date: Date; name: string; value: number }[]
     > = new Map();
 
+    let maxScrobbles = 0;
+    let maxScrobblesDay = '';
+    let totalScrobbles = 0;
+
     for (const [dateStr, count] of Object.entries(playCountsPerDay)) {
+
+      if (count > maxScrobbles) {
+        maxScrobbles = count;
+        maxScrobblesDay = dateStr;
+        this.highestScrobbleCount = count; 
+      }
+
+      totalScrobbles += count;
+
       const date = new Date(dateStr);
       const startOfWeekDate = this.calculateStartOfWeek(
         date,
@@ -134,6 +151,9 @@ export class HeatmapComponent implements OnInit {
 
       groupedDataMap.get(startOfWeekDate.toISOString())?.push(seriesData);
     }
+
+    this.averageScrobbles = Math.round(totalScrobbles / Object.keys(playCountsPerDay).length);
+    this.highestScrobbleDay = maxScrobblesDay;
 
     const formattedData: {
       name: string;

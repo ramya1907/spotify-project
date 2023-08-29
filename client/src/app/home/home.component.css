@@ -33,9 +33,7 @@
   margin-top: 11%;
   margin-left: 60%;
   opacity: 0;
-  /* transform: translateY(20px); */
   transform: translateY(20px);
-  /* color: #987f9b; */
   color: #b4a3b6;
   animation: fade-in 1.6s ease forwards;
 }
@@ -50,7 +48,6 @@
   margin-top: 4%;
   margin-left: 60%;
   animation: fade-in-slower 3s ease forwards;
-  /* color: #949e97; */
   color: #a6b2aa;
   font-family: "VT323", monospace;
 }
@@ -147,7 +144,7 @@
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
-  animation: fade-in1 0.7s ease forwards;
+  animation: fade-in 0.7s ease forwards;
 }
 
 input[type="text"] {
@@ -189,7 +186,7 @@ input::placeholder {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  animation: fade-in1 0.9s ease forwards;
+  animation: fade-in 0.9s ease forwards;
 }
 
 .btn--action span {
@@ -239,35 +236,14 @@ input::placeholder {
   }
 }
 
-@keyframes fade-in1 {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-slower {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .p-username {
-  /* display: flex; */
+ 
   width: 32%;
   background-color: #c0a168;
   border-radius: 10px;
   padding: 0.5px;
-  /* padding-top:5px; */
+ 
   box-shadow: 0 7px #6b4f2e;
   margin-top: 7%;
   position: fixed;
@@ -276,7 +252,7 @@ input::placeholder {
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
-  animation: fade-in1 0.7s ease forwards;
+  animation: fade-in 0.7s ease forwards;
 }
 
 .p-username-in {
@@ -311,7 +287,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.5rem;
-  animation: fade-in1 1s ease forwards;
+  animation: fade-in 1s ease forwards;
 }
 
 .heatmap-btn-0 {
@@ -332,7 +308,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.5rem;
-  animation: fade-in1 1s ease forwards;
+  animation: fade-in 1s ease forwards;
 }
 
 .heatmap-btn:active {
@@ -359,7 +335,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.3rem;
-  animation: fade-in1 1.2s ease forwards;
+  animation: fade-in 1.2s ease forwards;
 }
 
 .artist-btn-0 {
@@ -380,7 +356,7 @@ input::placeholder {
   height: 115px;
   border-radius: 30px;
   font-size: 2.3rem;
-  animation: fade-in1 1.2s ease forwards;
+  animation: fade-in 1.2s ease forwards;
 }
 
 .artist-btn:active {
