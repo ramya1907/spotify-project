@@ -57,7 +57,6 @@ export class ViewComponent implements OnInit {
 
   pie_percent: number = 0;
 
-  // earliestListenTimestamp: number = Number.MAX_SAFE_INTEGER;
   earliestListenDate: string| undefined;
   earliestListenSongName: string = '';
 

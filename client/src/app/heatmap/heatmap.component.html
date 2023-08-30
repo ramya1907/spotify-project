@@ -1,6 +1,3 @@
-- nSliceX = 8
-- nSliceY = 8
-- nSlice = nSliceX * nSliceY;
 <body>
   <div class="border-container">
 
@@ -65,9 +62,7 @@
           </p>
         </div>
 
-        <!-- [view]="[1100, 200]" -->
-
-        <div *ngIf="!isLoading && !alertUser">
+        <div *ngIf="!isLoading && !alertUser" style="padding: 0; margin: 0;">
           <div class="heatmap-container">
             <ngx-charts-heat-map
               [results]="heatmapData"
@@ -91,15 +86,15 @@
 
           <div class="heatmap-info">
             <p>
-              Your highest scrobbles were achieved on
-              <strong>{{ highestScrobbleDay }}</strong> with
-              <strong>{{ highestScrobbleCount }}</strong> scrobbles.
+              Your peak scrobble count occured on
+              <strong>{{ highestScrobbleDay }}</strong>, <br />
+              where you recorded an impressive <strong>{{ highestScrobbleCount }}</strong> scrobbles.
               <br />
             </p>
-            <p>
-              Your average scrobbles for the year:
-              <strong>{{ averageScrobbles }}</strong
-              >.
+            <p style="margin-top: 3%;">
+              Throughout the year, you averaged
+              <strong>{{ averageScrobbles }}</strong>
+              scrobbles per day.
             </p>
           </div>
         </div>

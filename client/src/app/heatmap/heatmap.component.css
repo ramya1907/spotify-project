@@ -1,11 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-}
 
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -17,7 +15,7 @@ body {
 .border-container {
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -25,6 +23,7 @@ body {
   padding: 0;
   height: 100%;
   overflow: auto;
+  min-height: 100vh;
 }
 
 .header {
@@ -95,6 +94,7 @@ body {
   margin: 4% 0;
   animation: heatmapAnimation 4s ease-in-out;
   opacity: 1;
+  width: 100%;
 }
 
 .heatmap-info strong {
@@ -112,24 +112,27 @@ body {
     margin-top: 5%;
   }
 
-  .heatmap-info {
+  /* .heatmap-info {
     font-size: 1.5rem;
-  }
+    width: calc(100% - 20px);
+    padding: 10px;
+  }  */
 }
 
 .heatmap-info {
-  font-size: 2 rem;
-  margin-top: 7%;
+  font-size: 3 rem;
+  margin-top: 7% 0;
   background-color: #6c5f75;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  /* padding: 20px; */
   font-family: "VT323", monospace;
   font-size: 2rem;
   color: rgb(28, 25, 59);
   height: 350px;
+  width: 100%;
 }
 
 @keyframes fade-in {

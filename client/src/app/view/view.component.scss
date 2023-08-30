@@ -1,19 +1,17 @@
-// font-family: "VT323", monospace;
 
 .body-div {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  // background-color: rgb(21, 21, 31);
-  background-color: #6c5f75;
   min-height: 100vh;
+  background-color: #6c5f75;
 }
 
 .border-container {
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
-  // position: relative;
-  position:fixed;
+  position: relative;
+  min-height: 100vh;
   top: 0;
   left: 0;
   right: 0;
@@ -23,19 +21,20 @@
 }
 
 
-.top-border {
+.bottom-border {
   width: 100%;
   height: 20px;
   background-color: rgb(38, 38, 38);
-  top: 0;
+  bottom: 0;
   left: 0;
   z-index: 9999;
+  position: fixed;
 }
 
 
 .page-title {
   font-size: 5rem;
-  margin: 20% 0 5% 23%;
+  margin: 19% 0 5% 23%;
   font-family: "VT323", monospace;
   color: rgb(161, 189, 180);
 }
@@ -173,16 +172,42 @@ input::placeholder {
   margin-left: 5%;
 }
 
-.found-song {
+.found-artist {
   font-family: "VT323", monospace;
-  font-size: 2rem;
+  font-size: 4rem;
   color: rgb(193, 151, 177);
-  margin-left: 20%;
   margin-top: 6%;
   background-color: rgb(21, 21, 31);
-  height: 200px;
+  height: 600px;
   padding: 15px;
+  width: 100%;
 }
+.found-artist strong {
+  margin-top: 5%;
+  color: #c0a168;
+  font-size: 5rem;
+}
+
+
+
+.found-song {
+  font-family: "VT323", monospace;
+  font-size: 4rem;
+  color: rgb(193, 151, 177);
+  margin-top: 6%;
+  margin-left: 40%;
+  background-color: rgb(21, 21, 31);
+  height: 600px;
+  padding: 15px;
+  width: 100%;
+}
+
+.found-song strong {
+  margin-top: 5%;
+  color: #c0a168;
+  font-size: 5rem;
+}
+
 
 
 

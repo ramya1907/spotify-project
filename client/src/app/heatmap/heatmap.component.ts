@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
@@ -24,6 +24,8 @@ export class HeatmapComponent implements OnInit {
   alertUser: boolean = false;
 
   playCountsPerDay: { [date: string]: number } = {};
+  fromDate = Math.floor(new Date('2022-01-01').getTime() / 1000);
+  toDate = Math.floor(new Date(`2023-01-01`).getTime() / 1000)
 
   legendPosition = 'right';
   roundEdges: boolean = true;
@@ -46,7 +48,6 @@ export class HeatmapComponent implements OnInit {
       this.availableYears.push(year);
     }
 
-    this.playCountsPerDay = {};
     this.selectYear(this.selectedYear);
   }
 
@@ -55,14 +56,19 @@ export class HeatmapComponent implements OnInit {
   }
 
   async selectYear(year: number) {
+    year = Number (year);
     this.isLoading = true;
     this.firstDayOfYear = new Date(`${year}-01-01`);
     this.yearStartDayOfWeek = this.firstDayOfYear.getDay();
     this.heatmapData = [];
     this.previousMonth = 'Dec';
     this.alertUser = false;
+    this.playCountsPerDay = {};
+    this.fromDate = Math.floor(new Date(`${year}-01-01`).getTime() / 1000);
+    this.toDate = Math.floor(new Date(`${year + 1}-01-01`).getTime() / 1000);
+
     await this.getRecentTracks(this.selectedYear);
-    this.populateMissingDays(this.playCountsPerDay, this.firstDayOfYear);
+    this.playCountsPerDay = this.populateMissingDays(this.playCountsPerDay, this.firstDayOfYear);
     this.reformatData(this.playCountsPerDay);
   }
 
@@ -154,6 +160,7 @@ export class HeatmapComponent implements OnInit {
 
     this.averageScrobbles = Math.round(totalScrobbles / Object.keys(playCountsPerDay).length);
     this.highestScrobbleDay = maxScrobblesDay;
+    this.highestScrobbleDay = new Date(this.highestScrobbleDay).toLocaleDateString('en-GB');
 
     const formattedData: {
       name: string;
@@ -196,13 +203,11 @@ export class HeatmapComponent implements OnInit {
 
     this.heatmapData = formattedData;
 
-    console.log('Play counts per day:', this.heatmapData);
+    console.log('heatmap display:', this.heatmapData);
     this.isLoading = false;
   }
 
   async getRecentTracks(year: number) {
-    this.isLoading = true;
-    this.playCountsPerDay = {};
 
     try {
       let page = 1;
@@ -217,8 +222,8 @@ export class HeatmapComponent implements OnInit {
               api_key: this.apiKey,
               limit: limit.toString(),
               page: page.toString(),
-              from: Math.floor(new Date(`${year}-01-01`).getTime() / 1000),
-              to: Math.floor(new Date(`${year + 1}-01-01`).getTime() / 1000),
+              from: this.fromDate,
+              to: this.toDate,
               format: 'json',
             },
           })
@@ -255,8 +260,7 @@ export class HeatmapComponent implements OnInit {
     }
   }
 
-  populateMissingDays(
-    playCountsPerDay: { [date: string]: number },
+  populateMissingDays( playCountsPerDay: { [date: string]: number },
     firstDayofYear: Date
   ) {
     const year = firstDayofYear.getFullYear();
@@ -290,7 +294,9 @@ export class HeatmapComponent implements OnInit {
       sortedPlayCountsPerDay[date] = count;
     });
 
-    this.playCountsPerDay = sortedPlayCountsPerDay;
+    return sortedPlayCountsPerDay;
+
+    
   }
 
   calendarAxisTickFormatting(value: any) {

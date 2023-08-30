@@ -1,7 +1,5 @@
 <div class="border-container">
-  <div class="top-border"></div>
   <app-navbar></app-navbar>
-
   <body class="body-div">
     <h2 class="page-title">explore artist insights</h2>
 
@@ -35,7 +33,7 @@
     <div *ngIf="isLoading" class="spinner-container">
       <p
         style="
-          color: rgb(120, 168, 159);
+          color: rgb(18, 14, 31);
           font-family: VT323, monospace;
           margin-left: 5%;
           margin-right: 1%;
@@ -52,11 +50,17 @@
 
     <div *ngIf="!isLoading">
       <div *ngIf="showFoundArtist">
-        <p class="found-song">
-          You found this artist on <strong>{{ earliestListenDate }}</strong> and
-          <br />
+        <div class="found-artist">
+        <p>
+          You found this artist on <strong>{{ earliestListenDate }}</strong></p>
+        </div>
+
+        <div class="found-song">
+         <p>
+          and
           it was through the song <strong>{{ earliestListenSongName }}</strong>
         </p>
+      </div>
       </div>
 
       <div *ngIf="showBarChart" class="bar-chart">
@@ -103,5 +107,6 @@
         </ul>
       </div>
     </div>
+    <div class="bottom-border"></div>
   </body>
 </div>
