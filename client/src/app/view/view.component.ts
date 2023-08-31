@@ -47,7 +47,7 @@ export class ViewComponent implements OnInit {
   showBarChart = false;
   showFoundArtist = false;
   emptyArray = false;
-  showUnlistenedSongs = false;
+  listUnlistenedSongs = false;
   viewUnlistened = false;
   songPlayCounts: any[] = [];
   barChartData: { name: string; value: number }[] = [];
@@ -66,10 +66,10 @@ export class ViewComponent implements OnInit {
   earliestListenDate: string | undefined;
   earliestListenSongName: string = '';
 
-  albumImagesSet: Set<string> = new Set();
-  // trackToAlbumMap: Map<string, string> = new Map();
-  trackToAlbum: { albumName: string; songs: string[] }[] = [];
-  albumNamesArray: string[] = [];
+  trackToAlbum: { albumName: string; albumImage: string; songs: string[] }[] =
+    [];
+
+    isLoading1: boolean = false;
 
   //-----------------------------------------------------
 
@@ -78,18 +78,15 @@ export class ViewComponent implements OnInit {
       next: (artistExists) => {
         if (artistExists) {
           this.artistExists = true;
-          this.getUserListeningHistory(this.artistName.toLowerCase());
         } else {
           this.artistExists = false;
-          console.log(`Artist name is misspelled or doesn't exist!`);
-          console.log('loading error at check artist');
+          this.isLoading = false;
           return;
         }
       },
       error: (error) => {
         console.error('Error checking artist name:', error);
         this.isLoading = false;
-        console.log('loading error');
       },
     });
   }
@@ -134,7 +131,6 @@ export class ViewComponent implements OnInit {
     } catch (error) {
       console.error('Error fetching artist tracks:', error);
       this.isLoading = false;
-      console.log('loading error');
     }
   }
 
@@ -203,21 +199,31 @@ export class ViewComponent implements OnInit {
       this.isLoading = false;
       return;
     }
-    //display bar chart
+  
+    this.uniqueSongs = Array.from(playCounts.keys());
+
+  }
+
+  helperUnlistenedSongs(){
+
+    this.unlistenedSongs = this.filteredTracks.filter(
+      (song) => !this.uniqueSongs.includes(song)
+    );
+    
+    this.listenedSongsVal = this.uniqueSongs.length;
+
+    
+
+  }
+
+  displayBarChart(){
+
     this.songPlayCounts.map((elem) =>
       this.barChartData.push({ name: elem.name, value: elem.playcount })
     );
     this.showBarChart = true;
 
-    this.uniqueSongs = Array.from(playCounts.keys());
-    this.unlistenedSongs = this.filteredTracks.filter(
-      (song) => !this.uniqueSongs.includes(song)
-    );
-    console.log('Unlistened songs are', this.unlistenedSongs);
-    this.viewUnlistened = true;
-    this.listenedSongsVal = this.uniqueSongs.length;
 
-    console.log('These are the songs and their counts', this.songPlayCounts);
   }
 
   private isLiveOrRemix(trackName: string): boolean {
@@ -251,7 +257,14 @@ export class ViewComponent implements OnInit {
   async displayStats() {
     this.displayReady = false;
     this.isLoading = true;
-    this.cdRef.detectChanges();
+    this.artistExists = true;
+    this.artistEntered = true;
+    this.emptyArray = false;
+    this.listUnlistenedSongs = false;
+    this.showFoundArtist = false;
+    this.showBarChart = false;
+    this.showPieChart = false;
+    this.viewUnlistened = false;
 
     try {
       await this.retrieveAndDisplayStats();
@@ -265,12 +278,6 @@ export class ViewComponent implements OnInit {
   }
 
   async retrieveAndDisplayStats() {
-    this.artistExists = true;
-    this.artistEntered = true;
-    this.emptyArray = false;
-    this.showUnlistenedSongs = false;
-    this.showFoundArtist = false;
-
     if (!this.artistName) {
       this.artistEntered = false;
       this.isLoading = false;
@@ -278,11 +285,17 @@ export class ViewComponent implements OnInit {
     }
 
     try {
-      await this.checkArtistandRetrieveData(this.artistName);
-      this.showBarChart = false;
-      this.showPieChart = false;
+      this.checkArtistandRetrieveData(this.artistName);
       await this.getArtistTracks(this.artistName.toLowerCase());
+      await this.getUserListeningHistory(this.artistName.toLowerCase());
+      console.log("Unique songs are:", this.uniqueSongs);
+      this.displayBarChart();
+      this.helperUnlistenedSongs();
+      console.log('Unlistened songs are', this.unlistenedSongs);
+      console.log('These are the songs and their counts', this.songPlayCounts);
       this.displayPieChart();
+      this.viewUnlistened = true;
+      
     } catch (error) {
       console.error('Error during retrieval and display:', error);
     }
@@ -362,8 +375,11 @@ export class ViewComponent implements OnInit {
     return filteredSongs;
   }
 
-  toggleUnlistenedSongs() {
-    this.showUnlistenedSongs = !this.showUnlistenedSongs;
+  async toggleUnlistenedSongs() {
+    this.isLoading1 = true;
+    await this.organizeIntoAlbums();
+    this.listUnlistenedSongs = true;
+    this.isLoading1 = false;
   }
 
   async convertToDate(earliestListenTimestamp: number) {
@@ -378,11 +394,7 @@ export class ViewComponent implements OnInit {
   }
 
   async organizeIntoAlbums() {
-    // make an api call to organize the unlistened songs into different albums or Other category
-    //and display it with album name and song names in separate coloured containers
-    const albumNamesSet: Set<string> = new Set();
-    const trackToAlbumMap: Map<string, string> = new Map();
-
+    
     for (const song of this.unlistenedSongs) {
       try {
         const response = await firstValueFrom(
@@ -400,35 +412,47 @@ export class ViewComponent implements OnInit {
         if (response.track && response.track.album) {
           if (response.track.album.title) {
             const albumName = response.track.album.title;
-            albumNamesSet.add(albumName); // Add album name to the set
-            trackToAlbumMap.set(song, albumName); // Map track to album name
-          }
+            const albumImage =
+              response.track.album.image[2]['#text'] || 'default-image-url';
 
-          if (
-            response.track.album.image &&
-            response.track.album.image.length > 0
-          ) {
-            const albumImage = response.track.album.image[0]['#text'];
-            this.albumImagesSet.add(albumImage); // Add album image to the set
+            const existingAlbum = this.trackToAlbum.find(
+              (album) => album.albumName === albumName
+            );
+
+            if (existingAlbum) {
+              existingAlbum.songs.push(song);
+            } else {
+              this.trackToAlbum.push({
+                albumName,
+                albumImage,
+                songs: [song],
+              });
+            }
           }
         }
+        console.log("Checking if the array is populated:", this.trackToAlbum);
       } catch (error) {
         console.error('Error retrieving album names:', error);
         this.isLoading = false;
       }
     }
-
-    this.albumNamesArray = Array.from(albumNamesSet); // Convert set to array of album names
-
-    for (const [song, albumName] of trackToAlbumMap) {
-      const albumObject = this.trackToAlbum.find(
-        (obj) => obj.albumName === albumName
-      );
-      if (albumObject) {
-        albumObject.songs.push(song);
-      } else {
-        this.trackToAlbum.push({ albumName, songs: [song] });
-      }
-    }
   }
+
+  addToListenedSongs(song: string) {
+    this.listenedSongsVal = this.listenedSongsVal + 1;
+    this.unlistenedSongs = this.unlistenedSongs.filter(s => s !== song);
+  }
+
+  removeFromListenedSongs(song: string) {
+
+    this.listenedSongsVal = this.listenedSongsVal - 1;
+    this.unlistenedSongs.push(song);
+    this.unlistenedSongsVal = this.unlistenedSongs.length;
+
+  }
+
+ 
+updateStatistics() {
+  this.displayStats(); // Call the existing displayStats function
+}
 }

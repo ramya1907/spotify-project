@@ -63,7 +63,7 @@
 
       <div *ngIf="showBarChart" class="bar-chart-container">
         <h3 class="bc-title">
-        That's how many times you heard each of their songs
+          Play count of each of their songs
         </h3>
         <div class="bar-chart">
           <ngx-charts-bar-horizontal
@@ -99,23 +99,47 @@
           the discography of {{ artistName }}
         </p>
       </div>
-
     </div>
-    
 
-      <div *ngIf="viewUnlistened">
-        <div class="viewUnlistened">
-          <h3>Songs you might have missed</h3>
-          <a (click)="toggleUnlistenedSongs()" class="unlistened-btn">
-            show unlistened songs
-            <span></span>
-          </a>
-          <ul *ngIf="showUnlistenedSongs">
-            <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
-          </ul>
+    <div *ngIf="viewUnlistened">
+      <div class="viewUnlistened">
+        <h3><strong>Songs you might have missed</strong></h3>
+        <a (click)="toggleUnlistenedSongs()" class="unlistened-btn">
+          show unlistened songs
+          <span></span>
+        </a>
+
+        <div *ngIf="isLoading1">
+          <div class="spinner-container">
+            <p style="font-size: 2rem">this might take a while...</p>
+            <i class="fa-solid fa-compact-disc fa-spin fa-2xl"></i>
+          </div>
+        </div>
+
+        <div *ngIf="!isLoading1 && listUnlistenedSongs">
+          <div *ngFor="let album of trackToAlbum" class="album-container">
+            <div class="album-details">
+              <h3 class="album-title" style="color: rgb(193, 151, 177) ">{{ album.albumName }}</h3>
+              <div class="album-image">
+                <img
+                  src="{{ album.albumImage }}"
+                  alt="Image of the album named {{ album.albumName }}"
+                />
+              </div>
+              <div class="album-songs">
+                <ul>
+                  <!-- <div *ngIf = "isClicked"> -->
+                  <!-- <li style="color:#333;" *ngFor="let song of album.songs">{{ song }} <button (onClick) = "addToListenedSongs(song)"><i class="fa-solid fa-circle-minus"></i></button></li> -->
+                   <!-- <div *ngIf = "!isClicked"> -->
+                  <!-- <li style="color:#333;" *ngFor="let song of album.songs">{{ song }} <button (onClick) = "removeFromListenedSongs(song)"><i class="fa-solid fa-circle-plus"></i></i></button></li> -->
+                  <li style="color:#d5cfcf;" *ngFor="let song of album.songs">{{ song }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    
+    </div>
 
     <div class="bottom-border"></div>
   </body>
