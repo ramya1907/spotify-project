@@ -17,20 +17,6 @@ const pool = mysql.createPool({
     port: '3306'
 });
 
-// app.get('/api/message', (req, res) => {
-   
-//     const mathOperationQuery = 'SELECT 1 + 1 AS result';
-
-//     pool.query(mathOperationQuery, (err, results) => {
-//         if (err) {
-//             console.error('Error executing query:', err);
-//             res.status(500).json({ error: 'Internal server error' });
-//         } else {
-//             res.json({ message: results });
-//         }
-//     });
-// });
-
 // Serve the static files from the dist directory
 app.use(express.static(path.join(__dirname, 'client', 'dist', 'client'))); 
 
