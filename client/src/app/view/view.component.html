@@ -38,6 +38,12 @@
       </div>
     </div>
 
+    <div *ngIf="!isLoading ">
+      <div class="arrow bounce">
+        <a class="fa fa-arrow-down fa-2xl" style="color: #312e2b"></a>
+      </div>
+    </div>
+
     <div
       *ngIf="!isLoading && displayReady"
       style="background-color: rgb(21, 21, 31); padding: 9%; margin-top: 20%"
@@ -62,9 +68,7 @@
       </div>
 
       <div *ngIf="showBarChart" class="bar-chart-container">
-        <h3 class="bc-title">
-          Play count of each of their songs
-        </h3>
+        <h3 class="bc-title">Play count of each of their songs</h3>
         <div class="bar-chart">
           <ngx-charts-bar-horizontal
             [view]="[1000, 400]"
@@ -119,7 +123,9 @@
         <div *ngIf="!isLoading1 && listUnlistenedSongs">
           <div *ngFor="let album of trackToAlbum" class="album-container">
             <div class="album-details">
-              <h3 class="album-title" style="color: rgb(193, 151, 177) ">{{ album.albumName }}</h3>
+              <h3 class="album-title" style="color: rgb(193, 151, 177)">
+                {{ album.albumName }}
+              </h3>
               <div class="album-image">
                 <img
                   src="{{ album.albumImage }}"
@@ -130,9 +136,11 @@
                 <ul>
                   <!-- <div *ngIf = "isClicked"> -->
                   <!-- <li style="color:#333;" *ngFor="let song of album.songs">{{ song }} <button (onClick) = "addToListenedSongs(song)"><i class="fa-solid fa-circle-minus"></i></button></li> -->
-                   <!-- <div *ngIf = "!isClicked"> -->
+                  <!-- <div *ngIf = "!isClicked"> -->
                   <!-- <li style="color:#333;" *ngFor="let song of album.songs">{{ song }} <button (onClick) = "removeFromListenedSongs(song)"><i class="fa-solid fa-circle-plus"></i></i></button></li> -->
-                  <li style="color:#d5cfcf;" *ngFor="let song of album.songs">{{ song }}</li>
+                  <li style="color: #d5cfcf" *ngFor="let song of album.songs">
+                    {{ song }}
+                  </li>
                 </ul>
               </div>
             </div>

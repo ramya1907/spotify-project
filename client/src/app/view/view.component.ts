@@ -430,7 +430,6 @@ export class ViewComponent implements OnInit {
             }
           }
         }
-        console.log("Checking if the array is populated:", this.trackToAlbum);
       } catch (error) {
         console.error('Error retrieving album names:', error);
         this.isLoading = false;
