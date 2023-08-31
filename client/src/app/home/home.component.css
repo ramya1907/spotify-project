@@ -396,8 +396,8 @@ input::placeholder {
   /* position: fixed; */
   position: absolute;
   /* top: 44%; */
-  top: 48%;
-  left: 8%;
+  top: 50%;
+  left: 5%;
 
   box-sizing: border-box;
 }
@@ -411,13 +411,13 @@ input::placeholder {
   position: absolute;
   display: block;
   /* top: 74%; */
-  top: 78%;
+  top: 77%;
   left: 75%;
 }
 
 .image-l img,
 .image-r img {
-  width: 15%;
+  width: 10%;
   height: auto;
 }
 
@@ -425,7 +425,7 @@ input::placeholder {
   /* position: fixed; */
   position: absolute;
   /* top: 58%; */
-  top: 62%;
+  top: 64%;
   left: 20%;
 }
 
