@@ -13,6 +13,14 @@ g text {
   fill: whitesmoke;
 }
 
-ngx-charts-scale-legend span {
+ngx-charts-legend span {
   fill: white;
+  color: white;
+}
+
+ngx-charts-scale-legend span {
+
+  fill: white;
+  color: white;
+
 }

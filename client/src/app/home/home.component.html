@@ -47,12 +47,12 @@
             </div>
 
             <div *ngIf="!userEntered">
-              <p class="alert">username not entered oh no</p>
+              <p class="alert">username not entered, oh no</p>
             </div>
 
             <div *ngIf="!userVerified">
               <p class="alert">
-                username doesn't exist, please check your spelling :3
+                username doesn't exist, please check your spelling 
               </p>
             </div>
 
@@ -61,7 +61,7 @@
             </a>
 
             <p class="p-left">
-              <span style="color: #c49c72">explore your annual scrobble: </span
+              <span style="color: #c49c72;">explore your annual scrobble: </span
               ><br />
               count and track your daily <br />listening activity for the year.
             </p>
@@ -93,7 +93,7 @@
 
           <div *ngIf="userExists">
             <div class="p-username">
-              <p class="p-username-in">hi {{ username }}! have fun xoxo</p>
+              <p class="p-username-in">hi {{ username }}, have fun!</p>
             </div>
 
             <a class="btn--action">
@@ -132,83 +132,6 @@
           </div>
         </div>
 
-        <!-- <div #mainContainer>
-        <div *ngIf="!userExists">
-          <div class="input-container">
-            <input
-              type="text"
-              placeholder="enter your username "
-              [(ngModel)]="username"
-              (keyup.enter)="setUsername()"
-            />
-          </div>
-
-          <div *ngIf="!userEntered">
-            <p class="alert">username not entered oh no</p>
-          </div>
-
-          <div *ngIf="!userVerified">
-            <p class="alert">
-              username doesn't exist, please check your spelling :3
-            </p>
-          </div>
-
-          <a (click)="setUsername()" class="btn--action">
-            <span></span>
-          </a>
-
-          <p class="p-left">
-            <span style="color: #c49c72">explore your annual scrobble: </span
-            ><br />
-            count and track your daily <br />listening activity for the year.
-          </p>
-
-          <a class="heatmap-btn-0">
-            heat map
-            <span></span>
-          </a>
-
-          <a class="artist-btn-0"
-            >artist data
-            <span></span>
-          </a>
-          <p class="p-right">
-            <span style="color: #c49c72">explore artist insights:</span> <br />
-            delve into detailed statistics <br />
-            for your favorite artists
-          </p>
-        </div>
-
-        <div *ngIf="userExists">
-          <div class="p-username">
-            <p class="p-username-in">hi {{ username }}! have fun xoxo</p>
-          </div>
-
-          <a class="btn--action">
-            <span></span>
-          </a>
-
-          <p class="p-left">
-            <span style="color: #c49c72">explore your annual scrobble: </span
-            ><br />
-            count and track your daily <br />listening activity for the year.
-          </p>
-
-          <a (click)="viewHeatMap()" class="heatmap-btn">
-            heat map
-            <span></span>
-          </a>
-
-          <a (click)="fetchArtistData()" class="artist-btn">
-            artist data
-            <span></span>
-          </a>
-          <p class="p-right">
-            <span style="color: #c49c72">explore artist insights:</span> <br />
-            delve into detailed statistics <br />
-            for your favorite artists
-          </p>
-        </div> -->
       </div>
     </section>
   </body>

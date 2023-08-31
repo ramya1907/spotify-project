@@ -33,10 +33,10 @@
 
 
 .page-title {
-  font-size: 5rem;
-  margin: 19% 0 5% 23%;
+  font-size: 5.5rem;
+  margin: 17% 0 5% 21%;
   font-family: "VT323", monospace;
-  color: rgb(161, 189, 180);
+  color: rgb(208, 216, 213);
 }
 
 .input-container {
@@ -120,20 +120,30 @@ input::placeholder {
 
 .alert {
   font-size: 1.5rem;
-  top: 56%;
+  top: 49%;
   left: 29%;
-  color: rgb(197, 162, 137);
+  color: rgb(25, 34, 52);
   font-family: "VT323", monospace;
   position: absolute;
 }
 
 .alert-l {
   font-size: 1.5rem;
-  left: 30%;
-  top: 57%;
+  left: 28%;
+  top: 50%;
   position: absolute;
-  color: rgb(197, 162, 137);
+  color: rgb(25, 34, 52);
   font-family: "VT323", monospace;
+}
+
+.alert-e {
+
+  font-size: 2rem;
+  top: 63%;
+  left: 28%;
+  color: rgb(25, 34, 52);
+  font-family: "VT323", monospace;
+  position: absolute;
 }
 
 .spinner-container {
@@ -141,26 +151,47 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
+}
+
+.spinner-container p {
+
+  color: rgb(215, 212, 224);
+  font-family: VT323, monospace;
+  font-size: 3rem;
+  margin-right: 2%;
+}
+
+.spinner-container i {
+ color: #edbab6;
+  margin-bottom: 1%
+}
+
+.bar-chart-container {
+
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-top: 6%;
 }
 
 .bar-chart {
-
-  margin: 7%;
-  align-items: center;
-
-
+  width: 100%; 
+  margin: auto;
+ 
 }
 
 .bc-title {
   font-family: "VT323", monospace;
-  font-size: 2rem;
+  font-size: 3rem;
   color: rgb(161, 189, 180);
-  margin: 5%;
+  margin-bottom: 7%;
+  text-align: left; 
+  
 }
 
 .pie-chart {
-
-  margin: 3%;
+  margin: 8% 3% 5% 3%;
 
 
 }
@@ -172,41 +203,89 @@ input::placeholder {
   margin-left: 5%;
 }
 
+.found-container {
+
+  background-color: rgb(21, 21, 31);
+}
+
 .found-artist {
   font-family: "VT323", monospace;
-  font-size: 4rem;
-  color: rgb(193, 151, 177);
-  margin-top: 6%;
-  background-color: rgb(21, 21, 31);
-  height: 600px;
-  padding: 15px;
-  width: 100%;
+  font-size: 3.5rem;
+  color: rgb(193, 151, 177); 
 }
+
+
 .found-artist strong {
-  margin-top: 5%;
   color: #c0a168;
-  font-size: 5rem;
+  font-size: 4rem;
 }
-
-
 
 .found-song {
   font-family: "VT323", monospace;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: rgb(193, 151, 177);
-  margin-top: 6%;
-  margin-left: 40%;
-  background-color: rgb(21, 21, 31);
-  height: 600px;
-  padding: 15px;
-  width: 100%;
+  margin-left: 45%;
+
 }
 
 .found-song strong {
-  margin-top: 5%;
   color: #c0a168;
-  font-size: 5rem;
 }
+
+.viewUnlistened {
+  background-color: #6c5f75;
+  padding: 10%;
+  margin-top: 2%;
+
+}
+
+.viewUnlistened h3 {
+
+  font-family: "VT323", monospace;
+  font-size: 3rem;
+  color:  #cec2ab;
+  margin-bottom: 10%;
+  text-align: left;    
+}
+
+.viewUnlistened ul li {
+
+  font-family: "VT323", monospace;
+  font-size: 2rem;
+  color:  #cec2ab;
+  margin-bottom: 3%;
+  text-align: left;   
+}
+
+
+.unlistened-btn {
+  font-family: "VT323", monospace;
+  display: relative;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: #db9c4a;
+  color: #b85b0a;
+  box-shadow: 0 10px #3d1e07;
+  overflow: hidden;
+  font-size: 1.5rem;
+  border-radius: 30px;
+  font-size: 2rem;
+  animation: fade-in 1.2s ease forwards;
+}
+
+.unlistened-btn:active {
+  box-shadow: 0 5px #131313;
+  transform: translateY(5px);
+}
+
+// .albumDisplayDesign {
+
+
+// }
+
+
+
+
 
 
 

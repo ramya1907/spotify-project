@@ -1,17 +1,18 @@
 <div class="border-container">
   <app-navbar></app-navbar>
   <body class="body-div">
-    <h2 class="page-title">explore artist insights</h2>
+    <h2 class="page-title">Explore Artist Insights</h2>
 
     <div class="input-container">
       <input
         type="text"
+        id="inputField"
         [(ngModel)]="artistName"
         placeholder="enter artist name"
         (keyup.enter)="displayStats()"
       />
 
-      <a (click)="displayStats()" class="btn--action">
+      <a (click)="displayStats()" class="btn--action" id="submitButton">
         <span class="fa fa-play"></span>
       </a>
     </div>
@@ -27,60 +28,60 @@
     </div>
 
     <div *ngIf="emptyArray">
-      <p class="alert">you haven't streamed any song by this artist yet</p>
+      <p class="alert-e">you haven't streamed any song by this artist yet</p>
     </div>
 
-    <div *ngIf="isLoading" class="spinner-container">
-      <p
-        style="
-          color: rgb(18, 14, 31);
-          font-family: VT323, monospace;
-          margin-left: 5%;
-          margin-right: 1%;
-          font-size: 1.5rem;
-        "
-      >
-        loading ...
-      </p>
-      <i
-        class="fa-solid fa-compact-disc fa-spin fa-2xl"
-        style="color: #bc8884; margin-bottom: 1%"
-      ></i>
+    <div *ngIf="isLoading">
+      <div class="spinner-container">
+        <p>loading ...</p>
+        <i class="fa-solid fa-compact-disc fa-spin fa-2xl"></i>
+      </div>
     </div>
 
-    <div *ngIf="!isLoading">
-      <div *ngIf="showFoundArtist">
+    <div
+      *ngIf="!isLoading && displayReady"
+      style="background-color: rgb(21, 21, 31); padding: 9%; margin-top: 20%"
+    >
+      <div *ngIf="showFoundArtist && !emptyArray" class="found-container">
         <div class="found-artist">
-        <p>
-          You found this artist on <strong>{{ earliestListenDate }}</strong></p>
+          <p>
+            You found this artist on <br />
+
+            <strong>{{ earliestListenDate }}</strong>
+          </p>
         </div>
 
         <div class="found-song">
-         <p>
-          and
-          it was through the song <strong>{{ earliestListenSongName }}</strong>
-        </p>
-      </div>
+          <p>
+            <br />
+            and it was through the song <br /><strong>{{
+              earliestListenSongName
+            }}</strong>
+          </p>
+        </div>
       </div>
 
-      <div *ngIf="showBarChart" class="bar-chart">
+      <div *ngIf="showBarChart" class="bar-chart-container">
         <h3 class="bc-title">
-          so that's how many times you heard each of their songs
+        That's how many times you heard each of their songs
         </h3>
-        <ngx-charts-bar-horizontal
-          [view]="[1000, 400]"
-          [results]="barChartData"
-          [xAxisLabel]="'Count'"
-          [legendTitle]="'Play Count'"
-          [yAxisLabel]="'Songs'"
-          [legend]="true"
-          [showXAxisLabel]="true"
-          [showYAxisLabel]="true"
-          [xAxis]="true"
-          [yAxis]="true"
-          [gradient]="true"
-        >
-        </ngx-charts-bar-horizontal>
+        <div class="bar-chart">
+          <ngx-charts-bar-horizontal
+            [view]="[1000, 400]"
+            [results]="barChartData"
+            [xAxisLabel]="'Count'"
+            [legendTitle]="'Play Count'"
+            [yAxisLabel]="'Songs'"
+            [legend]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [gradient]="true"
+            [barPadding]="10"
+          >
+          </ngx-charts-bar-horizontal>
+        </div>
       </div>
 
       <div *ngIf="showPieChart" class="pie-chart">
@@ -99,14 +100,23 @@
         </p>
       </div>
 
-      <div *ngIf="viewUnlistened">
-        <h3>incase you want to know the songs you missed, here u go</h3>
-        <button (click)="toggleUnlistenedSongs()">show unlistened songs</button>
-        <ul *ngIf="showUnlistenedSongs">
-          <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
-        </ul>
-      </div>
     </div>
+    
+
+      <div *ngIf="viewUnlistened">
+        <div class="viewUnlistened">
+          <h3>Songs you might have missed</h3>
+          <a (click)="toggleUnlistenedSongs()" class="unlistened-btn">
+            show unlistened songs
+            <span></span>
+          </a>
+          <ul *ngIf="showUnlistenedSongs">
+            <li *ngFor="let song of unlistenedSongs">{{ song }}</li>
+          </ul>
+        </div>
+      </div>
+    
+
     <div class="bottom-border"></div>
   </body>
 </div>

@@ -9,7 +9,6 @@ body {
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: rgb(21, 21, 31);
 }
 
 .border-container {
@@ -97,42 +96,21 @@ body {
   width: 100%;
 }
 
-.heatmap-info strong {
-  color: #c7ad7c;
-}
-
-@media screen and (max-width: 768px) {
-  /* Adjust styles for smaller screens */
-  .border-container {
-    padding: 10px; /* Add some padding for smaller screens */
-  }
-
-  .year-selector select {
-    margin-left: 10%; /* Adjust the margin for the select element */
-    margin-top: 5%;
-  }
-
-  /* .heatmap-info {
-    font-size: 1.5rem;
-    width: calc(100% - 20px);
-    padding: 10px;
-  }  */
-}
-
 .heatmap-info {
-  font-size: 3 rem;
-  margin-top: 7% 0;
+  font-size: 4rem;
+  margin-top: 7%;
   background-color: #6c5f75;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  /* padding: 20px; */
   font-family: "VT323", monospace;
-  font-size: 2rem;
   color: rgb(28, 25, 59);
-  height: 350px;
   width: 100%;
+}
+
+.heatmap-info strong {
+  color: #c7ad7c;
 }
 
 @keyframes fade-in {
@@ -156,5 +134,23 @@ body {
     
     transform: translateX(2%);
   }
-}  
+} 
+
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .border-container {
+    padding: 10px; /* Add some padding for smaller screens */
+  }
+
+  .year-selector select {
+    margin-left: 10%; /* Adjust the margin for the select element */
+    margin-top: 5%;
+  }
+
+  .heatmap-info {
+    font-size: 1.5rem;
+    width: calc(100% - 20px);
+    padding: 10px;
+  } 
+}
 

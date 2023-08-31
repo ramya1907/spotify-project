@@ -43,9 +43,11 @@ export class HomeComponent implements OnInit{
     if (storedUsername) {
       this.username = storedUsername;
       this.userExists = true;
+      this.cdr.detectChanges();
     }
     else{
       this.userExists=false;
+      this.cdr.detectChanges();
     }
     
   }
