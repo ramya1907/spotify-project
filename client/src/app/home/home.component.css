@@ -1,4 +1,3 @@
-
 .body {
   overflow-x: hidden;
   margin: 0;
@@ -9,10 +8,10 @@
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
   position: relative;
-  top: 0; 
+  top: 0;
   left: 0;
   right: 0;
-  bottom: 0; 
+  bottom: 0;
   padding: 0;
 }
 
@@ -114,20 +113,18 @@
 .rounded-rectangle {
   background-image: url("../../assets/comp_images/bg-2.1.png");
   background-color: #131313;
-  width: 775px; 
+  width: 775px;
   height: 525px;
-  border-radius: 30px; 
+  border-radius: 30px;
   box-shadow: 0 13px #413d38;
-  background-size: cover; 
-  background-position: center; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 8%;
   margin-bottom: 2%;
   z-index: 0;
-  
- 
 }
 
 .username-content {
@@ -146,13 +143,15 @@
 
 .input-container {
   display: block;
+  position: absolute;
   width: 33%;
   background-color: #c0a168;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 7px #6b4f2e;
-  position: fixed;
-  top: 29%;
+  /* position: fixed; */
+  /* top: 29%; */
+  top: 33%;
   left: 30%;
   animation: fade-in 0.7s ease forwards;
 }
@@ -188,10 +187,12 @@ input::placeholder {
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 29%;
+  /* top: 29%; */
+  top: 33%;
   left: 65%;
   width: 70px;
   height: 70px;
@@ -246,19 +247,17 @@ input::placeholder {
   }
 }
 
-
 .p-username {
- 
   width: 32%;
   background-color: #c0a168;
   border-radius: 10px;
   padding: 0.5px;
- 
   box-shadow: 0 7px #6b4f2e;
   margin-top: 7%;
-  position: fixed;
+  position: absolute;
   display: block;
-  top: 16%;
+  /* top: 16%; */
+  top: 20%;
   left: 31%;
   transform: translateX(-50%);
   align-items: center;
@@ -289,10 +288,12 @@ input::placeholder {
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 58%;
+  /* top: 58%; */
+  top: 62%;
   left: 30%;
   width: 200px;
   height: 115px;
@@ -310,10 +311,12 @@ input::placeholder {
   background-color: #957697;
   color: #000;
   box-shadow: 0 10px #594f59;
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 58%;
+  /* top: 58%; */
+  top: 62%;
   left: 30%;
   width: 200px;
   height: 115px;
@@ -337,10 +340,12 @@ input::placeholder {
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 58%;
+  /* top: 58%; */
+  top:62%;
   left: 57%;
   width: 200px;
   height: 115px;
@@ -358,11 +363,14 @@ input::placeholder {
   background-color: #957697;
   color: #000;
   box-shadow: 0 10px #594f59;
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   overflow: hidden;
   font-size: 1.5rem;
-  top: 58%;
-  left: 57%;
+  /* top: 58%; */
+  top: 62%;
+  /* left: 57%; */
+  left: 56%;
   width: 200px;
   height: 115px;
   border-radius: 30px;
@@ -383,11 +391,12 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 1.5rem;
   color: rgb(187, 161, 165);
- 
 
   display: block;
-  position: fixed;
-  top: 44%;
+  /* position: fixed; */
+  position: absolute;
+  /* top: 44%; */
+  top: 48%;
   left: 8%;
 
   box-sizing: border-box;
@@ -397,36 +406,34 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 1.5rem;
   color: rgb(187, 161, 165);
-  
-  position: fixed;
+
+  /* position: fixed; */
+  position: absolute;
   display: block;
-  top: 74%;
+  /* top: 74%; */
+  top: 78%;
   left: 75%;
 }
 
 .image-l img,
 .image-r img {
-  width: 15%; 
-  height: auto; 
+  width: 15%;
+  height: auto;
 }
 
 .image-l {
-  position: fixed;
-  top: 58%;
+  /* position: fixed; */
+  position: absolute;
+  /* top: 58%; */
+  top: 62%;
   left: 20%;
 }
 
 .image-r {
-  width: 55%;
-  position: fixed;
-  top: 64%;
+  width: 59%;
+  /* position: fixed; */
+  position: absolute;
+  /* top: 64%; */
+  top: 68%;
   left: 73%;
 }
-
-
-
-
-
-
-
-
