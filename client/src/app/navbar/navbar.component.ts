@@ -36,15 +36,24 @@ export class NavbarComponent implements OnInit {
 
     this.cdr.detectChanges();
 
-    this.router.navigate(['/home']);
+   this.scrollToTop();
   }
 
   signInAndScroll() {
+
     this.router.navigate(['/home']).then(() => {
       const element = this.renderer.selectRootElement('#temp_section');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     });
+  }
+
+  scrollToTop() {
+    this.renderer.setProperty(document.documentElement, 'scrollTop', 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 800); 
   }
 }

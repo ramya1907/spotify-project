@@ -1,11 +1,10 @@
 <header class="navbar" [class.scrolled]="isScrolled">
   <nav>
     <ul>
-      <li><a routerLink="/home">home</a></li>
-      <li><a href="#">about me</a></li>
-      <li><a href="#">contact me</a></li>
-      <li *ngIf="userExists"><a (click)="signOut()">sign out</a></li>
-      <li *ngIf="!userExists"><a (click)="signInAndScroll()">sign in</a></li>
+      <li><a routerLink="/home" (click)="scrollToTop()">home</a></li>
+      <li><a routerLink="/contact">contact me</a></li>
+      <li *ngIf="userExists"><a routerLink="/home" (click)="signOut()">sign out</a></li>
+      <li *ngIf="!userExists"><a routerLink="/home" (click)="signInAndScroll()">sign in</a></li>
     </ul>
   </nav>
 </header>

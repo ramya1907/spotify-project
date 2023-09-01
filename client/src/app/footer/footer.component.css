@@ -1,0 +1,15 @@
+footer {
+    background-color:  rgb(38, 38, 38);
+    color: #868080;
+    text-align: center;
+    padding: 4px;
+    font-family: "VT323", monospace;
+    font-size: 1.5rem;
+  }
+  
+  footer a {
+    color: #c2b8b8;
+    text-decoration: none;
+    font-family: "VT323", monospace;
+    font-size: 1.5rem;
+  }

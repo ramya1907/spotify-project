@@ -12,7 +12,7 @@ export class HeatmapComponent implements OnInit {
   apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';
   lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
-  selectedYear: number = 2022;
+  selectedYear: number = 0;
   availableYears: number[] = [];
 
   firstDayOfYear = new Date('2023-01-01');
@@ -22,6 +22,7 @@ export class HeatmapComponent implements OnInit {
   isLoading: boolean = false;
 
   alertUser: boolean = false;
+  displayReady: boolean = false;
 
   playCountsPerDay: { [date: string]: number } = {};
   fromDate = Math.floor(new Date('2022-01-01').getTime() / 1000);
@@ -44,11 +45,9 @@ export class HeatmapComponent implements OnInit {
       this.username = storedUsername;
     }
 
-    for (let year = 2002; year <= 2024; year++) {
+    for (let year = 2023; year >= 2002; year--) {
       this.availableYears.push(year);
     }
-
-    this.selectYear(this.selectedYear);
   }
 
   onYearChange(): void {
@@ -70,6 +69,7 @@ export class HeatmapComponent implements OnInit {
     await this.getRecentTracks(this.selectedYear);
     this.playCountsPerDay = this.populateMissingDays(this.playCountsPerDay, this.firstDayOfYear);
     this.reformatData(this.playCountsPerDay);
+    this.displayReady = true;
   }
 
   calculateStartOfWeek(date: Date, yearStartDayOfWeek: number): Date {

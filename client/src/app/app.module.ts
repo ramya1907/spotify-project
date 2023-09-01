@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeatmapComponent } from './heatmap/heatmap.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     HomeComponent,
     ViewComponent,
     HeatmapComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

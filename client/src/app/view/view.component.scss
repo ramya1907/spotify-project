@@ -3,21 +3,20 @@
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  min-height: 100vh;
   background-color: #6c5f75;
+  
 }
 
 .border-container {
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
   position: relative;
-  min-height: 100vh;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   padding: 0;
-  overflow: auto;
+  // overflow: auto;
 }
 
 
@@ -29,6 +28,16 @@
   left: 0;
   z-index: 9999;
   position: fixed;
+}
+
+.main {
+
+  height: 60vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  
+ 
 }
 
 
@@ -120,7 +129,7 @@ input::placeholder {
 
 .alert {
   font-size: 1.5rem;
-  top: 49%;
+  top: 32%;
   left: 29%;
   color: rgb(25, 34, 52);
   font-family: "VT323", monospace;
@@ -139,7 +148,7 @@ input::placeholder {
 .alert-e {
 
   font-size: 2rem;
-  top: 63%;
+  top: 32%;
   left: 28%;
   color: rgb(25, 34, 52);
   font-family: "VT323", monospace;
@@ -332,10 +341,12 @@ input::placeholder {
 }
 
 .arrow {
-  text-align: center;
-  bottom: 18px;
+  bottom: 50px;
   position: absolute;
   left: 49%;
+  transform: translateX(-50%);
+  z-index: 1;
+
 }
 
 .bounce {

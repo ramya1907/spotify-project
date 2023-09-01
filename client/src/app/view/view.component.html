@@ -1,52 +1,57 @@
 <div class="border-container">
   <app-navbar></app-navbar>
   <body class="body-div">
-    <h2 class="page-title">Explore Artist Insights</h2>
+    <section #parallaxSections class="main">
+      <h2 class="page-title">Explore Artist Insights</h2>
 
-    <div class="input-container">
-      <input
-        type="text"
-        id="inputField"
-        [(ngModel)]="artistName"
-        placeholder="enter artist name"
-        (keyup.enter)="displayStats()"
-      />
+      <div class="input-container">
+        <input
+          type="text"
+          id="inputField"
+          [(ngModel)]="artistName"
+          placeholder="enter artist name"
+          (keyup.enter)="displayStats()"
+        />
 
-      <a (click)="displayStats()" class="btn--action" id="submitButton">
-        <span class="fa fa-play"></span>
-      </a>
-    </div>
-
-    <div *ngIf="!artistEntered">
-      <p class="alert">oh no, artist name not entered</p>
-    </div>
-
-    <div *ngIf="!artistExists">
-      <p class="alert-l">
-        artist name may be misspelled or does not exist in the database :(
-      </p>
-    </div>
-
-    <div *ngIf="emptyArray">
-      <p class="alert-e">you haven't streamed any song by this artist yet</p>
-    </div>
-
-    <div *ngIf="isLoading">
-      <div class="spinner-container">
-        <p>loading ...</p>
-        <i class="fa-solid fa-compact-disc fa-spin fa-2xl"></i>
+        <a (click)="displayStats()" class="btn--action" id="submitButton">
+          <span class="fa fa-play"></span>
+        </a>
       </div>
-    </div>
 
-    <div *ngIf="!isLoading ">
-      <div class="arrow bounce">
-        <a class="fa fa-arrow-down fa-2xl" style="color: #312e2b"></a>
+      <div *ngIf="!artistEntered">
+        <p class="alert">oh no, artist name not entered</p>
       </div>
-    </div>
+
+      <div *ngIf="!artistExists">
+        <p class="alert-l">
+          artist name may be misspelled or does not exist in the database :(
+        </p>
+      </div>
+
+      <div *ngIf="emptyArray">
+        <p class="alert-e">you haven't streamed any song by this artist yet</p>
+      </div>
+
+      <div *ngIf="isLoading">
+        <div class="spinner-container">
+          <p>loading ...</p>
+          <i class="fa-solid fa-compact-disc fa-spin fa-2xl"></i>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading">
+        <div class="arrow bounce">
+          <a
+            class="fa fa-arrow-down fa-2xl"
+            style="color: rgb(208, 216, 213)"
+          ></a>
+        </div>
+      </div>
+    </section>
 
     <div
       *ngIf="!isLoading && displayReady"
-      style="background-color: rgb(21, 21, 31); padding: 9%; margin-top: 20%"
+      style="background-color: rgb(21, 21, 31); padding: 9%; margin-top: 10%"
     >
       <div *ngIf="showFoundArtist && !emptyArray" class="found-container">
         <div class="found-artist">
@@ -151,4 +156,5 @@
 
     <div class="bottom-border"></div>
   </body>
+  <app-footer></app-footer>
 </div>

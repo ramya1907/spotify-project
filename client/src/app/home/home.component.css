@@ -1,4 +1,4 @@
-.body {
+body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -122,8 +122,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 8%;
-  margin-bottom: 2%;
+  margin-top: 20%;
+  margin-bottom: 8%;
   z-index: 0;
 }
 
@@ -149,9 +149,7 @@
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 7px #6b4f2e;
-  /* position: fixed; */
-  /* top: 29%; */
-  top: 33%;
+  top: 38%;
   left: 30%;
   animation: fade-in 0.7s ease forwards;
 }
@@ -192,7 +190,7 @@ input::placeholder {
   overflow: hidden;
   font-size: 1.5rem;
   /* top: 29%; */
-  top: 33%;
+  top: 38%;
   left: 65%;
   width: 70px;
   height: 70px;
@@ -248,7 +246,7 @@ input::placeholder {
 }
 
 .p-username {
-  width: 32%;
+  width: 33%;
   background-color: #c0a168;
   border-radius: 10px;
   padding: 0.5px;
@@ -257,8 +255,8 @@ input::placeholder {
   position: absolute;
   display: block;
   /* top: 16%; */
-  top: 20%;
-  left: 31%;
+  top: 25%;
+  left: 30%;
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
@@ -293,8 +291,8 @@ input::placeholder {
   overflow: hidden;
   font-size: 1.5rem;
   /* top: 58%; */
-  top: 62%;
-  left: 30%;
+  top: 67%;
+  left: 29%;
   width: 200px;
   height: 115px;
   border-radius: 30px;
@@ -316,8 +314,8 @@ input::placeholder {
   overflow: hidden;
   font-size: 1.5rem;
   /* top: 58%; */
-  top: 62%;
-  left: 30%;
+  top: 66%;
+  left: 29%;
   width: 200px;
   height: 115px;
   border-radius: 30px;
@@ -345,7 +343,7 @@ input::placeholder {
   overflow: hidden;
   font-size: 1.5rem;
   /* top: 58%; */
-  top:62%;
+  top:67%;
   left: 57%;
   width: 200px;
   height: 115px;
@@ -368,9 +366,9 @@ input::placeholder {
   overflow: hidden;
   font-size: 1.5rem;
   /* top: 58%; */
-  top: 62%;
+  top: 66%;
   /* left: 57%; */
-  left: 56%;
+  left: 57%;
   width: 200px;
   height: 115px;
   border-radius: 30px;
@@ -396,7 +394,7 @@ input::placeholder {
   /* position: fixed; */
   position: absolute;
   /* top: 44%; */
-  top: 50%;
+  top: 55%;
   left: 5%;
 
   box-sizing: border-box;
@@ -411,8 +409,8 @@ input::placeholder {
   position: absolute;
   display: block;
   /* top: 74%; */
-  top: 77%;
-  left: 75%;
+  top: 80%;
+  left: 76%;
 }
 
 .image-l img,
@@ -425,7 +423,7 @@ input::placeholder {
   /* position: fixed; */
   position: absolute;
   /* top: 58%; */
-  top: 64%;
+  top: 69%;
   left: 20%;
 }
 
@@ -434,6 +432,6 @@ input::placeholder {
   /* position: fixed; */
   position: absolute;
   /* top: 64%; */
-  top: 68%;
+  top: 73%;
   left: 73%;
 }

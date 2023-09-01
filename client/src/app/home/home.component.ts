@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit{
   userVerified = true;
 
   isScrolled = false;
-
-  constructor(
+ 
+ constructor(
     private router: Router,
     private lastFmService: LastFmService,
     private cdr: ChangeDetectorRef

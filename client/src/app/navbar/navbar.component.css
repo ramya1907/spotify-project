@@ -18,11 +18,9 @@
     padding: 15px;
     padding-left: 60px;
     padding-top: 40px;
-    /* background-color: rgba(86, 85, 79, 0.8); */
-    /* background-color: rgba(179, 170, 131, 0.8); */
     background-color: #93805c;
     height: 14%;
-    width: calc(100% - 3%); /* Adjust the width to account for the left margin */
+    width: calc(100% - 3%); 
     z-index: 1;
   }
 
@@ -44,18 +42,15 @@
   }
   
   .navbar nav ul li a {
-    /* color: #b3c1b7; */
-    /* color: rgb(53, 50, 43); */
     color: #b3c1b7;
     text-decoration: none;
     font-family: "VT323", monospace;
     font-size: 2rem;
-    margin-right: 7rem;
-    margin-left: 5.5rem;
+    margin-right: 10rem;
+    margin-left: 9rem;
   }
   
   .navbar nav ul li a:hover {
-    /* color: #0e0f2c; */
     color: #474760;
   }
   

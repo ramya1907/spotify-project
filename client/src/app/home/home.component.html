@@ -34,7 +34,6 @@
       #usernameContent
     >
       <div class="rounded-rectangle">
-       
         <div #mainContainer>
           <div *ngIf="!userExists">
             <div class="input-container">
@@ -52,7 +51,7 @@
 
             <div *ngIf="!userVerified">
               <p class="alert">
-                username doesn't exist, please check your spelling 
+                username doesn't exist, please check your spelling
               </p>
             </div>
 
@@ -61,13 +60,16 @@
             </a>
 
             <p class="p-left">
-              <span style="color: #c49c72;">explore your annual scrobble: </span
+              <span style="color: #c49c72">explore your annual scrobble: </span
               ><br />
               count and track your daily <br />listening activity for the year.
             </p>
 
             <div class="image-l">
-              <img src="../../assets/comp_images/arrow-l.png"  alt="Left Arrow" > 
+              <img
+                src="../../assets/comp_images/arrow-l.png"
+                alt="Left Arrow"
+              />
             </div>
 
             <a class="heatmap-btn-0">
@@ -81,7 +83,10 @@
             </a>
 
             <div class="image-r">
-              <img src="../../assets/comp_images/arrow-r.png" alt="Right Arrow" >
+              <img
+                src="../../assets/comp_images/arrow-r.png"
+                alt="Right Arrow"
+              />
             </div>
             <p class="p-right">
               <span style="color: #c49c72">explore artist insights:</span>
@@ -107,7 +112,10 @@
             </p>
 
             <div class="image-l">
-              <img src="../../assets/comp_images/arrow-l.png"  alt="Left Arrow" > 
+              <img
+                src="../../assets/comp_images/arrow-l.png"
+                alt="Left Arrow"
+              />
             </div>
 
             <a (click)="viewHeatMap()" class="heatmap-btn">
@@ -120,7 +128,10 @@
               <span></span>
             </a>
             <div class="image-r">
-              <img src="../../assets/comp_images/arrow-r.png" alt="Right Arrow" >
+              <img
+                src="../../assets/comp_images/arrow-r.png"
+                alt="Right Arrow"
+              />
             </div>
 
             <p class="p-right">
@@ -131,8 +142,8 @@
             </p>
           </div>
         </div>
-
       </div>
     </section>
   </body>
+  <app-footer></app-footer>
 </div>
