@@ -63,7 +63,7 @@ export class ViewComponent implements OnInit {
   totalSongsVal: number = 0;
   listenedSongsVal: number = 0;
   unlistenedSongsVal: number = 0;
-  pie_percent: number = 0;
+  pie_percent: string = '';
   earliestListenDate: string | undefined;
   earliestListenSongName: string = '';
 
@@ -94,6 +94,8 @@ export class ViewComponent implements OnInit {
     const tracksPerPage = 100;
     let page = 1;
     let allTracks = new Set<string>();
+
+    artistName = artistName.toLowerCase().replace(/\s/g, '');
 
     try {
       while (true) {
@@ -138,6 +140,8 @@ export class ViewComponent implements OnInit {
     const limit = 1000;
     const playCounts: Map<string, number> = new Map();
     let earliestListenTimestamp: number = Number.MAX_SAFE_INTEGER;
+    artistName = artistName.toLowerCase().replace(/\s/g, '').replace(/\./g, '');
+    console.log("Cleaned artist name", artistName);
 
     try {
       while (true) {
@@ -156,7 +160,9 @@ export class ViewComponent implements OnInit {
 
         if (response.recenttracks && response.recenttracks.track) {
           for (const track of response.recenttracks.track) {
-            if (track.artist['#text'].toLowerCase() === artistName) {
+            const apiResponseArtist = track.artist['#text'].toLowerCase().replace(/\s/g, '').replace(/\./g, '');
+            console.log("API artist name", apiResponseArtist);
+            if (apiResponseArtist === artistName) {     
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
 
@@ -192,7 +198,6 @@ export class ViewComponent implements OnInit {
     //empty array
     if (this.songPlayCounts.length === 0) {
       this.emptyArray = true;
-      this.isLoading = false;
       return;
     }
 
@@ -210,6 +215,7 @@ export class ViewComponent implements OnInit {
   }
 
   displayBarChart() {
+    this.barChartData = [];
     this.songPlayCounts.map((elem) =>
       this.barChartData.push({ name: elem.name, value: elem.playcount })
     );
@@ -273,17 +279,22 @@ export class ViewComponent implements OnInit {
       console.log('Unlistened songs are', this.unlistenedSongs);
       console.log('These are the songs and their counts', this.songPlayCounts);
       this.displayPieChart();
-      this.viewUnlistened = true;
-      if(this.emptyArray){
-        return;
-      }
+     
+     
     } catch (error) {
       console.error('Error during retrieval and display:', error);
     } finally {
       console.log("It's all done");
+      if(this.emptyArray){
+        this.displayReady = false;
+        this.viewUnlistened = false;
+        this.isLoading = false;
+        return;
+      }
       this.isLoading = false;
-      
+
       this.displayReady = true;
+      this.viewUnlistened = true;
     }
   }
 
@@ -293,9 +304,9 @@ export class ViewComponent implements OnInit {
       { name: 'Listened', value: this.listenedSongsVal },
       { name: 'Unlistened', value: this.unlistenedSongsVal },
     ];
-    this.pie_percent = Math.round(
+    this.pie_percent = (
       (this.listenedSongsVal / this.totalSongsVal) * 100
-    );
+    ).toFixed(2);
     this.showPieChart = true;
   }
 
