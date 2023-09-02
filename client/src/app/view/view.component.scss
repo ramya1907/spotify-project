@@ -221,12 +221,16 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 3.5rem;
   color: rgb(193, 151, 177); 
+  animation: fade-in 1.6s ease forwards;
+ 
+
 }
 
 
 .found-artist strong {
   color: #c0a168;
   font-size: 4rem;
+  animation: fade-in 1.8s ease forwards;
 }
 
 .found-song {
@@ -234,11 +238,13 @@ input::placeholder {
   font-size: 3.5rem;
   color: rgb(193, 151, 177);
   margin-left: 45%;
+  animation: fade-in 2.0s ease forwards;
 
 }
 
 .found-song strong {
   color: #c0a168;
+  animation: fade-in 2.2s ease forwards;
 }
 
 .viewUnlistened::before {
@@ -384,6 +390,26 @@ input::placeholder {
     transform: translateY(-15px);
   }
 }
+
+.animate-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in 1s forwards;
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
 
 

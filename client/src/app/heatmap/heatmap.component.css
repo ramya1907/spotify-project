@@ -52,6 +52,7 @@ body {
   font-size: 8rem;
   display: flex;
   animation: fade-in 0.7s ease forwards;
+  text-shadow: 2px 2px 3px rgba(236, 228, 228, 0.4);
 }
 
 .title strong {

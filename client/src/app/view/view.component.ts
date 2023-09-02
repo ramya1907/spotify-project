@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { LastFmService } from 'src/last-fm.service';
@@ -10,7 +10,6 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./view.component.scss'],
 })
 export class ViewComponent implements OnInit {
-  @ViewChild('parallaxSections') parallaxSections!: ElementRef;
 
   username = '';
   artistNames: string[] = [];
@@ -19,11 +18,10 @@ export class ViewComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private lastFmService: LastFmService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
-
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
@@ -71,6 +69,7 @@ export class ViewComponent implements OnInit {
     [];
 
   //-----------------------------------------------------
+
 
   checkArtistandRetrieveData(artistName: string) {
     this.lastFmService.checkArtistNameExists(artistName).subscribe({
@@ -141,7 +140,7 @@ export class ViewComponent implements OnInit {
     const playCounts: Map<string, number> = new Map();
     let earliestListenTimestamp: number = Number.MAX_SAFE_INTEGER;
     artistName = artistName.toLowerCase().replace(/\s/g, '').replace(/\./g, '');
-    console.log("Cleaned artist name", artistName);
+    console.log('Cleaned artist name', artistName);
 
     try {
       while (true) {
@@ -160,9 +159,12 @@ export class ViewComponent implements OnInit {
 
         if (response.recenttracks && response.recenttracks.track) {
           for (const track of response.recenttracks.track) {
-            const apiResponseArtist = track.artist['#text'].toLowerCase().replace(/\s/g, '').replace(/\./g, '');
-            console.log("API artist name", apiResponseArtist);
-            if (apiResponseArtist === artistName) {     
+            const apiResponseArtist = track.artist['#text']
+              .toLowerCase()
+              .replace(/\s/g, '')
+              .replace(/\./g, '');
+            console.log('API artist name', apiResponseArtist);
+            if (apiResponseArtist === artistName) {
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
 
@@ -270,7 +272,7 @@ export class ViewComponent implements OnInit {
 
     this.checkArtistandRetrieveData(this.artistName);
 
-    try { 
+    try {
       await this.getArtistTracks(this.artistName.toLowerCase());
       await this.getUserListeningHistory(this.artistName.toLowerCase());
       console.log('Unique songs are:', this.uniqueSongs);
@@ -279,13 +281,11 @@ export class ViewComponent implements OnInit {
       console.log('Unlistened songs are', this.unlistenedSongs);
       console.log('These are the songs and their counts', this.songPlayCounts);
       this.displayPieChart();
-     
-     
     } catch (error) {
       console.error('Error during retrieval and display:', error);
     } finally {
       console.log("It's all done");
-      if(this.emptyArray){
+      if (this.emptyArray) {
         this.displayReady = false;
         this.viewUnlistened = false;
         this.isLoading = false;
@@ -305,7 +305,8 @@ export class ViewComponent implements OnInit {
       { name: 'Unlistened', value: this.unlistenedSongsVal },
     ];
     this.pie_percent = (
-      (this.listenedSongsVal / this.totalSongsVal) * 100
+      (this.listenedSongsVal / this.totalSongsVal) *
+      100
     ).toFixed(2);
     this.showPieChart = true;
   }
