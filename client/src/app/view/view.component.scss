@@ -276,7 +276,7 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 5rem;
   color: #393837;
-  margin-bottom: 10%;
+  margin-bottom: 9%;
 }
 
 .unlistened-btn {
@@ -289,7 +289,6 @@ input::placeholder {
   box-shadow: 0 10px #6b4f2e;
   overflow: hidden;
   font-size: 2.5rem;
-  margin-top: 7px; /* Adjust as needed */
   margin-bottom: 3%;
   animation: fade-in 1.2s ease forwards;
 }
@@ -407,6 +406,28 @@ input::placeholder {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+.spinner-container1 {
+  margin-top: 5%;
+  // display: flex;
+  // justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner-container1 i {
+  color: #edbab6;
+   margin-bottom: 1%
+ }
+
+ .spinner-container1 p {
+
+  color: rgb(215, 212, 224);
+  font-family: VT323, monospace;
+  font-size: 2rem;
+  margin-right: 2%;
 }
 
 

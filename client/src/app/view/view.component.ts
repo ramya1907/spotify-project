@@ -140,7 +140,6 @@ export class ViewComponent implements OnInit {
     const playCounts: Map<string, number> = new Map();
     let earliestListenTimestamp: number = Number.MAX_SAFE_INTEGER;
     artistName = artistName.toLowerCase().replace(/\s/g, '').replace(/\./g, '');
-    console.log('Cleaned artist name', artistName);
 
     try {
       while (true) {
@@ -163,7 +162,6 @@ export class ViewComponent implements OnInit {
               .toLowerCase()
               .replace(/\s/g, '')
               .replace(/\./g, '');
-            console.log('API artist name', apiResponseArtist);
             if (apiResponseArtist === artistName) {
               const songKey = track.name.toLowerCase();
               playCounts.set(songKey, (playCounts.get(songKey) || 0) + 1);
