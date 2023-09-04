@@ -57,6 +57,7 @@ export class ViewComponent implements OnInit {
   emptyArray = false;
   listUnlistenedSongs = false;
   viewUnlistened = false;
+  isClicked = false;
 
   totalSongsVal: number = 0;
   listenedSongsVal: number = 0;
@@ -433,17 +434,25 @@ export class ViewComponent implements OnInit {
   }
 
   addToListenedSongs(song: string) {
+    this.isClicked = true; //display minus icon
+    this.cdRef.detectChanges();
     this.listenedSongsVal = this.listenedSongsVal + 1;
     this.unlistenedSongs = this.unlistenedSongs.filter((s) => s !== song);
+    console.log("Added song", song);
   }
 
   removeFromListenedSongs(song: string) {
+    this.isClicked = false;
+    this.cdRef.detectChanges();
     this.listenedSongsVal = this.listenedSongsVal - 1;
     this.unlistenedSongs.push(song);
     this.unlistenedSongsVal = this.unlistenedSongs.length;
+    console.log("Removed song", song);
   }
 
   updateStatistics() {
-    this.displayStats(); // Call the existing displayStats function
+    // this.displayStats(); // Call the existing displayStats function
+    this.showPieChart = false;
+    this.displayPieChart();   
   }
 }

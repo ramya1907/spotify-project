@@ -1,4 +1,5 @@
 <div class="border-container">
+  <div class="top-border"></div>
   <app-navbar></app-navbar>
   <body class="body-div">
     <section class="main">
@@ -120,7 +121,7 @@
 
         <div *ngIf="isLoading1">
           <div class="spinner-container1">
-            <p style="font-size: 2rem">this might take a while...</p>
+            <p>this might take a while...</p>
             <i class="fa-solid fa-compact-disc fa-spin fa-2xl"></i>
           </div>
         </div>
@@ -139,17 +140,33 @@
               </div>
               <div class="album-songs">
                 <ul>
-                  <!-- <div *ngIf = "isClicked"> -->
-                  <!-- <li style="color:#333;" *ngFor="let song of album.songs">{{ song }} <button (onClick) = "addToListenedSongs(song)"><i class="fa-solid fa-circle-minus"></i></button></li> -->
-                  <!-- <div *ngIf = "!isClicked"> -->
-                  <!-- <li style="color:#333;" *ngFor="let song of album.songs">{{ song }} <button (onClick) = "removeFromListenedSongs(song)"><i class="fa-solid fa-circle-plus"></i></i></button></li> -->
                   <li style="color: #d5cfcf" *ngFor="let song of album.songs">
-                    {{ song }}
+                    <span>{{ song }}</span>
+
+                    <div *ngIf="isClicked">
+                      <button (onClick)="addToListenedSongs(song)">
+                        <i class="fa-solid fa-circle-minus"></i>
+                      </button>
+                    </div>
+
+                    <div *ngIf="!isClicked">
+                      <button (onClick)="removeFromListenedSongs(song)">
+                        <i class="fa-solid fa-circle-plus"></i>
+                      </button>
+                    </div>
                   </li>
+
+                  <!-- <li style="color: #d5cfcf" *ngFor="let song of album.songs"> 
+                    {{ song }}
+                  </li> -->
                 </ul>
               </div>
             </div>
           </div>
+
+          <button class="regenerate-btn" (onClick)="updateStatistics()">
+            Regenerate Chart
+          </button>
         </div>
       </div>
     </div>
