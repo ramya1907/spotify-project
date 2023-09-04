@@ -69,6 +69,11 @@ export class HeatmapComponent implements OnInit {
     await this.getRecentTracks(this.selectedYear);
     this.playCountsPerDay = this.populateMissingDays(this.playCountsPerDay, this.firstDayOfYear);
     this.reformatData(this.playCountsPerDay);
+    if(this.averageScrobbles === 0){
+      this.isLoading = false;
+      this.alertUser = true;
+      return;
+    }
     this.displayReady = true;
   }
 
@@ -159,6 +164,10 @@ export class HeatmapComponent implements OnInit {
     }
 
     this.averageScrobbles = Math.round(totalScrobbles / Object.keys(playCountsPerDay).length);
+    if(this.averageScrobbles === 0)
+    {
+      return;
+    }
     this.highestScrobbleDay = maxScrobblesDay;
     this.highestScrobbleDay = new Date(this.highestScrobbleDay).toLocaleDateString('en-GB');
 
