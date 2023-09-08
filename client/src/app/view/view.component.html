@@ -57,7 +57,7 @@
       <div *ngIf="showFoundArtist && !emptyArray" class="found-container">
         <div class="found-artist">
           <p>
-            You found this artist on <br />
+            You found this artist on, <br />
 
             <strong>{{ earliestListenDate }}</strong>
           </p>
@@ -66,7 +66,7 @@
         <div class="found-song">
           <p>
             <br />
-            and it was through the song <br /><strong>{{
+            by listening to the song, <br /><strong>{{
               earliestListenSongName
             }}</strong>
           </p>
@@ -95,25 +95,31 @@
       </div>
 
       <div *ngIf="showPieChart" class="pie-chart">
-        <ngx-charts-pie-chart
-          [results]="chartData"
-          [legend]="true"
-          [legendTitle]="'User Activity'"
-          [view]="[1000, 300]"
-          [labels]="true"
-        >
-        </ngx-charts-pie-chart>
+        <div class="ngx-pc">
+          <ngx-charts-pie-chart
+            [results]="chartData"
+            [legend]="true"
+            [legendTitle]="'User Activity'"
+            [view]="[700, 300]"
+            [labels]="true"
+          >
+          </ngx-charts-pie-chart>
+        </div>
 
         <p class="pc-p">
-          You've listened to {{ pie_percent }}% of <br />
-          the discography of {{ artistName }}
+          You've listened to <br />
+          <span style="font-size: 5rem; color: #c0a168"
+            >{{ pie_percent }}%
+          </span>
+          <br />
+          of the discography of {{ artistName }}
         </p>
       </div>
     </div>
 
     <div *ngIf="viewUnlistened">
       <div class="viewUnlistened">
-        <h3><strong>Songs you might have missed</strong></h3>
+        <h3>Songs you might have missed</h3>
         <a (click)="toggleUnlistenedSongs()" class="unlistened-btn">
           Show Me
           <span></span>
@@ -127,9 +133,24 @@
         </div>
 
         <div *ngIf="!isLoading1 && listUnlistenedSongs">
+          <div
+            style="
+              padding: 30px;
+              margin: 5% 10%;
+              background-color: rgb(21, 21, 31);
+              border-radius: 15px;
+            "
+          >
+            <p class="tut">
+              For better accuracy of pie-chart, click on the + icon <br />
+              next to the song name if you've heard the song before or <br />
+              if it's not by the same artist.<br />
+              Then, click on 'Regenerate Chart'.
+            </p>
+          </div>
           <div *ngFor="let album of trackToAlbum" class="album-container">
             <div class="album-details">
-              <h3 class="album-title" style="color: rgb(193, 151, 177)">
+              <h3 class="album-title">
                 {{ album.albumName }}
               </h3>
               <div class="album-image">
@@ -140,20 +161,24 @@
               </div>
               <div class="album-songs">
                 <ul>
-                  <li style="color: #d5cfcf" *ngFor="let song of album.songs">
-                    <span>{{ song }}</span>
+                  <li *ngFor="let song of album.songs">
+                    <ng-container
+                      *ngIf="song.length <= 50; else ellipsisTemplate"
+                    >
+                      <span>{{ song }}</span>
+                    </ng-container>
+                    <ng-template #ellipsisTemplate>
+                      <span>{{ song | slice : 0 : 50 }}...</span>
+                    </ng-template>
 
-                    <div *ngIf="isClicked">
-                      <button (onClick)="addToListenedSongs(song)">
-                        <i class="fa-solid fa-circle-minus"></i>
-                      </button>
-                    </div>
-
-                    <div *ngIf="!isClicked">
-                      <button (onClick)="removeFromListenedSongs(song)">
-                        <i class="fa-solid fa-circle-plus"></i>
-                      </button>
-                    </div>
+                    <button (click)="addOrRemoveFromListenedSongs(song)">
+                      <ng-container *ngIf="!isClicked[song]; else minusBtn">
+                        <i class="fa-solid fa-circle-plus fa-2x"></i>
+                      </ng-container>
+                      <ng-template #minusBtn>
+                        <i class="fa-solid fa-circle-minus fa-2x"></i>
+                      </ng-template>
+                    </button>
                   </li>
 
                   <!-- <li style="color: #d5cfcf" *ngFor="let song of album.songs"> 
@@ -164,7 +189,7 @@
             </div>
           </div>
 
-          <button class="regenerate-btn" (onClick)="updateStatistics()">
+          <button class="regenerate-btn" (click)="updateStatistics()">
             Regenerate Chart
           </button>
         </div>

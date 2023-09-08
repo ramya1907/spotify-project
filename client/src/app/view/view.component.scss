@@ -15,7 +15,6 @@
   right: 0;
   bottom: 0;
   padding: 0;
-  // overflow: auto;
 }
 
 .top-border {
@@ -55,6 +54,7 @@
   font-family: "VT323", monospace;
   color: rgb(208, 216, 213);
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+  animation: fade-in 1.6s ease forwards;
 }
 
 .input-container {
@@ -90,17 +90,7 @@ input::placeholder {
   font-family: "VT323", monospace;
 }
 
-@keyframes fade-in1 {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .btn--action {
   display: flex;
@@ -185,12 +175,21 @@ input::placeholder {
   margin-bottom: 1%
 }
 
+.tut {
+  font-size: 2rem;
+  font-family: "VT323", monospace;
+  color: rgb(203, 190, 215);
+  text-align: left;
+ 
+  
+}
+
 .bar-chart-container {
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8%;
+  margin-top: 10%;
 }
 
 .bar-chart {
@@ -201,24 +200,38 @@ input::placeholder {
 
 .bc-title {
   font-family: "VT323", monospace;
-  font-size: 3rem;
+  font-size: 4rem;
   color: rgb(161, 189, 180);
-  margin-bottom: 7%;
+  margin-bottom: 8%;
   text-align: left;
 
 }
 
 .pie-chart {
-  margin: 8% 3% 5% 3%;
+  margin: 10% 3% 5% 0;
+  display: flex;
+  align-items: center; /* Vertical alignment */
+}
 
+.ngx-pc {
 
+  background-color: rgba(49, 44, 49, 0.5);
+  box-shadow: 0 15px #5d496a;
+  margin-left: 3%;
+  width: 750px;
+  border-radius: 30px;
+  padding: 15px;
+  flex: 1;
 }
 
 .pc-p {
   font-family: "VT323", monospace;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: rgb(193, 151, 177);
-  margin-left: 50%;
+  flex: 1; /* Allow the text to take up available space */
+  margin-left: 5%; /* Add space between the pie chart and text */
+  text-align: left; /* Align text to the left */
+ 
 }
 
 .found-container {
@@ -230,11 +243,8 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 3.5rem;
   color: rgb(193, 151, 177);
-  animation: fade-in 1.6s ease forwards;
-
-
+  margin-left: 5%;
 }
-
 
 .found-artist strong {
   color: #c0a168;
@@ -289,8 +299,9 @@ input::placeholder {
 
   font-family: "VT323", monospace;
   font-size: 5rem;
-  color: #393837;
   margin-bottom: 9%;
+  color: rgb(208, 216, 213);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
 }
 
 .unlistened-btn {
@@ -312,32 +323,30 @@ input::placeholder {
   transform: translateY(5px);
 }
 
-/* Styles for album container */
 .album-container {
   display: flex;
   background-color: rgba(19, 17, 19, 0.5);
-  /* Soft transparent grey */
-  box-shadow: 0 13px #382f40;
+  box-shadow: 0 13px #2a2330;
 
   border-radius: 30px;
-  /* Rounded corners */
-  margin: 5% 3%;
-  padding: 9%;
+  margin: 5% 5%;
+  padding: 7%;
+  max-width: none; /* Remove or set to none */
+  max-height: none; /* Remove or set to none */
 }
 
-/* Styles for album details */
 .album-details {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .album-title {
   font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 3px;
-  justify-content: center;
-  color: rgb(26, 12, 54);
+  font-size: 16px;
+  text-align: center;
+  color: rgb(193, 151, 177)
 }
 
 .album-image {
@@ -346,6 +355,7 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   padding: 4px;
+  margin: 7px 0;
 }
 
 .album-image img {
@@ -359,7 +369,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: left;
-  padding: 10px;
+  padding: 7px;
 }
 
 .album-songs ul {
@@ -369,23 +379,40 @@ input::placeholder {
 }
 
 .album-songs li {
-  font-size: 2rem;
-  color: #333;
   margin: 5px 0;
-  font-family: "VT323", monospace;
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
+
 }
 
-/* Adjust the icon size and spacing */
+.album-songs li span {
+  font-size: 2rem;
+  font-family: "VT323", monospace;
+  white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  color: rgb(194, 177, 187);
+  text-align: left;
+  // max-width: calc(100% - 58px);
+  width: 100%;
+  margin-right: 10px; /* Add space between text and button */
+
+}
+
+.album-songs li span.no-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
 .album-songs li button {
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: 50%;
   color: rgb(193, 151, 177);
+  margin-left: 10px;
+  width: 48px;
+  height: 48px;
 }
 
 .arrow {
@@ -446,7 +473,6 @@ input::placeholder {
 }
 
 
-
 @keyframes bounce {
 
   0%,
@@ -474,6 +500,18 @@ input::placeholder {
 
 
 @keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in1 {
   from {
     opacity: 0;
     transform: translateY(20px);
