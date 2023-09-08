@@ -108,11 +108,11 @@
 
         <p class="pc-p">
           You've listened to <br />
-          <span style="font-size: 5rem; color: #c0a168"
+          <span style="font-size: 5rem; color: rgb(161, 189, 180)"
             >{{ pie_percent }}%
           </span>
           <br />
-          of the discography of {{ artistName }}
+          of their discography
         </p>
       </div>
     </div>
@@ -142,15 +142,15 @@
             "
           >
             <p class="tut">
-              For better accuracy of pie-chart, click on the + icon <br />
-              next to the song name if you've heard the song before or <br />
-              if it's not by the same artist.<br />
+              For better accuracy of pie-chart: <br />
+              - click on the + icon if you've heard the song before<br />
+              - click on the x icon if it's not by the same artist <br />
               Then, click on 'Regenerate Chart'.
             </p>
           </div>
           <div *ngFor="let album of trackToAlbum" class="album-container">
             <div class="album-details">
-              <h3 class="album-title">
+              <h3 class="album-title" style="color: rgb(193, 151, 177)">
                 {{ album.albumName }}
               </h3>
               <div class="album-image">
@@ -165,11 +165,18 @@
                     <ng-container
                       *ngIf="song.length <= 50; else ellipsisTemplate"
                     >
-                      <span>{{ song }}</span>
+                      <span [ngClass]="{ strikethrough: isCrossed[song] }">{{
+                        song
+                      }}</span>
                     </ng-container>
                     <ng-template #ellipsisTemplate>
-                      <span>{{ song | slice : 0 : 50 }}...</span>
+                      <span [ngClass]="{ strikethrough: isCrossed[song] }"
+                        >{{ song | slice : 0 : 50 }}...</span
+                      >
                     </ng-template>
+                    <button (click)="strikeSong(song)">
+                      <i class="fa-solid fa-circle-xmark fa-2x"></i>
+                    </button>
 
                     <button (click)="addOrRemoveFromListenedSongs(song)">
                       <ng-container *ngIf="!isClicked[song]; else minusBtn">
@@ -180,10 +187,6 @@
                       </ng-template>
                     </button>
                   </li>
-
-                  <!-- <li style="color: #d5cfcf" *ngFor="let song of album.songs"> 
-                    {{ song }}
-                  </li> -->
                 </ul>
               </div>
             </div>
