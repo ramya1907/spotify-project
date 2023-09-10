@@ -108,6 +108,15 @@ body {
   align-items: center;
 }
 
+.alert{
+  color: rgb(120, 168, 159);
+  font-family: VT323, monospace;
+  margin-left: 5%;
+  margin-right: 2%;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
 .heatmap-container {
   margin: 4% 0;
   animation: heatmapAnimation 4s ease-in-out;
@@ -156,20 +165,63 @@ body {
 } 
 
 @media screen and (max-width: 768px) {
-  /* Adjust styles for smaller screens */
+
   .border-container {
-    padding: 10px; /* Add some padding for smaller screens */
+    border: 7px solid rgb(38, 38, 38);
+  }
+
+  .top-border {
+    width: 100%;
+    height: 7px;
+    background-color: rgb(38, 38, 38);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+  
+  .bottom-border {
+    width: 100%;
+    height: 7px;
+    background-color: rgb(38, 38, 38);
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    position: fixed;
+  }
+  
+  .title{
+    font-size: 2rem;
+  }
+
+  .title strong {
+    font-weight: 300;
+  }
+
+  .view {
+    font-size: 2rem;
   }
 
   .year-selector select {
-    margin-left: 10%; /* Adjust the margin for the select element */
+    margin-left: 10%; 
     margin-top: 5%;
   }
+
 
   .heatmap-info {
     font-size: 1.5rem;
     width: calc(100% - 20px);
-    padding: 10px;
   } 
+
+  .heatmap-info p strong{
+    font-size: 2rem;
+  }
+
+  .alert {
+    font-size: 1.5rem;
+    white-space: normal;
+    margin-left: 2%;
+  }
+
 }
 

@@ -450,3 +450,82 @@ input::placeholder {
 .no-underline {
   text-decoration: none;
 }
+
+
+/* Media query for screens with a maximum width of 768px */
+@media screen and (max-width: 768px) {
+
+  /* Adjust the title font size and margins */
+  .title {
+    font-size: 4rem;
+    margin-top: 5%;
+    margin-left: 10%;
+  }
+
+  .temp-section{
+    font-size: 1rem;
+  }
+
+  /* Adjust the subtitle font size and margins */
+  .view-stats-text {
+    font-size: 1.5rem;
+    margin-top: 2%;
+    margin-left: 10%;
+  }
+
+  /* Adjust the input container width */
+  .input-container {
+    width: 80%;
+    left: 5%;
+  }
+
+  /* Adjust the button styles */
+  .btn--action {
+    top: 55%; /* Adjust the button's vertical position */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Adjust button width */
+    font-size: 1.2rem; /* Adjust button font size */
+    padding: 1rem 2rem; /* Adjust button padding */
+  }
+
+  /* Adjust text styles */
+  .p-left, .p-right {
+    font-size: 1rem; /* Adjust text font size */
+  }
+
+  .parallax {
+    /* Adjust background size for mobile screens */
+    background-size: auto 100%;
+  }
+
+  .rounded-rectangle {
+    /* Adjust background size for mobile screens */
+    background-size: auto 100%;
+  }
+
+  .heatmap-btn,
+  .artist-btn,
+  .heatmap-btn-0,
+  .artist-btn-0 {
+    font-size: 1rem; /* Adjust the font size for smaller screens */
+    width: 100px; /* Adjust the width for smaller screens */
+    height: 57px; /* Adjust the height for smaller screens */
+    padding: 0.5rem;
+  }
+
+  .heatmap-btn,
+  .heatmap-btn-0{
+    top: 57%;
+    left: 19%;
+  }
+
+  .artist-btn,
+  .artist-btn-0{
+    top: 48%;
+    left: 19%;
+  }
+
+  /* Add more styles for smaller screens as needed */
+}
+

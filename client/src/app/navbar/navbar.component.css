@@ -53,6 +53,46 @@
   .navbar nav ul li a:hover {
     color: #474760;
   }
+
+  /* Media query for screens with a maximum width of 768px */
+@media screen and (max-width: 768px) {
+  /* Adjust the styles for mobile screens */
+  .navbar {
+    top: 0;
+    left: 0;
+    padding: 10px;
+    background-color: #93805c;
+    height: auto;
+    width: 100%;
+  }
+
+  .navbar.scrolled {
+    padding-left: 10px;
+    padding-top: 20px;
+    height: auto;
+  }
+
+  .navbar nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar nav ul li {
+    margin: 10px 0;
+  }
+
+  .navbar nav ul li a {
+    font-size: 1rem;
+    margin: 10px 5px;
+  }
+}
+
+
+
+
+
+
+
   
   
   
