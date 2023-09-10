@@ -1,4 +1,7 @@
-import { Component, OnInit} from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
@@ -8,6 +11,7 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./heatmap.component.css'],
 })
 export class HeatmapComponent implements OnInit {
+
   username = '';
   apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';
   lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
@@ -26,7 +30,7 @@ export class HeatmapComponent implements OnInit {
 
   playCountsPerDay: { [date: string]: number } = {};
   fromDate = Math.floor(new Date('2022-01-01').getTime() / 1000);
-  toDate = Math.floor(new Date(`2023-01-01`).getTime() / 1000)
+  toDate = Math.floor(new Date(`2023-01-01`).getTime() / 1000);
 
   legendPosition = 'right';
   roundEdges: boolean = true;
@@ -55,7 +59,7 @@ export class HeatmapComponent implements OnInit {
   }
 
   async selectYear(year: number) {
-    year = Number (year);
+    year = Number(year);
     this.isLoading = true;
     this.firstDayOfYear = new Date(`${year}-01-01`);
     this.yearStartDayOfWeek = this.firstDayOfYear.getDay();
@@ -67,14 +71,19 @@ export class HeatmapComponent implements OnInit {
     this.toDate = Math.floor(new Date(`${year + 1}-01-01`).getTime() / 1000);
 
     await this.getRecentTracks(this.selectedYear);
-    this.playCountsPerDay = this.populateMissingDays(this.playCountsPerDay, this.firstDayOfYear);
+    this.playCountsPerDay = this.populateMissingDays(
+      this.playCountsPerDay,
+      this.firstDayOfYear
+    );
     this.reformatData(this.playCountsPerDay);
-    if(this.averageScrobbles === 0){
+    if (this.averageScrobbles === 0) {
       this.isLoading = false;
       this.alertUser = true;
       return;
     }
     this.displayReady = true;
+
+    // this.initializeTyped();
   }
 
   calculateStartOfWeek(date: Date, yearStartDayOfWeek: number): Date {
@@ -133,11 +142,10 @@ export class HeatmapComponent implements OnInit {
     let totalScrobbles = 0;
 
     for (const [dateStr, count] of Object.entries(playCountsPerDay)) {
-
       if (count > maxScrobbles) {
         maxScrobbles = count;
         maxScrobblesDay = dateStr;
-        this.highestScrobbleCount = count; 
+        this.highestScrobbleCount = count;
       }
 
       totalScrobbles += count;
@@ -163,13 +171,16 @@ export class HeatmapComponent implements OnInit {
       groupedDataMap.get(startOfWeekDate.toISOString())?.push(seriesData);
     }
 
-    this.averageScrobbles = Math.round(totalScrobbles / Object.keys(playCountsPerDay).length);
-    if(this.averageScrobbles === 0)
-    {
+    this.averageScrobbles = Math.round(
+      totalScrobbles / Object.keys(playCountsPerDay).length
+    );
+    if (this.averageScrobbles === 0) {
       return;
     }
     this.highestScrobbleDay = maxScrobblesDay;
-    this.highestScrobbleDay = new Date(this.highestScrobbleDay).toLocaleDateString('en-GB');
+    this.highestScrobbleDay = new Date(
+      this.highestScrobbleDay
+    ).toLocaleDateString('en-GB');
 
     const formattedData: {
       name: string;
@@ -217,7 +228,6 @@ export class HeatmapComponent implements OnInit {
   }
 
   async getRecentTracks(year: number) {
-
     try {
       let page = 1;
       const limit = 1000;
@@ -261,7 +271,6 @@ export class HeatmapComponent implements OnInit {
 
         page++;
       }
-
     } catch (error) {
       console.error('Error retrieving recent tracks:', error);
       this.alertUser = true;
@@ -269,7 +278,8 @@ export class HeatmapComponent implements OnInit {
     }
   }
 
-  populateMissingDays( playCountsPerDay: { [date: string]: number },
+  populateMissingDays(
+    playCountsPerDay: { [date: string]: number },
     firstDayofYear: Date
   ) {
     const year = firstDayofYear.getFullYear();
@@ -304,8 +314,6 @@ export class HeatmapComponent implements OnInit {
     });
 
     return sortedPlayCountsPerDay;
-
-    
   }
 
   calendarAxisTickFormatting(value: any) {

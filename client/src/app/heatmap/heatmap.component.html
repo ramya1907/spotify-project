@@ -88,27 +88,35 @@
         </div>
       </div>
 
-      <div class="heatmap-info" *ngIf="displayReady && !alertUser ">
-        <p style="margin: 5% 0 0 5%">
-          Your peak scrobble count <br />occured on
-          <strong style="font-size: 4.5rem;" >{{ highestScrobbleDay }}</strong
-          >, <br />
-          where you recorded an impressive <br />
-          <strong style="font-size: 6rem;">{{ highestScrobbleCount }}</strong> scrobbles.
-          <br />
-        </p>
-        <p style="margin-top: 3%; margin-left: 48%">
-          Throughout the year,<br />you averaged <br />
-          <strong style="font-size: 6rem; margin-left: 30%;">{{ averageScrobbles }}</strong><br />
-          scrobbles per day.
-        </p>
+      <div class="heatmap-info" *ngIf="displayReady && !alertUser">
+        <div style="margin: 5% 0 0 5%; text-align: left;">
+          <p>Your peak scrobble count</p>
+          <p>
+            occured on <strong style="font-size: 4.5rem">{{ highestScrobbleDay }}</strong>
+          </p>
+          <p>where you recorded an impressive</p>
+          <p>
+            <strong style="font-size: 6rem">{{ highestScrobbleCount }}</strong>
+            scrobbles.
+          </p>
+        </div>
+
+        <div
+          style="margin-top: 3%; margin-left: 48%; text-align: left;"
+        >
+          <p>Throughout the year,</p>
+          <p>you averaged</p>
+          <p>
+            <strong style="font-size: 6rem; margin-left: 30%">{{
+              averageScrobbles
+            }}</strong>
+          </p>
+          <p>scrobbles per day.</p>
+        </div>
       </div>
     </div>
     <div class="bottom-border"></div>
-    
   </body>
 
   <app-footer></app-footer>
-  
 </div>
-
