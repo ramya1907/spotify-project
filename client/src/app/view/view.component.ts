@@ -140,7 +140,6 @@ export class ViewComponent implements OnInit {
 
       this.filteredTracks = this.cleanText(allTracks);
       console.log(this.filteredTracks);
-      // this.totalSongsVal = this.filteredTracks.length;
     } catch (error) {
       console.error('Error fetching artist tracks:', error);
       this.isLoading = false;
@@ -223,20 +222,19 @@ export class ViewComponent implements OnInit {
   }
 
   helperUnlistenedSongs() {
-    this.unlistenedSongs = []; //just added
-
-    // this.unlistenedSongs = this.filteredTracks.filter(
-    //   (song) => !this.songsHeard.includes(song)
-    // );
+    this.unlistenedSongs = []; 
+    const uniqueSongsSet = new Set();
 
     for (const song of this.filteredTracks) {
       if (!this.songsHeard.some((heardSong) => heardSong.toLowerCase() === song.toLowerCase())) {
-        this.unlistenedSongs.push(song);
+        uniqueSongsSet.add(song);
       }
     }
 
+    this.unlistenedSongs = Array.from(uniqueSongsSet);
+
     this.unlistenedSongs.forEach((song) => {
-      this.isClicked[song] = false; // Initialize to false for all songs
+      this.isClicked[song] = false; 
       this.isCrossed[song] = false;
     });
   }
@@ -300,18 +298,12 @@ export class ViewComponent implements OnInit {
     try {
       await this.getArtistTracks(this.artistName.toLowerCase());
       await this.getUserListeningHistory(this.artistName.toLowerCase());
-      // console.log('List of songs user has listened to:', this.songsHeard);
       this.displayBarChart();
       this.helperUnlistenedSongs();
-      // console.log('Unlistened songs are', this.unlistenedSongs);
-      // console.log('These are the songs and their counts', this.songPlayCounts);
       this.displayPieChart();
-      // console.log(`Number of songs in total is ${this.totalSongsVal}, number of listened is ${this.listenedSongsVal}
-      //  and number of unlistened is ${this.unlistenedSongsVal} `);
     } catch (error) {
       console.error('Error during retrieval and display:', error);
     } finally {
-      // console.log("It's all done");
       if (this.emptyArray) {
         this.displayReady = false;
         this.viewUnlistened = false;
@@ -330,16 +322,9 @@ export class ViewComponent implements OnInit {
     const listenedSongsVal = this.songsHeard.length;
     const totalSongsVal = this.filteredTracks.length;
     const unlistenedSongsVal = this.unlistenedSongs.length;
-
-    // const difference = totalSongsVal - listenedSongsVal;
-    // const unlistenedSongsVal = totalSongsVal - listenedSongsVal;
-
-    // console.log('Filtered Tracks:', this.filteredTracks);
-    // console.log('Songs Heard:', this.songsHeard);
-    // console.log('New Songs:', this.unlistenedSongs);
-    
+ 
     console.log(`Total songs are ${ totalSongsVal}. Songs heard: ${listenedSongsVal} and songs unheard: ${unlistenedSongsVal}`);
-    // console.log( `Checking if difference and unlistened songs are the same ${difference} = ${unlistenedSongsVal}`);
+    
     this.chartData = [
       { name: 'Listened', value: listenedSongsVal },
       { name: 'Unlistened', value: unlistenedSongsVal },
@@ -511,13 +496,10 @@ export class ViewComponent implements OnInit {
   strikeSong(song: string) {
     if (this.isCrossed[song]) {
       this.isCrossed[song] = false;
-
-      // this.totalSongsVal = this.totalSongsVal + 1;
       this.filteredTracks.push(song);
       this.unlistenedSongs.push(song);
     } else {
       this.isCrossed[song] = true;
-      // this.totalSongsVal = this.totalSongsVal - 1;
       const index = this.filteredTracks.indexOf(song);
       if (index !== -1) {
         this.filteredTracks.splice(index, 1); // Remove the song from the array
@@ -533,7 +515,6 @@ export class ViewComponent implements OnInit {
     if (this.isClicked[song]) {
       this.isClicked[song] = false;
       this.cdRef.detectChanges();
-      // this.listenedSongsVal = this.listenedSongsVal - 1;
       this.unlistenedSongs.push(song);
       const index = this.songsHeard.indexOf(song);
       if (index !== -1) {
@@ -544,7 +525,6 @@ export class ViewComponent implements OnInit {
     } else {
       this.isClicked[song] = true;
       this.cdRef.detectChanges();
-      // this.listenedSongsVal = this.listenedSongsVal + 1;
       this.songsHeard.push(song);
       const index = this.unlistenedSongs.indexOf(song);
       if (index !== -1) {

@@ -215,7 +215,7 @@ input::placeholder {
 .ngx-pc {
 
   background-color: rgba(49, 44, 49, 0.5);
-  box-shadow: 0 15px  rgba(174, 216, 203, 0.5);
+  box-shadow: 0 15px rgba(174, 216, 203, 0.5);
   margin-left: 3%;
   width: 750px;
   border-radius: 30px;
@@ -406,9 +406,7 @@ input::placeholder {
   text-overflow: clip;
 }
 
-.strikethrough {
-  text-decoration: line-through;
-}
+
 
 .album-songs li button {
   background: none;
@@ -508,4 +506,16 @@ input::placeholder {
     transform: translateY(0);
   }
 
+}
+
+.album-songs li span.coloured {
+  color: rgb(208, 216, 213) !important;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }

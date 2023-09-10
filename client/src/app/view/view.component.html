@@ -14,7 +14,11 @@
           (keyup.enter)="displayStats()"
         />
 
-        <a (click)="displayStats()" class="btn--action" id="submitButton">
+        <a
+          (click)="displayStats()"
+          class="btn--action no-underline"
+          id="submitButton"
+        >
           <span class="fa fa-play"></span>
         </a>
       </div>
@@ -120,7 +124,10 @@
     <div *ngIf="viewUnlistened">
       <div class="viewUnlistened">
         <h3>Songs you might have missed</h3>
-        <a (click)="toggleUnlistenedSongs()" class="unlistened-btn">
+        <a
+          (click)="toggleUnlistenedSongs()"
+          class="unlistened-btn no-underline"
+        >
           Show Me
           <span></span>
         </a>
@@ -165,12 +172,20 @@
                     <ng-container
                       *ngIf="song.length <= 50; else ellipsisTemplate"
                     >
-                      <span [ngClass]="{ strikethrough: isCrossed[song] }">{{
-                        song
-                      }}</span>
+                      <span
+                        [ngClass]="{
+                          strikethrough: isCrossed[song],
+                          coloured: isClicked[song]
+                        }"
+                        >{{ song }}</span
+                      >
                     </ng-container>
                     <ng-template #ellipsisTemplate>
-                      <span [ngClass]="{ strikethrough: isCrossed[song] }"
+                      <span
+                        [ngClass]="{
+                          strikethrough: isCrossed[song],
+                          coloured: isClicked[song]
+                        }"
                         >{{ song | slice : 0 : 50 }}...</span
                       >
                     </ng-template>
