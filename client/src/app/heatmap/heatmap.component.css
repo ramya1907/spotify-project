@@ -221,6 +221,7 @@ body {
   .heatmap-container {
     width: 150%;
     animation: heatmapAnimation 4s ease-in-out;
+    overflow-x: auto;
    }
 
 
