@@ -95,7 +95,6 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   padding: 1.3rem 2.1rem;
-  border-radius: 1.5rem;
   background-color: #bc8884;
   color: #000;
   transition: all 0.5s ease 0s;
@@ -518,4 +517,135 @@ input::placeholder {
 
 .strikethrough {
   text-decoration: line-through;
+}
+
+@media screen and (max-width: 768px) {
+
+  .border-container {
+    border: 10px solid rgb(38, 38, 38);
+  }
+
+  .top-border {
+    height: 10px;
+  }
+
+  .bottom-border {
+    height: 10px;
+  }
+
+  .page-title {
+    font-size: 4rem;
+    margin-bottom: 20%;
+  }
+
+  .input-container {
+    width: 90%;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    margin-left: 20%;
+  }
+
+  .input[type="text"] {
+    font-size: 1rem;
+    padding: 3px;
+    padding-left: 10px;
+  }
+
+  .input::placeholder {
+    font-size: 1rem;
+  }
+
+  .btn--action {
+
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+
+
+  .alert {
+    font-size: 1rem;
+    top: 59%;
+    left: 29%;
+    text-wrap: nowrap;
+  }
+
+  .alert-l {
+    font-size: 1rem;
+    left: 28%;
+    top: 65%;
+  }
+
+  .alert-e {
+
+    font-size: 1rem;
+    top: 69%;
+    left: 28%;
+  }
+
+  .spinner-container p{
+    font-size: 2rem;
+  }
+
+  .tut {
+    font-size: 1rem;
+  }
+
+  .bar-chart-container{
+
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+  }
+
+  .bc-title{
+    font-size: 2.5rem;
+  }
+  
+  .ngx-pc{
+    border-radius: 15px;
+    padding: 7.5px;
+  }
+
+  .pc-p{
+    font-size: 2rem;
+  }
+
+  .found-artist {
+    font-size: 2.5rem;
+  }
+
+  .found-artist strong {
+    font-size: 3rem;
+  }
+
+  .found-song{
+    font-size: 2.5rem;
+  }
+
+  .viewUnlistened h3{
+    font-size: 3rem;
+  }
+
+  .unlistened-btn{
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .album-container{
+    border-radius: 20px;
+    padding: 4%;
+  }
+
+
+
+  
+
+
+
+
 }

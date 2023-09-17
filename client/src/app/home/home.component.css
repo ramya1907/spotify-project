@@ -35,7 +35,6 @@ body {
   z-index: 9999;
 }
 
-
 .title {
   font-family: "VT323", monospace;
   font-size: 6rem;
@@ -354,7 +353,7 @@ input::placeholder {
   overflow: hidden;
   font-size: 1.5rem;
   /* top: 58%; */
-  top:67%;
+  top: 67%;
   left: 57%;
   width: 200px;
   height: 115px;
@@ -451,10 +450,8 @@ input::placeholder {
   text-decoration: none;
 }
 
-
 /* Media query for screens with a maximum width of 768px */
 @media screen and (max-width: 768px) {
-
   /* Adjust the title font size and margins */
   .title {
     font-size: 4rem;
@@ -463,41 +460,42 @@ input::placeholder {
     color: #0c121f;
   }
 
-  .temp-section{
+  .temp-section {
     font-size: 1rem;
   }
 
   /* Adjust the subtitle font size and margins */
   .view-stats-text {
     font-size: 1.5rem;
-    margin-top: 2%; 
+    margin-top: 2%;
     margin-left: 10%;
     color: #413d38;
     font-weight: 200;
   }
 
-  /* Adjust the input container width */
-  .input-container {
-    width: 80%;
-    left: 5%;
-  }
-
-  /* Adjust the button styles */
   .btn--action {
-    opacity: 0;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    top: 28%;
+    left: 73%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
 
   /* Adjust text styles */
-  .p-left, .p-right {
+  .p-left,
+  .p-right {
     font-size: 1rem; /* Adjust text font size */
   }
 
-  .p-left{
+  .p-left {
     top: 50%;
   }
 
-  .p-right{
-    top:70%;
+  .p-right {
+    top: 70%;
   }
 
   .parallax {
@@ -514,9 +512,8 @@ input::placeholder {
     width: 50%;
     box-shadow: 0 3px #6b4f2e;
     margin-top: 4%;
-    top: 20%;
+    top: 40%;
     left: 20%;
-
   }
 
   .p-username-in {
@@ -535,50 +532,73 @@ input::placeholder {
   .artist-btn-0 {
     font-size: 1rem; /* Adjust the font size for smaller screens */
     width: 90px; /* Adjust the width for smaller screens */
-    height: 10px; /* Adjust the height for smaller screens */
+    height: 50px; /* Adjust the height for smaller screens */
     padding: 0.5rem;
     box-shadow: 0 5px #594f59;
   }
 
   .heatmap-btn,
-  .heatmap-btn-0{
+  .heatmap-btn-0 {
     top: 63%;
-    left: 19%;
+    left: 14%;
   }
 
   .artist-btn,
-  .artist-btn-0{
+  .artist-btn-0 {
     top: 63%;
-    left: 60%;
+    left: 70%;
   }
 
+  .border-container {
+    border: 9px solid rgb(38, 38, 38);
+  }
 
-.border-container {
-  border: 9px solid rgb(38, 38, 38);
-}
+  .top-border {
+    height: 9px;
+  }
 
-.top-border {
-  
-  height: 9px;
-}
+  .bottom-border {
+    height: 9px;
+  }
 
-.bottom-border {
-  height: 9px;
-}
+  .image-l {
+    top: 60%;
+    left: 20%;
+  }
 
-.image-l {
-  top: 58%;
-  left: 20%;
-}
+  .image-r {
+    top: 70%;
+    left: 73%;
+  }
 
-.image-r {
-  top: 65%;
-  left: 73%;
-}
+  .input-container {
+    width: 70%;
+    left: 5%;
+    top: 28%;
+  }
 
+  input[type="text"] {
+    background-color: black;
+    color: orange;
+    border: none;
+    font-size: 1rem;
+    width: 90%;
+    padding: 3px;
+    padding-left: 10px;
+  }
 
+  input::placeholder {
+    color: #8e451e;
+    font-size: 1rem;
+  }
 
+  .alert {
+    font-size: 1rem;
+    left: 20%;
+    top: 15%;
+    position: absolute;
+    color: rgb(197, 162, 137);
+  }
 
   /* Add more styles for smaller screens as needed */
 }
-
