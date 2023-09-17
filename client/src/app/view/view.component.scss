@@ -208,7 +208,6 @@ input::placeholder {
   margin: 10% 3% 5% 0;
   display: flex;
   align-items: center;
-  /* Vertical alignment */
 }
 
 .ngx-pc {
@@ -227,11 +226,18 @@ input::placeholder {
   font-size: 3rem;
   color: rgb(193, 151, 177);
   flex: 1;
-  /* Allow the text to take up available space */
+
   margin-left: 5%;
-  /* Add space between the pie chart and text */
+
   text-align: left;
-  /* Align text to the left */
+
+
+}
+
+.pc-p span {
+
+  font-size: 5rem;
+  color: rgb(161, 189, 180);
 
 }
 
@@ -540,7 +546,6 @@ input::placeholder {
 
   .input-container {
     width: 90%;
-    border-radius: 5px;
     padding: 7px;
     padding-left: 10px;
     margin-left: 3%;
@@ -549,7 +554,7 @@ input::placeholder {
   .input[type="text"] {
     font-size: 1rem;
     padding: 3px;
-    padding-left: 5px;
+    padding-left: 2px;
   }
 
   .input::placeholder {
@@ -558,13 +563,11 @@ input::placeholder {
 
   .btn--action {
 
-    width: 40px;
-    height: 40px;
+    width: 32.5px;
+    height: 32.5px;
     font-size: 0.8rem;
-    margin-left: 18px;
+    margin-left: 15px;
   }
-
-
 
   .alert {
     font-size: 1rem;
@@ -586,7 +589,7 @@ input::placeholder {
     left: 28%;
   }
 
-  .spinner-container p{
+  .spinner-container p {
     font-size: 2rem;
   }
 
@@ -595,7 +598,7 @@ input::placeholder {
     margin-left: 3%;
   }
 
-  .bar-chart-container{
+  .bar-chart-container {
 
     overflow-x: auto;
     white-space: nowrap;
@@ -603,11 +606,11 @@ input::placeholder {
     position: relative;
   }
 
-  .bc-title{
+  .bc-title {
     font-size: 2.5rem;
   }
-  
-  .ngx-pc{
+
+  .ngx-pc {
     border-radius: 15px;
     padding: 7.5px;
     overflow-x: auto;
@@ -616,7 +619,12 @@ input::placeholder {
     position: relative;
   }
 
-  .pc-p{
+  .pc-p {
+    font-size: 1.5rem;
+    margin-left: 2%;
+  }
+
+  .pc-p span {
     font-size: 2rem;
   }
 
@@ -628,7 +636,7 @@ input::placeholder {
     font-size: 3rem;
   }
 
-  .found-song{
+  .found-song {
     font-size: 2.5rem;
   }
 
@@ -644,74 +652,73 @@ input::placeholder {
   }
 
   .album-container {
+    display: flex;
+    flex-direction: column;
     border-radius: 20px;
     padding: 3%;
-    margin: 2% 2%;
+    margin: 5% 2%;
+    // overflow-x: auto;
+    max-width: none;
+    max-height: none;
   }
 
   .album-title {
-    font-size: 13px;
+    font-size: 7px;
+    text-align: center;
   }
 
-  .album-image {
-    padding: 2px;
-  }
+  // .album-image {
+  //   padding: 2px;
+  // }
 
   .album-image img {
-    max-width: 300px;
-    max-height: 300px;
+    // max-width: 150px;
+    // max-height: 150px;
+
+    max-width: 100%;
+    /* Make the image responsive to the container */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: contain;
+    /* Fit image within the container */
   }
 
-  .album-songs {
-    padding: 3px;
-  }
+  // .album-songs {
+  //   padding: 3px;
+  // }
 
   .album-songs li {
-    margin: 3px 0;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    
   }
 
 
-.album-songs li span {
-  font-size: 1rem;
-  text-align: left;
-  width: 100%;
-  margin-right: 5px;
+  .album-songs li span {
+    font-size: 0.9rem;
+    width: 100%;
+    margin-right: 5px;
+    white-space: nowrap;
 
-}
+  }
 
-.album-songs li button {
+  .album-songs li button {
 
-  margin-left: 5px;
-  width: 48px;
-  height: 48px;
-}
-
-
-.arrow {
-  bottom: 30px;
- 
-}
-
-.missed-songs {
-
-  overflow-x: auto;
-
-}
+    margin-left: 3px;
+    width: 24px;
+    height: 24px;
+  }
 
 
+  .arrow {
+    bottom: 30px;
 
+  }
 
-
-
-
-
-
-
-
-
-  
-
-
-
+  .regenerate-btn{
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
 
 }

@@ -64,11 +64,13 @@ body {
 .parallax {
   background-image: url("../../assets/comp_images/bg-1.png");
   background-attachment: fixed;
-  background-position: center;
+  background-position: center center;
+  /* background-position: center; */
   background-repeat: no-repeat;
   background-size: cover;
 
-  height: 100vh;
+  min-height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -477,7 +479,7 @@ input::placeholder {
     padding: 1rem;
     border-radius: 1rem;
     font-size: 1rem;
-    top: 28%;
+    top: 34%;
     left: 78%;
     width: 30px;
     height: 30px;
@@ -491,11 +493,12 @@ input::placeholder {
   }
 
   .p-left {
-    top: 53%;
+    top: 51%;
   }
 
   .p-right {
     top: 70%;
+    right: 73%;
   }
 
   .parallax {
@@ -542,6 +545,7 @@ input::placeholder {
   .heatmap-btn-0 {
     top: 63%;
     left: 10%;
+    padding-top: 5px;
   }
 
   .artist-btn,
@@ -569,13 +573,13 @@ input::placeholder {
 
   .image-r {
     top: 70%;
-    left: 80%;
+    left: 90%;
   }
 
   .input-container {
     width: 70%;
     left: 5%;
-    top: 35%;
+    top: 28%;
   }
 
   input[type="text"] {
