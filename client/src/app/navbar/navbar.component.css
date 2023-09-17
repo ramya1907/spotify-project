@@ -79,20 +79,20 @@
 
   .navbar nav ul {
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
     padding: 0;
     align-items: center;
   }
 
   .navbar nav ul li {
-    margin-right: 6%;
+    margin-right: 1rem;
   }
 
   .navbar nav ul li a {
     font-size: 1rem;
     margin: 0;
-    text-wrap: nowrap;
+    white-space: nowrap;
   }
 
   .navbar nav ul li:last-child {
