@@ -481,17 +481,26 @@ input::placeholder {
 
   /* Adjust the button styles */
   .btn--action {
-    top: 55%; /* Adjust the button's vertical position */
-    left: 50%;
+    top: 30%; /* Adjust the button's vertical position */
+    left: 60%;
     transform: translateX(-50%);
-    width: 80%; /* Adjust button width */
+    width: 30%; /* Adjust button width */
     font-size: 1.2rem; /* Adjust button font size */
-    padding: 1rem 2rem; /* Adjust button padding */
+    padding: 0.5rem 1rem; /* Adjust button padding */
+    box-shadow: 0 5px #594f59;
   }
 
   /* Adjust text styles */
   .p-left, .p-right {
     font-size: 1rem; /* Adjust text font size */
+  }
+
+  .p-left{
+    top: 50%;
+  }
+
+  .p-right{
+    top:70%;
   }
 
   .parallax {
@@ -504,27 +513,49 @@ input::placeholder {
     background-size: auto 100%;
   }
 
+  .p-username {
+    width: 20%;
+    box-shadow: 0 3px #6b4f2e;
+    margin-top: 4%;
+    top: 20%;
+    left: 20%;
+
+  }
+
+  .p-username-in {
+    border-radius: 1px;
+    font-size: 1rem;
+    width: 80%;
+    padding: 2px;
+    padding-left: 10px;
+    margin-top: 2%;
+    margin-left: 3%;
+  }
+
   .heatmap-btn,
   .artist-btn,
   .heatmap-btn-0,
   .artist-btn-0 {
     font-size: 1rem; /* Adjust the font size for smaller screens */
-    width: 100px; /* Adjust the width for smaller screens */
-    height: 57px; /* Adjust the height for smaller screens */
+    width: 90px; /* Adjust the width for smaller screens */
+    height: 5px; /* Adjust the height for smaller screens */
     padding: 0.5rem;
+    box-shadow: 0 5px #594f59;
   }
 
   .heatmap-btn,
   .heatmap-btn-0{
-    top: 57%;
+    top: 63%;
     left: 19%;
   }
 
   .artist-btn,
   .artist-btn-0{
-    top: 48%;
-    left: 19%;
+    top: 63%;
+    left: 40%;
   }
+
+
 
   /* Add more styles for smaller screens as needed */
 }

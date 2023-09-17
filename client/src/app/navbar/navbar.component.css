@@ -61,15 +61,19 @@
     top: 0;
     left: 0;
     padding: 10px;
-    background-color: #93805c;
     height: auto;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align items in the center vertically */
+    background-color: transparent;
   }
 
   .navbar.scrolled {
     padding-left: 10px;
     padding-top: 20px;
     height: auto;
+    background-color: #93805c;
   }
 
   .navbar nav ul {
@@ -83,7 +87,7 @@
 
   .navbar nav ul li a {
     font-size: 1rem;
-    margin: 10px 5px;
+    margin: 0;
   }
 }
 
