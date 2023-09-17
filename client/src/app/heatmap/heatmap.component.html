@@ -50,41 +50,40 @@
       </div>
 
       <div *ngIf="!isLoading && alertUser">
-        <p class="alert">
-          sorry, there's no recorded data for that year
-        </p>
+        <p class="alert">sorry, there's no recorded data for that year</p>
       </div>
 
       <div *ngIf="displayReady && !alertUser" style="padding: 0; margin: 0">
         <div class="heatmap-wrapper">
-        <div class="heatmap-container">
-          <ngx-charts-heat-map
-            [results]="heatmapData"
-            [view]="[1300, 300]"
-            [scheme]="'nightLights'"
-            [legend]="true"
-            [xAxis]="true"
-            [yAxis]="true"
-            [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
-            [gradient]="true"
-            [legendTitle]="'Play Count'"
-            [animations]="true"
-            [xAxisTickFormatting]="calendarAxisTickFormatting"
-            [tooltipText]="calendarTooltipText"
-            [innerPadding]="4"
-            [trimYAxisTicks]="true"
-            [maxYAxisTickLength]="3"
-          ></ngx-charts-heat-map>
+          <div class="heatmap-container">
+            <ngx-charts-heat-map
+              [results]="heatmapData"
+              [view]="[1300, 300]"
+              [scheme]="'nightLights'"
+              [legend]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [gradient]="true"
+              [legendTitle]="'Play Count'"
+              [animations]="true"
+              [xAxisTickFormatting]="calendarAxisTickFormatting"
+              [tooltipText]="calendarTooltipText"
+              [innerPadding]="4"
+              [trimYAxisTicks]="true"
+              [maxYAxisTickLength]="3"
+            ></ngx-charts-heat-map>
+          </div>
         </div>
-      </div>
       </div>
 
       <div class="heatmap-info" *ngIf="displayReady && !alertUser">
-        <div style="margin: 5% 0 0 5%; text-align: left;">
+        <div style="margin: 5% 0 0 5%; text-align: left">
           <p>Your peak scrobble count</p>
           <p>
-            occured on <strong style="font-size: 4.5rem">{{ highestScrobbleDay }}</strong>
+            occured on
+            <strong style="font-size: 4.5rem">{{ highestScrobbleDay }}</strong>
           </p>
           <p>where you recorded an impressive</p>
           <p>
@@ -93,9 +92,7 @@
           </p>
         </div>
 
-        <div
-          style="margin-top: 3%; margin-left: 48%; text-align: left;"
-        >
+        <div style="margin-top: 3%; margin-left: 48%; text-align: left">
           <p>Throughout the year,</p>
           <p>you averaged</p>
           <p>

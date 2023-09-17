@@ -78,7 +78,7 @@
       </div>
 
       <div *ngIf="showBarChart" class="bar-chart-container">
-        <h3 class="bc-title">Play count of each of their songs</h3>
+        <h3 class="bc-title">Play Count</h3>
         <div class="bar-chart">
           <ngx-charts-bar-horizontal
             [view]="[1000, 400]"
@@ -147,6 +147,8 @@
               background-color: rgb(21, 21, 31);
               border-radius: 15px;
             "
+
+            class="missed-songs"
           >
             <p class="tut">
               For better accuracy of pie-chart: <br />

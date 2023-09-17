@@ -55,6 +55,7 @@ export class HeatmapComponent implements OnInit {
   }
 
   onYearChange(): void {
+    this.displayReady = false;
     this.selectYear(this.selectedYear);
   }
 

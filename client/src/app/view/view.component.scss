@@ -541,15 +541,15 @@ input::placeholder {
   .input-container {
     width: 90%;
     border-radius: 5px;
-    padding: 5px;
+    padding: 7px;
     padding-left: 10px;
-    margin-left: 20%;
+    margin-left: 3%;
   }
 
   .input[type="text"] {
     font-size: 1rem;
     padding: 3px;
-    padding-left: 10px;
+    padding-left: 5px;
   }
 
   .input::placeholder {
@@ -561,27 +561,28 @@ input::placeholder {
     width: 40px;
     height: 40px;
     font-size: 0.8rem;
+    margin-left: 18px;
   }
 
 
 
   .alert {
     font-size: 1rem;
-    top: 59%;
-    left: 29%;
+    top: 50%;
+    left: 25%;
     text-wrap: nowrap;
   }
 
   .alert-l {
     font-size: 1rem;
     left: 28%;
-    top: 65%;
+    top: 58%;
   }
 
   .alert-e {
 
     font-size: 1rem;
-    top: 69%;
+    top: 60%;
     left: 28%;
   }
 
@@ -591,6 +592,7 @@ input::placeholder {
 
   .tut {
     font-size: 1rem;
+    margin-left: 3%;
   }
 
   .bar-chart-container{
@@ -608,6 +610,10 @@ input::placeholder {
   .ngx-pc{
     border-radius: 15px;
     padding: 7.5px;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
   }
 
   .pc-p{
@@ -626,20 +632,80 @@ input::placeholder {
     font-size: 2.5rem;
   }
 
-  .viewUnlistened h3{
+  .viewUnlistened h3 {
     font-size: 3rem;
   }
 
-  .unlistened-btn{
+  .unlistened-btn {
     font-size: 1rem;
     padding: 1rem;
     border-radius: 1rem;
+    font-weight: 200px;
   }
 
-  .album-container{
+  .album-container {
     border-radius: 20px;
-    padding: 4%;
+    padding: 3%;
+    margin: 2% 2%;
   }
+
+  .album-title {
+    font-size: 13px;
+  }
+
+  .album-image {
+    padding: 2px;
+  }
+
+  .album-image img {
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .album-songs {
+    padding: 3px;
+  }
+
+  .album-songs li {
+    margin: 3px 0;
+  }
+
+
+.album-songs li span {
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  margin-right: 5px;
+
+}
+
+.album-songs li button {
+
+  margin-left: 5px;
+  width: 48px;
+  height: 48px;
+}
+
+
+.arrow {
+  bottom: 30px;
+ 
+}
+
+.missed-songs {
+
+  overflow-x: auto;
+
+}
+
+
+
+
+
+
+
+
+
 
 
 

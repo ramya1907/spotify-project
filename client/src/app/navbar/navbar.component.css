@@ -1,60 +1,58 @@
-
 .navbar {
-    position: fixed;
-    top: 5%;
-    left: 5%;
-    width: 100%;
-    padding: 15px;
-    transition: background-color 0.3s ease;
-    background-color: transparent;
-   
-  }
-  
-  .navbar.scrolled {
-    top: 0;
-    right: 0;
-    position: fixed;
-    left: 1.5%;
-    padding: 10px;
-    padding-left: 60px;
-    padding-top: 40px;
-    background-color: #93805c;
-    height: 14%;
-    width: calc(100% - 3%); 
-    z-index: 1;
-  }
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 100%;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+  background-color: transparent;
+}
 
-  .navbar.scrolled nav ul li a {
-    color: rgb(53, 50, 43);
-  }
-  
-  .navbar nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-  }
-  
-  .navbar nav ul li:first-child {
-    margin-left: 30px;
-  }
-  .navbar nav ul li:last-child {
-    margin-right: 0;
-  }
-  
-  .navbar nav ul li a {
-    color: #b3c1b7;
-    text-decoration: none;
-    font-family: "VT323", monospace;
-    font-size: 2rem;
-    margin-right: 10rem;
-    margin-left: 9rem;
-  }
-  
-  .navbar nav ul li a:hover {
-    color: #474760;
-  }
+.navbar.scrolled {
+  top: 0;
+  right: 0;
+  position: fixed;
+  left: 1.5%;
+  padding: 10px;
+  padding-left: 60px;
+  padding-top: 40px;
+  background-color: #93805c;
+  height: 14%;
+  width: calc(100% - 3%);
+  z-index: 1;
+}
 
-  /* Media query for screens with a maximum width of 768px */
+.navbar.scrolled nav ul li a {
+  color: rgb(53, 50, 43);
+}
+
+.navbar nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.navbar nav ul li:first-child {
+  margin-left: 30px;
+}
+.navbar nav ul li:last-child {
+  margin-right: 0;
+}
+
+.navbar nav ul li a {
+  color: #b3c1b7;
+  text-decoration: none;
+  font-family: "VT323", monospace;
+  font-size: 2rem;
+  margin-right: 10rem;
+  margin-left: 9rem;
+}
+
+.navbar nav ul li a:hover {
+  color: #474760;
+}
+
+/* Media query for screens with a maximum width of 768px */
 @media screen and (max-width: 768px) {
   /* Adjust the styles for mobile screens */
   .navbar {
@@ -65,7 +63,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around; 
+    justify-content: space-around;
     background-color: transparent;
   }
 
@@ -79,14 +77,13 @@
 
   .navbar nav ul {
     flex-direction: row;
-    /* align-items: center; */
     justify-content: space-around;
-    width: 100%; /* Ensure the full width is used */
+    width: 100%; 
     padding: 0;
   }
 
   .navbar nav ul li {
-    margin-right: 20px;
+    margin-right: 10%;
   }
 
   .navbar nav ul li a {
@@ -94,16 +91,3 @@
     margin: 0;
   }
 }
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  

@@ -8,7 +8,7 @@ body {
 .border-container {
   border: 20px solid rgb(38, 38, 38);
   box-sizing: border-box;
-  position: fixed;;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -17,31 +17,43 @@ body {
 }
 
 .bottom-border {
-    width: 100%;
-    height: 20px;
-    background-color: rgb(38, 38, 38);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
+  width: 100%;
+  height: 20px;
+  background-color: rgb(38, 38, 38);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.main {
+  padding: 10px;
+  min-height: 90vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.main p {
+  font-size: 2rem;
+  font-family: "VT323", monospace;
+  color: rgb(203, 190, 215);
+}
+
+.main p a {
+  color: pink;
+}
+
+@media screen and (max-width: 768px) {
+  .border-container {
+    border: 10px solid rgb(38, 38, 38);
   }
 
+  .bottom-border {
+    height: 10px;
+  }
 
- .main {
-    padding: 10px;
-    min-height: 90vh;
-    align-items: center;
-    justify-content: center;
-    display: flex;
- }
-
- .main p {
-    font-size: 2rem;
-    font-family: "VT323", monospace;
-    color: rgb(203, 190, 215);
- } 
-
- .main p a {
-    color: pink;
- }
-  
+  .main p {
+   font-size: 1rem;
+  }
+}
