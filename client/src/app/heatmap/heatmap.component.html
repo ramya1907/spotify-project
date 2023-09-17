@@ -57,6 +57,7 @@
       </div>
 
       <div *ngIf="displayReady && !alertUser" style="padding: 0; margin: 0">
+        <div class="heatmap-wrapper">
         <div class="heatmap-container">
           <ngx-charts-heat-map
             [results]="heatmapData"
@@ -77,6 +78,7 @@
             [maxYAxisTickLength]="3"
           ></ngx-charts-heat-map>
         </div>
+      </div>
       </div>
 
       <div class="heatmap-info" *ngIf="displayReady && !alertUser">

@@ -72,7 +72,7 @@
 
   .navbar.scrolled {
     padding-left: 10px;
-    padding-top: 20px;
+    padding-top: 10px;
     height: auto;
     background-color: #93805c;
   }
@@ -81,11 +81,12 @@
     flex-direction: row;
     /* align-items: center; */
     justify-content: space-around;
+    width: 100%; /* Ensure the full width is used */
+    padding: 0;
   }
 
   .navbar nav ul li {
-    /* margin: 10px 0; */
-    margin: 0;
+    margin-right: 10px;
   }
 
   .navbar nav ul li a {

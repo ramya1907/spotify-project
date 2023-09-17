@@ -470,9 +470,10 @@ input::placeholder {
   /* Adjust the subtitle font size and margins */
   .view-stats-text {
     font-size: 1.5rem;
-    margin-top: 2%;
+    margin-top: 2%; 
     margin-left: 10%;
     color: #413d38;
+    font-weight: 200;
   }
 
   /* Adjust the input container width */
@@ -483,13 +484,7 @@ input::placeholder {
 
   /* Adjust the button styles */
   .btn--action {
-    top: 30%; /* Adjust the button's vertical position */
-    left: 60%;
-    transform: translateX(-50%);
-    width: 30%; /* Adjust button width */
-    font-size: 1.2rem; /* Adjust button font size */
-    padding: 0.5rem 1rem; /* Adjust button padding */
-    box-shadow: 0 5px #594f59;
+    opacity: 0;
   }
 
   /* Adjust text styles */
@@ -516,7 +511,7 @@ input::placeholder {
   }
 
   .p-username {
-    width: 20%;
+    width: 50%;
     box-shadow: 0 3px #6b4f2e;
     margin-top: 4%;
     top: 20%;
@@ -540,7 +535,7 @@ input::placeholder {
   .artist-btn-0 {
     font-size: 1rem; /* Adjust the font size for smaller screens */
     width: 90px; /* Adjust the width for smaller screens */
-    height: 5px; /* Adjust the height for smaller screens */
+    height: 10px; /* Adjust the height for smaller screens */
     padding: 0.5rem;
     box-shadow: 0 5px #594f59;
   }
@@ -554,7 +549,7 @@ input::placeholder {
   .artist-btn,
   .artist-btn-0{
     top: 63%;
-    left: 40%;
+    left: 60%;
   }
 
 
@@ -569,6 +564,16 @@ input::placeholder {
 
 .bottom-border {
   height: 9px;
+}
+
+.image-l {
+  top: 58%;
+  left: 20%;
+}
+
+.image-r {
+  top: 65%;
+  left: 73%;
 }
 
 

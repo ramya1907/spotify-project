@@ -191,7 +191,7 @@ body {
   }
   
   .title{
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .title strong {
@@ -200,12 +200,24 @@ body {
 
   .view {
     font-size: 2rem;
+    margin-left: 5%;
   }
 
   .year-selector select {
-    margin-left: 10%; 
+    margin-left: 9%; 
     margin-top: 5%;
+    margin-right: 3%;
+    padding: 5px;
   }
+
+  .heatmap-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .heatmap-container {
+    width: 150%; }
 
 
   .heatmap-info {
