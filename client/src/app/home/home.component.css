@@ -460,6 +460,7 @@ input::placeholder {
     font-size: 4rem;
     margin-top: 5%;
     margin-left: 10%;
+    color: #0c121f;
   }
 
   .temp-section{
@@ -471,6 +472,7 @@ input::placeholder {
     font-size: 1.5rem;
     margin-top: 2%;
     margin-left: 10%;
+    color: #413d38;
   }
 
   /* Adjust the input container width */
@@ -554,6 +556,21 @@ input::placeholder {
     top: 63%;
     left: 40%;
   }
+
+
+.border-container {
+  border: 9px solid rgb(38, 38, 38);
+}
+
+.top-border {
+  
+  height: 9px;
+}
+
+.bottom-border {
+  height: 9px;
+}
+
 
 
 

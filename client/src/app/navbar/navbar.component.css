@@ -64,8 +64,9 @@
     height: auto;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Align items in the center vertically */
+    flex-direction: row;
+    /* align-items: center;  */
+    justify-content: space-around; /* Add spacing between items */
     background-color: transparent;
   }
 
@@ -77,12 +78,14 @@
   }
 
   .navbar nav ul {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-around;
   }
 
   .navbar nav ul li {
-    margin: 10px 0;
+    /* margin: 10px 0; */
+    margin: 0;
   }
 
   .navbar nav ul li a {
