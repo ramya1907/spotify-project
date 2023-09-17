@@ -454,12 +454,35 @@ input::placeholder {
 
 /* Media query for screens with a maximum width of 768px */
 @media screen and (max-width: 768px) {
+
+  .border-container {
+    border: 9px solid rgb(38, 38, 38);
+  }
+
+  .top-border {
+    height: 9px;
+  }
+
+  .bottom-border {
+    height: 9px;
+  }
+
   /* Adjust the title font size and margins */
   .title {
     font-size: 4rem;
     margin-top: 5%;
     margin-left: 10%;
     color: #0c121f;
+  }
+
+
+  .parallax {
+    /* Adjust background size for mobile screens */
+    background-size: auto 100%;
+  }
+
+  .rounded-rectangle {
+    background-size: auto 100%;
   }
 
   .temp-section {
@@ -472,17 +495,51 @@ input::placeholder {
     margin-top: 2%;
     margin-left: 10%;
     color: #413d38;
-    font-weight: 500;
+    font-weight: 600;
   }
+
+  .input-container {
+    width: 70%;
+    left: 5%;
+    top: 32%;
+  }
+
+  input[type="text"] {
+    font-size: 1rem;
+    width: 90%;
+    padding: 3px 3px 0 10px;
+  }
+
+  input::placeholder {
+    color: #8e451e;
+    font-size: 1rem;
+  }
+
+  .p-username {
+    width: 70%;
+    box-shadow: 0 3px #6b4f2e;
+    top: 32%;
+    left: 5%;
+    
+  }
+
+  .p-username-in {
+    border-radius: 1px;
+    font-size: 1rem;
+    width: 80%;
+    padding: 2px;
+    padding-left: 10px;
+  }
+
 
   .btn--action {
     padding: 1rem;
     border-radius: 1rem;
     font-size: 1rem;
-    top: 34%;
+    top: 32%;
     left: 78%;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
   }
 
@@ -498,37 +555,9 @@ input::placeholder {
 
   .p-right {
     top: 70%;
-    right: 73%;
+    left: 70%;
   }
 
-  .parallax {
-    /* Adjust background size for mobile screens */
-    background-size: auto 100%;
-  }
-
-  .rounded-rectangle {
-    /* Adjust background size for mobile screens */
-    background-size: auto 100%;
-  }
-
-  .p-username {
-    width: 70%;
-    box-shadow: 0 3px #6b4f2e;
-    /* margin-top: 4%; */
-    top: 35%;
-    left: 5%;
-    
-  }
-
-  .p-username-in {
-    border-radius: 1px;
-    font-size: 1rem;
-    width: 80%;
-    padding: 2px;
-    padding-left: 10px;
-    margin-top: 2%;
-    margin-left: 3%;
-  }
 
   .heatmap-btn,
   .artist-btn,
@@ -545,7 +574,7 @@ input::placeholder {
   .heatmap-btn-0 {
     top: 63%;
     left: 10%;
-    padding-top: 5px;
+    padding: 0.8rem 0.5rem 0.5rem 0.5rem ;
   }
 
   .artist-btn,
@@ -554,48 +583,19 @@ input::placeholder {
     left: 70%;
   }
 
-  .border-container {
-    border: 9px solid rgb(38, 38, 38);
-  }
-
-  .top-border {
-    height: 9px;
-  }
-
-  .bottom-border {
-    height: 9px;
-  }
+  
 
   .image-l {
-    top: 60%;
+    top: 70%;
     left: 5%;
   }
 
   .image-r {
-    top: 70%;
+    top: 60%;
     left: 90%;
   }
 
-  .input-container {
-    width: 70%;
-    left: 5%;
-    top: 28%;
-  }
-
-  input[type="text"] {
-    background-color: black;
-    color: orange;
-    border: none;
-    font-size: 1rem;
-    width: 90%;
-    padding: 3px;
-    padding-left: 10px;
-  }
-
-  input::placeholder {
-    color: #8e451e;
-    font-size: 1rem;
-  }
+  
 
   .alert {
     font-size: 1rem;
