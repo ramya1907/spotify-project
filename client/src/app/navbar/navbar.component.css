@@ -59,7 +59,7 @@
   .navbar {
     top: 0;
     left: 0;
-    padding: 12px 10px 10px 4.5rem; 
+    padding: 12px 10px 10px 4.7rem; 
     height: auto;
     width: 100%;
     display: flex;
@@ -71,7 +71,7 @@
 
   .navbar.scrolled {
 
-    padding: 12px 0 5px 3.5rem;
+    padding: 12px 0 5px 4.7rem;
     height: auto;
     background-color: #93805c;
   }

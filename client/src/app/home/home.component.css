@@ -62,7 +62,7 @@ body {
 }
 
 .parallax {
-  background-image: url("../../assets/comp_images/bg-1.png");
+  background-image: url("../../assets/comp-images/bg-1.png");
   background-attachment: fixed;
   background-position: center center;
   /* background-position: center; */
@@ -123,7 +123,7 @@ body {
 }
 
 .rounded-rectangle {
-  background-image: url("../../assets/comp_images/bg-2.1.png");
+  background-image: url("../../assets/comp-images/bg-2.1.png");
   background-color: #131313;
   width: 775px;
   height: 525px;
@@ -470,14 +470,14 @@ input::placeholder {
   /* Adjust the title font size and margins */
   .title {
     font-size: 4rem;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 10%;
     color: #0c121f;
   }
 
-
   .parallax {
-    /* Adjust background size for mobile screens */
+
+    background-image: url("../../assets/comp-images/mobile-bg.png");
     background-size: auto 100%;
   }
 
@@ -489,7 +489,6 @@ input::placeholder {
     font-size: 2rem;
   }
 
-  /* Adjust the subtitle font size and margins */
   .view-stats-text {
     font-size: 1.5rem;
     margin-top: 2%;
@@ -518,7 +517,7 @@ input::placeholder {
   .p-username {
     width: 70%;
     box-shadow: 0 3px #6b4f2e;
-    top: 32%;
+    top: 30%;
     left: 5%;
     
   }
@@ -535,7 +534,7 @@ input::placeholder {
   .btn--action {
     padding: 1rem;
     border-radius: 1rem;
-    font-size: 1rem;
+    font-size: 0.3rem;
     top: 33%;
     left: 78%;
     width: 32px;
@@ -554,8 +553,8 @@ input::placeholder {
   }
 
   .p-right {
-    top: 72%;
-    left: 58%;
+    top: 80%;
+    left: 50%;
   }
 
 
@@ -574,20 +573,20 @@ input::placeholder {
   .heatmap-btn-0 {
     top: 63%;
     left: 10%;
-    padding: 0.8rem 0.5rem 0.5rem 0.6rem ;
+    padding: 0.8rem 0.5rem 0.5rem 0.8rem ;
   }
 
   .artist-btn,
   .artist-btn-0 {
     top: 63%;
     left: 70%;
-    padding: 0.9rem 0.5rem 0.5rem 0.5rem ;
+    padding: 0.9rem 0.5rem 0.5rem 0.6  rem ;
   }
 
   
 
   .image-l {
-    top: 61%;
+    top: 59%;
     left: 5%;
   }
 
