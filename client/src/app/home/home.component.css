@@ -466,7 +466,7 @@ input::placeholder {
     background-image: url("../../assets/comp-images/mobile-bg.png");
     background-attachment: scroll; 
     min-height: auto; 
-    background-size: cover;
+    background-size: 100% auto;
     /* background-size: contain;  */
     background-position: center top;
    /* background-size: 100% 100%; */
@@ -491,7 +491,7 @@ input::placeholder {
   .input-container {
     width: 70%;
     left: 5%;
-    top: 31%;
+    top: 33%;
   }
 
   input[type="text"] {
@@ -543,7 +543,7 @@ input::placeholder {
   }
 
   .p-right {
-    top: 71%;
+    top: 73%;
     left: 45%;
   }
 
