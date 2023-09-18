@@ -1,7 +1,8 @@
-body {
+.body-style {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  background-color: rgb(33, 38, 44);
 }
 
 .border-container {
