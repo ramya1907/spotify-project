@@ -201,8 +201,6 @@ body {
 
   .view {
     font-size: 1.8rem;
-    margin-left: 2%;
-    margin-right: 0;
   }
 
   .year-selector select {
@@ -210,7 +208,6 @@ body {
     margin-top: 5%;
     padding: 5px;
     font-size: 1rem;
-    margin-right: 0;
   }
 
   .heatmap-wrapper {
@@ -221,7 +218,8 @@ body {
   }
 
   .heatmap-container {
-    width: 150%;
+    /* width: 150%; */
+    width: 100%;
     animation: heatmapAnimation 4s ease-in-out;
     overflow-x: auto;
    }
@@ -247,7 +245,7 @@ body {
       transform: translateX(0); /* Start from the initial position within the container */
     }
     100% {
-      transform: translateX(calc(100% - 1%)); /* Move the content to the right */
+      transform: translateX(100%); /* Move the content to the right */
     }
   }
 
