@@ -465,9 +465,10 @@ input::placeholder {
     background-image: url("../../assets/comp-images/mobile-bg.png");
     background-attachment: scroll; 
     min-height: auto; 
-    /* background-size: contain;
-   */
-   background-size: 100% 100%;
+    background-size: cover;
+    /* background-size: contain;  */
+    background-position: center top;
+   /* background-size: 100% 100%; */
   }
 
   .rounded-rectangle {
@@ -489,7 +490,7 @@ input::placeholder {
   .input-container {
     width: 70%;
     left: 5%;
-    top: 30%;
+    top: 31%;
   }
 
   input[type="text"] {
@@ -523,13 +524,12 @@ input::placeholder {
 
 
   .btn--action {
-    padding: 0.3rem;
-    font-size: 0.3rem;
+    padding: 0.8rem;
+    font-size: 0.4rem;
     top: 33%;
     left: 78%;
     width: 32px;
     height: 32px;
-    border-radius: 50%;
   }
 
   .p-left,
@@ -542,7 +542,7 @@ input::placeholder {
   }
 
   .p-right {
-    top: 70%;
+    top: 71%;
     left: 45%;
   }
 
@@ -569,7 +569,7 @@ input::placeholder {
   .artist-btn-0 {
     top: 63%;
     left: 70%;
-    padding: 0.9rem 0.5rem 0.5rem 0.6  rem ;
+    padding: 1rem 0.5rem 0.5rem 0.6rem ;
   }
 
   
@@ -588,7 +588,7 @@ input::placeholder {
 
   .alert {
     font-size: 1rem;
-    left: 12%;
+    left: 9%;
     top: 25%;
     position: absolute;
     color: rgb(197, 162, 137);
