@@ -201,7 +201,8 @@ body {
 
   .view {
     font-size: 1.8rem;
-    margin-left: 3%;
+    margin-left: 2%;
+    margin-right: 0;
   }
 
   .year-selector select {
@@ -209,6 +210,7 @@ body {
     margin-top: 5%;
     padding: 5px;
     font-size: 1rem;
+    margin-right: 0;
   }
 
   .heatmap-wrapper {
@@ -245,7 +247,7 @@ body {
       transform: translateX(0); /* Start from the initial position within the container */
     }
     100% {
-      transform: translateX(calc(100% - 2%)); /* Move the content to the right */
+      transform: translateX(calc(100% - 1%)); /* Move the content to the right */
     }
   }
 

@@ -192,16 +192,13 @@ input::placeholder {
 .btn--action {
   display: block;
   padding: 1.3rem 2rem;
-  border-radius: 1.5rem;
   background-color: #bc8884;
   color: #000;
   transition: all 0.5s ease 0s;
   box-shadow: 0 10px #594f59;
-  /* position: fixed; */
   position: absolute;
   overflow: hidden;
   font-size: 1.5rem;
-  /* top: 29%; */
   top: 38%;
   left: 65%;
   width: 70px;
@@ -266,7 +263,6 @@ input::placeholder {
   margin-top: 7%;
   position: absolute;
   display: block;
-  /* top: 16%; */
   top: 25%;
   left: 30%;
   transform: translateX(-50%);
@@ -461,7 +457,7 @@ input::placeholder {
 
   .title {
     font-size: 4rem;
-    margin-top: 2%;
+    margin-top: 2.5%;
     margin-left: 10%;
     color: #0c121f;
   }
@@ -471,6 +467,7 @@ input::placeholder {
     background-image: url("../../assets/comp-images/mobile-bg.png");
     background-attachment: scroll; 
     min-height: auto; 
+    background-size: contain;
   }
 
   .rounded-rectangle {
@@ -515,17 +512,18 @@ input::placeholder {
   }
 
   .p-username-in {
-    border-radius: 1px;
     font-size: 1rem;
     width: 80%;
-    padding: 2px;
+    padding: 3px;
     padding-left: 10px;
+    margin-top: 4%;
+    margin-left: 6%;
+  
   }
 
 
   .btn--action {
-    padding: 1rem;
-    border-radius: 1rem;
+    padding: 0.3rem;
     font-size: 0.3rem;
     top: 33%;
     left: 78%;
@@ -540,12 +538,12 @@ input::placeholder {
   }
 
   .p-left {
-    top: 51%;
+    top: 50%;
   }
 
   .p-right {
-    top: 78%;
-    left: 47%;
+    top: 75%;
+    left: 45%;
   }
 
 
@@ -590,8 +588,8 @@ input::placeholder {
 
   .alert {
     font-size: 1rem;
-    left: 20%;
-    top: 15%;
+    left: 12%;
+    top: 25%;
     position: absolute;
     color: rgb(197, 162, 137);
   }
