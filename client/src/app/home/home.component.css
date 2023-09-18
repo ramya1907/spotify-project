@@ -403,9 +403,7 @@ input::placeholder {
   color: rgb(187, 161, 165);
 
   display: block;
-  /* position: fixed; */
   position: absolute;
-  /* top: 44%; */
   top: 55%;
   left: 5%;
 
@@ -416,11 +414,8 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 1.5rem;
   color: rgb(187, 161, 165);
-
-  /* position: fixed; */
   position: absolute;
   display: block;
-  /* top: 74%; */
   top: 80%;
   left: 76%;
 }
@@ -432,18 +427,14 @@ input::placeholder {
 }
 
 .image-l {
-  /* position: fixed; */
   position: absolute;
-  /* top: 58%; */
   top: 69%;
   left: 20%;
 }
 
 .image-r {
   width: 59%;
-  /* position: fixed; */
   position: absolute;
-  /* top: 64%; */
   top: 73%;
   left: 73%;
 }
@@ -467,7 +458,7 @@ input::placeholder {
     height: 9px;
   }
 
-  /* Adjust the title font size and margins */
+
   .title {
     font-size: 4rem;
     margin-top: 2%;
@@ -478,7 +469,8 @@ input::placeholder {
   .parallax {
 
     background-image: url("../../assets/comp-images/mobile-bg.png");
-    background-size: auto 100%;
+    background-attachment: scroll; 
+    min-height: auto; 
   }
 
   .rounded-rectangle {
@@ -500,7 +492,7 @@ input::placeholder {
   .input-container {
     width: 70%;
     left: 5%;
-    top: 30%;
+    top: 29%;
   }
 
   input[type="text"] {
@@ -517,7 +509,7 @@ input::placeholder {
   .p-username {
     width: 70%;
     box-shadow: 0 3px #6b4f2e;
-    top: 30%;
+    top: 29%;
     left: 5%;
     
   }
@@ -542,10 +534,9 @@ input::placeholder {
     border-radius: 50%;
   }
 
-  /* Adjust text styles */
   .p-left,
   .p-right {
-    font-size: 1rem; /* Adjust text font size */
+    font-size: 1rem; 
   }
 
   .p-left {
@@ -553,8 +544,8 @@ input::placeholder {
   }
 
   .p-right {
-    top: 80%;
-    left: 50%;
+    top: 78%;
+    left: 47%;
   }
 
 
@@ -605,5 +596,5 @@ input::placeholder {
     color: rgb(197, 162, 137);
   }
 
-  /* Add more styles for smaller screens as needed */
+  
 }
