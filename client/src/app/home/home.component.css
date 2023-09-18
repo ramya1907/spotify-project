@@ -501,7 +501,7 @@ input::placeholder {
   .input-container {
     width: 70%;
     left: 5%;
-    top: 32%;
+    top: 30%;
   }
 
   input[type="text"] {
@@ -536,7 +536,7 @@ input::placeholder {
     padding: 1rem;
     border-radius: 1rem;
     font-size: 1rem;
-    top: 32%;
+    top: 33%;
     left: 78%;
     width: 32px;
     height: 32px;
@@ -554,8 +554,8 @@ input::placeholder {
   }
 
   .p-right {
-    top: 70%;
-    left: 70%;
+    top: 72%;
+    left: 58%;
   }
 
 
@@ -574,24 +574,25 @@ input::placeholder {
   .heatmap-btn-0 {
     top: 63%;
     left: 10%;
-    padding: 0.8rem 0.5rem 0.5rem 0.5rem ;
+    padding: 0.8rem 0.5rem 0.5rem 0.6rem ;
   }
 
   .artist-btn,
   .artist-btn-0 {
     top: 63%;
     left: 70%;
+    padding: 0.9rem 0.5rem 0.5rem 0.5rem ;
   }
 
   
 
   .image-l {
-    top: 70%;
+    top: 61%;
     left: 5%;
   }
 
   .image-r {
-    top: 60%;
+    top: 70%;
     left: 90%;
   }
 

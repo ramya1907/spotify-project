@@ -545,48 +545,48 @@ input::placeholder {
   }
 
   .input-container {
-    width: 90%;
+    width: 92%;
     padding: 7px;
     padding-left: 10px;
     margin-left: 3%;
   }
 
   .input[type="text"] {
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 3px;
     padding-left: 2px;
   }
 
   .input::placeholder {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .btn--action {
 
     width: 30px;
     height: 30px;
-    font-size: 0.8rem;
-    margin-left: 0.8rem;
+    font-size: 0.4rem;
+    margin-left: 0.3rem;
   }
 
   .alert {
     font-size: 1rem;
-    top: 50%;
-    left: 25%;
+    top: 54%;
+    left: 18%;
     text-wrap: nowrap;
   }
 
   .alert-l {
     font-size: 1rem;
-    left: 28%;
-    top: 58%;
+    left: 22%;
+    top: 50%;
   }
 
   .alert-e {
 
     font-size: 1rem;
-    top: 60%;
-    left: 28%;
+    top: 54%;
+    left: 20%;
   }
 
   .spinner-container p {
@@ -655,50 +655,44 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    padding: 3%;
-    margin: 5% 2%;
-    // overflow-x: auto;
+    padding: 4%;
+    margin: 5% 7%;
+    overflow-x: auto;
     max-width: none;
     max-height: none;
   }
 
   .album-title {
-    font-size: 7px;
+    font-size: 5px;
     text-align: center;
   }
 
-  // .album-image {
-  //   padding: 2px;
-  // }
 
   .album-image img {
-    // max-width: 150px;
-    // max-height: 150px;
+
 
     max-width: 100%;
-    /* Make the image responsive to the container */
-    height: auto;
-    /* Maintain aspect ratio */
-    object-fit: contain;
-    /* Fit image within the container */
-  }
 
-  // .album-songs {
-  //   padding: 3px;
-  // }
+    height: auto;
+
+    object-fit: contain;
+    max-height: 150px;
+
+
+  }
 
   .album-songs li {
     margin: 5px 0;
     display: flex;
     align-items: center;
-    
+
   }
 
 
   .album-songs li span {
     font-size: 0.9rem;
     width: 100%;
-    margin-right: 5px;
+    margin-right: 2px;
     white-space: nowrap;
 
   }
@@ -706,8 +700,8 @@ input::placeholder {
   .album-songs li button {
 
     margin-left: 3px;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
   }
 
 
@@ -716,7 +710,7 @@ input::placeholder {
 
   }
 
-  .regenerate-btn{
+  .regenerate-btn {
     font-size: 1rem;
     padding: 0.5rem;
   }
