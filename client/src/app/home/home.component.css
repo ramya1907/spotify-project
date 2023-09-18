@@ -69,7 +69,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -440,7 +439,6 @@ input::placeholder {
 
 /* Media query for screens with a maximum width of 768px */
 @media screen and (max-width: 768px) {
-
   .border-container {
     border: 9px solid rgb(38, 38, 38);
   }
@@ -453,7 +451,6 @@ input::placeholder {
     height: 9px;
   }
 
-
   .title {
     font-size: 4rem;
     margin-top: 2.5%;
@@ -462,14 +459,13 @@ input::placeholder {
   }
 
   .parallax {
-
     background-image: url("../../assets/comp-images/mobile-bg.png");
-    background-attachment: scroll; 
-    min-height: auto; 
+    background-attachment: scroll;
+    /* min-height: 100vh;
+     */
+     height: 100vh;
     background-size: 100% auto;
-    /* background-size: contain;  */
     background-position: center top;
-   /* background-size: 100% 100%; */
   }
 
   .rounded-rectangle {
@@ -491,7 +487,7 @@ input::placeholder {
   .input-container {
     width: 70%;
     left: 5%;
-    top: 33%;
+    top: 32%;
   }
 
   input[type="text"] {
@@ -510,7 +506,6 @@ input::placeholder {
     box-shadow: 0 3px #6b4f2e;
     top: 29%;
     left: 5%;
-    
   }
 
   .p-username-in {
@@ -520,9 +515,7 @@ input::placeholder {
     padding-left: 10px;
     margin-top: 4%;
     margin-left: 6%;
-  
   }
-
 
   .btn--action {
     padding: 0.8rem;
@@ -535,7 +528,7 @@ input::placeholder {
 
   .p-left,
   .p-right {
-    font-size: 1rem; 
+    font-size: 1rem;
   }
 
   .p-left {
@@ -546,7 +539,6 @@ input::placeholder {
     top: 73%;
     left: 45%;
   }
-
 
   .heatmap-btn,
   .artist-btn,
@@ -563,17 +555,15 @@ input::placeholder {
   .heatmap-btn-0 {
     top: 63%;
     left: 10%;
-    padding: 0.8rem 0.5rem 0.5rem 0.8rem ;
+    padding: 0.8rem 0.5rem 0.5rem 0.8rem;
   }
 
   .artist-btn,
   .artist-btn-0 {
     top: 63%;
     left: 70%;
-    padding: 1rem 0.5rem 0.5rem 0.6rem ;
+    padding: 1rem 0.5rem 0.5rem 0.6rem;
   }
-
-  
 
   .image-l {
     top: 59%;
@@ -585,8 +575,6 @@ input::placeholder {
     left: 90%;
   }
 
-  
-
   .alert {
     font-size: 1rem;
     left: 9%;
@@ -594,6 +582,4 @@ input::placeholder {
     position: absolute;
     color: rgb(197, 162, 137);
   }
-
-  
 }
