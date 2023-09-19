@@ -218,6 +218,7 @@ body {
     /* overflow-y: auto; */
     white-space: nowrap;
     width: 180%;
+    margin: 20%;
     /* position: relative; */
   }
 
