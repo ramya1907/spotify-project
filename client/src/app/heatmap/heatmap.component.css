@@ -214,11 +214,11 @@ body {
     /* width: 150%; */
     /* max-width: 100%; */
     /* animation: heatmapAnimation 4s ease-in-out; */
-    overflow-x: scroll;
+    overflow: auto;
     /* overflow-y: auto; */
     white-space: nowrap;
-    width: 100%;
-    position: relative;
+    width: 180%;
+    /* position: relative; */
   }
 
   .heatmap-info {
