@@ -43,13 +43,14 @@
   margin: 0;
   padding: 0;
   position: relative;
-
-
 }
 
 .page-title {
   font-size: 5.5rem;
-  margin: 17% 0 5% 21%;
+  // margin: 17% 0 5% 21%;
+  margin: 17% 0 5% 0;
+  text-align: center;
+  
   font-family: "VT323", monospace;
   color: rgb(208, 216, 213);
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
@@ -197,7 +198,7 @@ input::placeholder {
 
 .bc-title {
   font-family: "VT323", monospace;
-  font-size: 4rem;
+  font-size: 5rem;
   color: rgb(161, 189, 180);
   margin-bottom: 8%;
   text-align: left;

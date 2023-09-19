@@ -123,8 +123,10 @@
 .rounded-rectangle {
   background-image: url("../../assets/comp-images/bg-2.1.png");
   background-color: #131313;
-  width: 775px;
-  height: 525px;
+  /* width: 775px;
+  height: 525px; */
+  width: 60%;
+  height: 65%;
   border-radius: 30px;
   box-shadow: 0 13px #413d38;
   background-size: cover;

@@ -1,11 +1,16 @@
 .navbar {
   position: fixed;
   top: 5%;
-  left: 5%;
+  /* left: 5%; */
   width: 100%;
-  padding: 15px;
+  /* padding: 15px; */
   transition: background-color 0.3s ease;
   background-color: transparent;
+
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin: 0;
 }
 
 .navbar.scrolled {
@@ -13,9 +18,7 @@
   right: 0;
   position: fixed;
   left: 1.5%;
-  padding: 10px;
-  padding-left: 60px;
-  padding-top: 40px;
+  padding: 40px 10px 10px 10px;
   background-color: #93805c;
   height: 14%;
   width: calc(100% - 3%);
@@ -30,6 +33,9 @@
   list-style: none;
   padding: 0;
   display: flex;
+
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar nav ul li:first-child {
@@ -59,25 +65,27 @@
   .navbar {
     top: 0;
     left: 0;
-    padding: 12px 10px 10px 4.7rem; 
+    /* padding: 12px 10px 10px 4.7rem;  */
     height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: transparent;
+    /* width: 100%; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* justify-content: space-between; */
+    /* background-color: transparent; */
     text-wrap: nowrap;
+
+    /* align-items: center; */
   }
 
   .navbar.scrolled {
 
-    padding: 12px 0 5px 4.7rem;
+    /* padding: 12px 0 5px 4.7rem; */
     height: auto;
     background-color: #93805c;
   }
 
   .navbar nav ul {
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: center;
     width: 100%;
     padding: 0;
@@ -95,6 +103,6 @@
   }
 
   .navbar nav ul li:last-child {
-    margin-right: 0; /* Remove margin from the last item */
+    margin-right: 0; 
   }
 }

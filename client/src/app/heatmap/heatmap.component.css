@@ -137,6 +137,7 @@ body {
 
 .heatmap-info strong {
   color: #c7ad7c;
+  font-size: 4.5rem;
 }
 
 @keyframes fade-in {
@@ -228,7 +229,7 @@ body {
     width: calc(100% - 20px);
   }
 
-  .heatmap-info p strong {
+  .heatmap-info strong {
     font-size: 2rem;
   }
 
