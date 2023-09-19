@@ -47,7 +47,6 @@
 
 .page-title {
   font-size: 5.5rem;
-  // margin: 17% 0 5% 21%;
   margin: 17% 0 5% 0;
   text-align: center;
   
@@ -188,11 +187,16 @@ input::placeholder {
   flex-direction: column;
   align-items: center;
   margin-top: 10%;
+
+  justify-content: center;
+  height: 100%;
 }
 
 .bar-chart {
-  width: 100%;
-  margin: auto;
+  // width: 100%;
+  max-width: 100%;
+  // margin: auto;
+  align-items: center;
 
 }
 
@@ -201,12 +205,12 @@ input::placeholder {
   font-size: 5rem;
   color: rgb(161, 189, 180);
   margin-bottom: 8%;
-  text-align: left;
+  text-align: center;
 
 }
 
 .pie-chart {
-  margin: 10% 3% 5% 0;
+  margin: 10% 3% 5% 3%;
   display: flex;
   align-items: center;
 }
@@ -251,7 +255,7 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 3.5rem;
   color: rgb(193, 151, 177);
-  margin-left: 5%;
+  margin-left: 10%;
 }
 
 .found-artist strong {
@@ -264,7 +268,7 @@ input::placeholder {
   font-family: "VT323", monospace;
   font-size: 3.5rem;
   color: rgb(193, 151, 177);
-  margin-left: 45%;
+  margin-left: 47%;
   animation: fade-in 2.0s ease forwards;
 
 }
@@ -282,11 +286,8 @@ input::placeholder {
   width: 100%;
   height: 100%;
   background-color: transparent;
-  /* Set to transparent to avoid overlapping content */
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  /* Adjust shadow color and size as needed */
   z-index: -1;
-  /* Place the shadow behind the content */
 }
 
 .viewUnlistened {
