@@ -580,6 +580,7 @@ input::placeholder {
   .image-r {
     top: 70%;
     left: 90%;
+    width: 75%;
   }
 
   .alert {
