@@ -212,11 +212,6 @@ body {
   }
 
   .heatmap-container {
-    /* width: 150%; */
-    /* max-width: 100%; */
-    /* animation: heatmapAnimation 4s ease-in-out; */
-     /* overflow-y: auto; */
-     /* position: relative; */
     overflow: auto;
     white-space: nowrap;
     width: 180%;
