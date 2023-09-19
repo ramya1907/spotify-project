@@ -214,12 +214,13 @@ body {
     /* width: 150%; */
     /* max-width: 100%; */
     /* animation: heatmapAnimation 4s ease-in-out; */
+     /* overflow-y: auto; */
+     /* position: relative; */
     overflow: auto;
-    /* overflow-y: auto; */
     white-space: nowrap;
     width: 180%;
-    margin: 20%;
-    /* position: relative; */
+    margin-left: 30%;
+    
   }
 
   .heatmap-info {
