@@ -455,7 +455,7 @@ input::placeholder {
     font-size: 4rem;
     margin-top: 1%;
     margin-left: 10%;
-    color: #0c121f;
+    color: #b4a3b6;
     transform: translateY(10px);
   }
 
@@ -475,11 +475,15 @@ input::placeholder {
     font-size: 2rem;
   }
 
+  .temp-section p{
+    margin-left: 4%;
+  }
+
   .view-stats-text {
     font-size: 1.5rem;
     margin-top: 2%;
     margin-left: 10%;
-    color: #413d38;
+    color: #a6b2aa;
     font-weight: 600;
   }
 
@@ -517,7 +521,7 @@ input::placeholder {
   }
 
   .btn--action {
-    padding: 0.5rem;
+    padding: 0.7rem 0.5rem 0.5rem 0.7rem;
     font-size: 0.4rem;
     top: 33%;
     left: 78%;
@@ -557,7 +561,7 @@ input::placeholder {
   .heatmap-btn,
   .heatmap-btn-0 {
     top: 63%;
-    left: 10%;
+    left: 7%;
     padding: 0.8rem 0.5rem 0.5rem 0.8rem;
   }
 
