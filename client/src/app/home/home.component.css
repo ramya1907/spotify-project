@@ -475,7 +475,7 @@ input::placeholder {
   .input-container {
     width: 64%;
     left: 5%;
-    top: 32%;
+    top: 33%;
   }
 
   input[type="text"] {
@@ -492,7 +492,7 @@ input::placeholder {
   .p-username {
     width: 64%;
     box-shadow: 0 3px #6b4f2e;
-    top: 32%;
+    top: 31%;
     left: 5%;
   }
 

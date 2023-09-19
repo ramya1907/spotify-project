@@ -124,7 +124,7 @@ body {
 
 .heatmap-info {
   font-size: 4rem;
-  margin-top: 7%;
+  margin: 7% 0 0 0;
   background-color: #6c5f75;
   align-items: left;
   justify-content: center;
