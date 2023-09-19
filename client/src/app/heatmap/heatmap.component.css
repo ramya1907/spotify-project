@@ -204,7 +204,7 @@ body {
   }
 
   .year-selector select {
-    margin-left: 1%; 
+    margin-left: 3%; 
     margin-top: 5%;
     padding: 5px;
     font-size: 1.2rem;
@@ -219,7 +219,7 @@ body {
 
   .heatmap-container {
     /* width: 150%; */
-    width: 100%;
+    max-width: 90%;
     animation: heatmapAnimation 4s ease-in-out;
     overflow-x: auto;
     overflow-y: auto;
