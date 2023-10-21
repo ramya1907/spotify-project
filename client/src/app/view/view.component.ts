@@ -29,7 +29,7 @@ export class ViewComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
-  apiKey: string = '846e19279fa31e6d74cad5d88e4a1a1f';
+  apiKey: string = '';
   lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
   fetchedTracks: any[] = [];
