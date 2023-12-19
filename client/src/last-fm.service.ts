@@ -8,6 +8,7 @@ import { Observable, catchError, firstValueFrom, map, of } from 'rxjs';
 })
 export class LastFmService {
   private lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
+  //Add API KEY here
   private apiKey = '';
 
   constructor(private http: HttpClient) {}
