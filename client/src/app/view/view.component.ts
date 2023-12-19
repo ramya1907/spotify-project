@@ -29,6 +29,7 @@ export class ViewComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
+  //Enter API Key Here 
   apiKey: string = '';
   lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
