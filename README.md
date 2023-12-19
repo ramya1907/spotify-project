@@ -9,6 +9,7 @@ A powerful web application that harnesses Last.fm user data to provide in-depth 
 3. [Configuration](#configuration)
 4. [Features](#features)
 5. [How To Use](#how-to-use)
+6. [Screenshots](#screenshots)
 
 ## Installation
 
@@ -20,8 +21,8 @@ A powerful web application that harnesses Last.fm user data to provide in-depth 
    
 ## Usage
 
-  cd spotify-project/client
-  ng serve
+  `cd spotify-project/client
+  ng serve`
 
 ## Configuration
 
@@ -49,6 +50,19 @@ Set up Last.fm API key in 'view.component.ts', 'heatmap.component.ts', 'last-fm.
 1. Enter your Last.fm username.
 2. Choose between the "Yearly Play Count Heatmap" and "Artist Insights" options.
 3. Explore the visualizations and insights.
+
+## Screenshots
+
+![Screenshot 1](images/0.png)
+![Screenshot 2](images/1.png)
+![Screenshot 2](images/2.png)
+![Screenshot 2](images/3.png)
+![Screenshot 2](images/4.png)
+![Screenshot 2](images/5.png)
+![Screenshot 2](images/6.png)
+![Screenshot 2](images/7.png)
+![Screenshot 2](images/8.png)
+
 
 
 
