@@ -13,6 +13,7 @@ import { firstValueFrom } from 'rxjs';
 export class HeatmapComponent implements OnInit {
 
   username = '';
+  //Add API KEY here
   apiKey: string = '';
   lastFmApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
